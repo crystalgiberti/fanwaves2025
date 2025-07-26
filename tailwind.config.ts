@@ -57,6 +57,72 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Fan Waves brand colors
+        'fan-blue': {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554'
+        },
+        'electric-blue': {
+          DEFAULT: '#00d4ff',
+          50: '#f0fcff',
+          100: '#d1f4ff',
+          200: '#a8ebff',
+          300: '#6be0ff',
+          400: '#26d1ff',
+          500: '#00d4ff',
+          600: '#00a8d1',
+          700: '#0085a8',
+          800: '#00698a',
+          900: '#005772'
+        },
+        'team-red': {
+          DEFAULT: '#dc2626',
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d'
+        },
+        'team-green': {
+          DEFAULT: '#16a34a',
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e',
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d'
+        },
+        'team-orange': {
+          DEFAULT: '#ea580c',
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12'
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
