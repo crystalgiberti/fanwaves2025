@@ -8,15 +8,16 @@ import { getTeamBySlug, getCategoryBySlug } from '@shared/teams';
 import { useState } from 'react';
 
 export default function TeamCategoryPage() {
-  const { league, teamSlug, categorySlug } = useParams<{ 
-    league: 'nfl' | 'ncaa'; 
-    teamSlug: string; 
-    categorySlug: string; 
+  const { teamSlug, categorySlug } = useParams<{
+    teamSlug: string;
+    categorySlug: string;
   }>();
-  
+
+  const path = window.location.pathname;
+  const league = path.startsWith('/nfl') ? 'nfl' : 'ncaa' as 'nfl' | 'ncaa';
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  
-  if (!league || !teamSlug || !categorySlug) {
+
+  if (!teamSlug || !categorySlug) {
     return <Layout><div>Invalid page</div></Layout>;
   }
 
