@@ -102,12 +102,16 @@ export default function Index() {
                 Your ultimate destination for NFL and NCAA fan gear. Hats, jerseys, accessories, and custom gear to show your team spirit!
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-white text-fan-blue-800 hover:bg-blue-50">
-                  <ShoppingBag className="mr-2 h-5 w-5" />
-                  Shop Now
+                <Button size="lg" className="bg-white text-fan-blue-800 hover:bg-blue-50" asChild>
+                  <Link to="/products">
+                    <ShoppingBag className="mr-2 h-5 w-5" />
+                    Shop Now
+                  </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  Browse Collections
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                  <Link to="/products">
+                    Browse Collections
+                  </Link>
                 </Button>
               </div>
               
@@ -289,11 +293,15 @@ export default function Index() {
               Join thousands of fans who trust Fan Waves for their game day gear. From championship hats to custom fan chains, we've got everything you need to ride the wave!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-fan-blue-800 hover:bg-blue-50">
-                Start Shopping
+              <Button size="lg" className="bg-white text-fan-blue-800 hover:bg-blue-50" asChild>
+                <Link to="/products">
+                  Start Shopping
+                </Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Create Custom Gear
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                <Link to="/custom">
+                  Create Custom Gear
+                </Link>
               </Button>
             </div>
           </div>
