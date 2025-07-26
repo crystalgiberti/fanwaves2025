@@ -42,10 +42,10 @@ const App = () => (
           <Route path="/ncaa/:teamSlug/:categorySlug" element={<TeamCategoryPage />} />
 
           {/* General Product Categories */}
-          <Route path="/hats" element={<PlaceholderPage />} />
-          <Route path="/jerseys" element={<PlaceholderPage />} />
-          <Route path="/accessories" element={<PlaceholderPage />} />
-          <Route path="/custom" element={<PlaceholderPage />} />
+          <Route path="/hats" element={<HatsPage />} />
+          <Route path="/jerseys" element={<JerseysPage />} />
+          <Route path="/accessories" element={<AccessoriesPage />} />
+          <Route path="/custom" element={<CustomGearPage />} />
           <Route path="/products" element={<PlaceholderPage />} />
 
           {/* Support Pages */}
