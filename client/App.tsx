@@ -13,6 +13,10 @@ import NFLPage from "./pages/NFLPage";
 import NCAAPage from "./pages/NCAAPage";
 import TeamPage from "./pages/TeamPage";
 import TeamCategoryPage from "./pages/TeamCategoryPage";
+import AccessoriesPage from "./pages/AccessoriesPage";
+import HatsPage from "./pages/HatsPage";
+import JerseysPage from "./pages/JerseysPage";
+import CustomGearPage from "./pages/CustomGearPage";
 
 const queryClient = new QueryClient();
 
