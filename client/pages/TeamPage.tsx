@@ -7,9 +7,11 @@ import { ArrowLeft, Star, ShoppingBag, Grid3X3 } from 'lucide-react';
 import { getTeamBySlug, PRODUCT_CATEGORIES } from '@shared/teams';
 
 export default function TeamPage() {
-  const { league, teamSlug } = useParams<{ league: 'nfl' | 'ncaa'; teamSlug: string }>();
-  
-  if (!league || !teamSlug) {
+  const { teamSlug } = useParams<{ teamSlug: string }>();
+  const path = window.location.pathname;
+  const league = path.startsWith('/nfl') ? 'nfl' : 'ncaa' as 'nfl' | 'ncaa';
+
+  if (!teamSlug) {
     return <Layout><div>Invalid team page</div></Layout>;
   }
 
