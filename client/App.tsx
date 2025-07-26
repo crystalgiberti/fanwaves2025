@@ -20,6 +20,24 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+
+          {/* Product Categories */}
+          <Route path="/nfl" element={<PlaceholderPage />} />
+          <Route path="/ncaa" element={<PlaceholderPage />} />
+          <Route path="/hats" element={<PlaceholderPage />} />
+          <Route path="/jerseys" element={<PlaceholderPage />} />
+          <Route path="/accessories" element={<PlaceholderPage />} />
+          <Route path="/custom" element={<PlaceholderPage />} />
+          <Route path="/products" element={<PlaceholderPage />} />
+
+          {/* Support Pages */}
+          <Route path="/contact" element={<PlaceholderPage />} />
+          <Route path="/shipping" element={<PlaceholderPage />} />
+          <Route path="/returns" element={<PlaceholderPage />} />
+          <Route path="/faq" element={<PlaceholderPage />} />
+          <Route path="/privacy" element={<PlaceholderPage />} />
+          <Route path="/terms" element={<PlaceholderPage />} />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
