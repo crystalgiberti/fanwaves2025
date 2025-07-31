@@ -3,6 +3,17 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleImageSearch } from "./routes/search-images";
+import {
+  handleGetProducts,
+  handleGetProduct,
+  handleGetTeamProducts,
+  handleGetFeaturedProducts,
+  handleGetSaleProducts,
+  handleSearchProducts,
+  handleGetCategories,
+  handleCreateOrder,
+  handleWebhook
+} from "./routes/woocommerce";
 
 export function createServer() {
   const app = express();
@@ -20,6 +31,17 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
   app.get("/api/search-images", handleImageSearch);
+
+  // WooCommerce API routes
+  app.get("/api/products", handleGetProducts);
+  app.get("/api/products/featured", handleGetFeaturedProducts);
+  app.get("/api/products/sale", handleGetSaleProducts);
+  app.get("/api/products/search", handleSearchProducts);
+  app.get("/api/products/:id", handleGetProduct);
+  app.get("/api/teams/:teamSlug/products", handleGetTeamProducts);
+  app.get("/api/categories", handleGetCategories);
+  app.post("/api/orders", handleCreateOrder);
+  app.post("/api/webhooks/woocommerce", handleWebhook);
 
   return app;
 }
