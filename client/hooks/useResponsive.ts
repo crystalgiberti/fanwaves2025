@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // Breakpoint definitions matching Tailwind CSS
 const breakpoints = {
@@ -6,15 +6,15 @@ const breakpoints = {
   md: 768,
   lg: 1024,
   xl: 1280,
-  '2xl': 1536,
+  "2xl": 1536,
 } as const;
 
 type Breakpoint = keyof typeof breakpoints;
 
 export function useResponsive() {
   const [windowSize, setWindowSize] = useState({
-    width: typeof window !== 'undefined' ? window.innerWidth : 0,
-    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
   });
 
   useEffect(() => {
@@ -25,10 +25,10 @@ export function useResponsive() {
       });
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize(); // Set initial size
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const isBreakpoint = (breakpoint: Breakpoint) => {
@@ -40,13 +40,16 @@ export function useResponsive() {
   };
 
   const isBetween = (min: Breakpoint, max: Breakpoint) => {
-    return windowSize.width >= breakpoints[min] && windowSize.width < breakpoints[max];
+    return (
+      windowSize.width >= breakpoints[min] &&
+      windowSize.width < breakpoints[max]
+    );
   };
 
   return {
     windowSize,
     isMobile: windowSize.width < breakpoints.md,
-    isTablet: isBetween('md', 'lg'),
+    isTablet: isBetween("md", "lg"),
     isDesktop: windowSize.width >= breakpoints.lg,
     isBreakpoint,
     isBelow,
@@ -85,7 +88,7 @@ export function useResponsiveColumns(config: {
 }): number {
   const { windowSize } = useResponsive();
 
-  if (windowSize.width >= breakpoints['2xl'] && config.xl) {
+  if (windowSize.width >= breakpoints["2xl"] && config.xl) {
     return config.xl;
   }
   if (windowSize.width >= breakpoints.lg && config.desktop) {
@@ -101,45 +104,52 @@ export function useResponsiveColumns(config: {
 export function useResponsiveImageSize() {
   const { windowSize } = useResponsive();
 
-  if (windowSize.width >= breakpoints['2xl']) {
-    return 'xl';
+  if (windowSize.width >= breakpoints["2xl"]) {
+    return "xl";
   }
   if (windowSize.width >= breakpoints.lg) {
-    return 'lg';
+    return "lg";
   }
   if (windowSize.width >= breakpoints.md) {
-    return 'md';
+    return "md";
   }
-  return 'sm';
+  return "sm";
 }
 
 // Hook for adaptive loading based on device capabilities
 export function useAdaptiveLoading() {
-  const [connectionSpeed, setConnectionSpeed] = useState<'slow' | 'fast'>('fast');
+  const [connectionSpeed, setConnectionSpeed] = useState<"slow" | "fast">(
+    "fast",
+  );
   const { isMobile } = useResponsive();
 
   useEffect(() => {
     // Check network connection if available
-    if ('connection' in navigator) {
+    if ("connection" in navigator) {
       const connection = (navigator as any).connection;
       if (connection) {
         const updateConnectionSpeed = () => {
           const effectiveType = connection.effectiveType;
-          setConnectionSpeed(effectiveType === 'slow-2g' || effectiveType === '2g' ? 'slow' : 'fast');
+          setConnectionSpeed(
+            effectiveType === "slow-2g" || effectiveType === "2g"
+              ? "slow"
+              : "fast",
+          );
         };
-        
+
         updateConnectionSpeed();
-        connection.addEventListener('change', updateConnectionSpeed);
-        
-        return () => connection.removeEventListener('change', updateConnectionSpeed);
+        connection.addEventListener("change", updateConnectionSpeed);
+
+        return () =>
+          connection.removeEventListener("change", updateConnectionSpeed);
       }
     }
   }, []);
 
   return {
-    shouldLazyLoad: isMobile || connectionSpeed === 'slow',
-    shouldPreload: !isMobile && connectionSpeed === 'fast',
-    preferReducedData: connectionSpeed === 'slow',
+    shouldLazyLoad: isMobile || connectionSpeed === "slow",
+    shouldPreload: !isMobile && connectionSpeed === "fast",
+    preferReducedData: connectionSpeed === "slow",
     connectionSpeed,
   };
 }
@@ -154,8 +164,8 @@ export function useScrollAnimation() {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const observeElement = (element: HTMLElement | null) => {
@@ -165,7 +175,7 @@ export function useScrollAnimation() {
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(element);
@@ -176,6 +186,9 @@ export function useScrollAnimation() {
     isVisible,
     scrollY,
     observeElement,
-    scrollProgress: Math.min(scrollY / (document.body.scrollHeight - window.innerHeight), 1),
+    scrollProgress: Math.min(
+      scrollY / (document.body.scrollHeight - window.innerHeight),
+      1,
+    ),
   };
 }

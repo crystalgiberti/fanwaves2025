@@ -1,9 +1,9 @@
-import { builder } from '@builder.io/react';
+import { builder } from "@builder.io/react";
 
 // Advanced media management system
 export class MediaManager {
   private static instance: MediaManager;
-  private apiKey = '87091a742c05463799bae52525d7477c';
+  private apiKey = "87091a742c05463799bae52525d7477c";
 
   static getInstance(): MediaManager {
     if (!MediaManager.instance) {
@@ -13,15 +13,18 @@ export class MediaManager {
   }
 
   // Upload images to Builder.io
-  async uploadImage(file: File, folder = 'fanwaves'): Promise<string> {
+  async uploadImage(file: File, folder = "fanwaves"): Promise<string> {
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('folder', folder);
+    formData.append("file", file);
+    formData.append("folder", folder);
 
-    const response = await fetch(`https://builder.io/api/v1/upload?apiKey=${this.apiKey}`, {
-      method: 'POST',
-      body: formData,
-    });
+    const response = await fetch(
+      `https://builder.io/api/v1/upload?apiKey=${this.apiKey}`,
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
 
     const data = await response.json();
     return data.url;
@@ -31,10 +34,12 @@ export class MediaManager {
   async searchImages(query: string, page = 1): Promise<any[]> {
     try {
       // This would integrate with Pexels API or similar
-      const response = await fetch(`/api/search-images?q=${encodeURIComponent(query)}&page=${page}`);
+      const response = await fetch(
+        `/api/search-images?q=${encodeURIComponent(query)}&page=${page}`,
+      );
       return await response.json();
     } catch (error) {
-      console.error('Image search error:', error);
+      console.error("Image search error:", error);
       return [];
     }
   }

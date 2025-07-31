@@ -39,8 +39,14 @@ const App = () => (
           <Route path="/ncaa/:teamSlug" element={<TeamPage />} />
 
           {/* Team Category Pages - Dynamic routing for all team categories */}
-          <Route path="/nfl/:teamSlug/:categorySlug" element={<TeamCategoryPage />} />
-          <Route path="/ncaa/:teamSlug/:categorySlug" element={<TeamCategoryPage />} />
+          <Route
+            path="/nfl/:teamSlug/:categorySlug"
+            element={<TeamCategoryPage />}
+          />
+          <Route
+            path="/ncaa/:teamSlug/:categorySlug"
+            element={<TeamCategoryPage />}
+          />
 
           {/* General Product Categories */}
           <Route path="/hats" element={<HatsPage />} />
