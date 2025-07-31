@@ -4,6 +4,7 @@ import { ShoppingCart, Search, Menu, User, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { useCart } from '@/lib/cart';
 import CartDrawer from '@/components/cart/CartDrawer';
+import SearchModal from '@/components/SearchModal';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { getTotalItems, openCart } = useCart();
 
   return (
@@ -50,7 +52,12 @@ export default function Layout({ children }: LayoutProps) {
           {/* Right Side */}
           <div className="ml-auto flex items-center space-x-4">
             {/* Search */}
-            <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:inline-flex"
+              onClick={() => setIsSearchOpen(true)}
+            >
               <Search className="h-4 w-4" />
               <span className="sr-only">Search</span>
             </Button>
@@ -147,6 +154,9 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Cart Drawer */}
       <CartDrawer />
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
       {/* Footer */}
       <footer className="border-t bg-muted/50">
