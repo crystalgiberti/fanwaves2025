@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Search, Menu, User, Heart } from 'lucide-react';
 import { useState } from 'react';
+import { useCart } from '@/lib/cart';
+import CartDrawer from '@/components/cart/CartDrawer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,6 +11,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { getTotalItems, openCart } = useCart();
 
   return (
     <div className="min-h-screen bg-background">
@@ -65,11 +68,13 @@ export default function Layout({ children }: LayoutProps) {
             </Button>
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative" onClick={openCart}>
               <ShoppingCart className="h-4 w-4" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
-                0
-              </span>
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
+                  {getTotalItems()}
+                </span>
+              )}
               <span className="sr-only">Shopping cart</span>
             </Button>
 
@@ -139,6 +144,9 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Main Content */}
       <main>{children}</main>
+
+      {/* Cart Drawer */}
+      <CartDrawer />
 
       {/* Footer */}
       <footer className="border-t bg-muted/50">
