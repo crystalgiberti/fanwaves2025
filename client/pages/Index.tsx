@@ -51,48 +51,7 @@ export default function Index() {
     },
   ];
 
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Championship Hat",
-      price: 29.99,
-      originalPrice: 39.99,
-      image: "/placeholder.svg",
-      rating: 4.8,
-      reviews: 124,
-      badge: "Bestseller",
-    },
-    {
-      id: 2,
-      name: "Team Jersey Pro",
-      price: 89.99,
-      originalPrice: 109.99,
-      image: "/placeholder.svg",
-      rating: 4.9,
-      reviews: 89,
-      badge: "New",
-    },
-    {
-      id: 3,
-      name: "Fan Chain Deluxe",
-      price: 19.99,
-      originalPrice: 24.99,
-      image: "/placeholder.svg",
-      rating: 4.7,
-      reviews: 156,
-      badge: "Hot",
-    },
-    {
-      id: 4,
-      name: "Terrible Towel Set",
-      price: 15.99,
-      originalPrice: 19.99,
-      image: "/placeholder.svg",
-      rating: 4.6,
-      reviews: 203,
-      badge: "Sale",
-    },
-  ];
+
 
   return (
     <Layout>
