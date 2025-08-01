@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import ProductsPage from "./pages/ProductsPage";
 import NFLPage from "./pages/NFLPage";
 import NCAAPage from "./pages/NCAAPage";
 import TeamPage from "./pages/TeamPage";
