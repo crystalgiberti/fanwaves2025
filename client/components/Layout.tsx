@@ -159,6 +159,9 @@ export default function Layout({ children }: LayoutProps) {
       {/* Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
+      {/* Riff Chatbot */}
+      <RiffChatbot />
+
       {/* Footer */}
       <footer className="border-t bg-muted/50">
         <div className="container max-w-screen-2xl py-12">
