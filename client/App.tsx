@@ -58,6 +58,7 @@ const App = () => (
           <Route path="/accessories" element={<AccessoriesPage />} />
           <Route path="/custom" element={<CustomGearPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/status" element={<StatusPage />} />
           <Route path="/builder/*" element={<BuilderPage />} />
 
           {/* Support Pages */}
