@@ -200,7 +200,7 @@ export default function CustomGearDesigner() {
     textColor: '#FFFFFF',
     backgroundColor: '#000000',
     fontSize: 24,
-    fontFamily: 'Impact, sans-serif',
+    fontFamily: 'Impact, Arial Black, sans-serif',
     position: 'center',
   });
 
@@ -363,7 +363,7 @@ export default function CustomGearDesigner() {
       textColor: '#FFFFFF',
       backgroundColor: '#000000',
       fontSize: 24,
-      fontFamily: 'Impact, sans-serif',
+      fontFamily: 'Impact, Arial Black, sans-serif',
       position: 'center',
     });
     setPreviewUrl('');
