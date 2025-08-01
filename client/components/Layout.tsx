@@ -22,14 +22,14 @@ export default function Layout({ children }: LayoutProps) {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 md:h-16 max-w-screen-2xl items-center px-4">
           {/* Logo */}
-          <Link to="/" className="mr-6 flex items-center space-x-2">
-            <div className="text-2xl font-bold bg-gradient-to-r from-electric-blue to-fan-blue-600 bg-clip-text text-transparent">
+          <Link to="/" className="mr-3 md:mr-6 flex items-center space-x-2">
+            <div className="text-lg md:text-2xl font-bold bg-gradient-to-r from-electric-blue to-fan-blue-600 bg-clip-text text-transparent">
               FAN WAVES
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm font-medium">
             <Link to="/nfl" className="transition-colors hover:text-primary">
               NFL
             </Link>
