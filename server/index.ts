@@ -32,6 +32,7 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
   app.get("/api/search-images", handleImageSearch);
+  app.get("/api/test-woocommerce", handleTestWooCommerce);
 
   // WooCommerce API routes
   app.get("/api/products", handleGetProducts);
