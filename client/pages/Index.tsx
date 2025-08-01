@@ -85,7 +85,7 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-electric-blue via-fan-blue-600 to-fan-blue-800">
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-        <div className="container relative mx-auto px-4 py-20 md:py-32">
+        <div className="container relative mx-auto px-4 py-3 md:py-32">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center">
             {/* Hero Content */}
             <div className="space-y-6 text-white">
@@ -156,7 +156,7 @@ export default function Index() {
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background mb-6">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center space-x-4">
@@ -165,7 +165,7 @@ export default function Index() {
               </div>
               <div>
                 <h3 className="font-semibold">Free Shipping</h3>
-                <p className="text-sm text-muted-foreground">On orders over $50</p>
+                <p className="text-sm text-muted-foreground">On orders over $350</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -182,7 +182,7 @@ export default function Index() {
                 <Heart className="h-6 w-6 text-electric-blue" />
               </div>
               <div>
-                <h3 className="font-semibold">Fan Approved</h3>
+                <h3 className="font-semibold">Custom Options</h3>
                 <p className="text-sm text-muted-foreground">Loved by thousands of fans</p>
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function Index() {
       </section>
 
       {/* Featured Categories */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30 -mb-1">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -245,8 +245,8 @@ export default function Index() {
               <Card key={product.id} className="group cursor-pointer hover:shadow-lg transition-shadow">
                 <CardHeader className="p-0">
                   <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
-                    <img 
-                      src={product.image} 
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142"
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -283,7 +283,7 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-electric-blue to-fan-blue-600">
+      <section className="py-20 bg-gradient-to-r from-electric-blue to-fan-blue-600 -mb-1">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto text-white">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6">
