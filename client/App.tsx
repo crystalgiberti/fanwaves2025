@@ -51,6 +51,7 @@ const App = () => (
           />
 
           {/* General Product Categories */}
+          <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/hats" element={<HatsPage />} />
           <Route path="/jerseys" element={<JerseysPage />} />
           <Route path="/accessories" element={<AccessoriesPage />} />
