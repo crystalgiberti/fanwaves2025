@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useCart } from '@/lib/cart';
 import CartDrawer from '@/components/cart/CartDrawer';
 import SearchModal from '@/components/SearchModal';
+import RiffChatbot from '@/components/RiffChatbot';
 
 interface LayoutProps {
   children: React.ReactNode;
