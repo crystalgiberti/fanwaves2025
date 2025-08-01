@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleImageSearch } from "./routes/search-images";
+import { handleTestWooCommerce } from "./routes/test-woocommerce";
 import {
   handleGetProducts,
   handleGetProduct,
