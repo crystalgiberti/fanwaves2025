@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import ProductsPage from "./pages/ProductsPage";
+import CollectionsPage from "./pages/CollectionsPage";
 import NFLPage from "./pages/NFLPage";
 import NCAAPage from "./pages/NCAAPage";
 import TeamPage from "./pages/TeamPage";
