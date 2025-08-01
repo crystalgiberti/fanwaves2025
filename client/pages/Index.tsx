@@ -98,20 +98,20 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-electric-blue via-fan-blue-600 to-fan-blue-800">
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-        <div className="container relative mx-auto px-4 py-3 md:py-32">
+        <div className="container relative mx-auto px-4 py-6 md:py-20">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center">
             {/* Hero Content */}
             <div className="space-y-6 text-white">
-              <Badge className="w-fit bg-white/20 text-white border-white/30 hover:bg-white/30">
+              <Badge className="w-fit bg-white/20 text-white border-white/30 hover:bg-white/30 mb-3 md:mb-0">
                 🎉 New Season, New Gear!
               </Badge>
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                 Ride the
                 <span className="block bg-gradient-to-r from-white to-electric-blue-200 bg-clip-text text-transparent">
                   FAN WAVES
                 </span>
               </h1>
-              <p className="text-xl text-blue-100 max-w-lg">
+              <p className="text-lg md:text-xl text-blue-100 max-w-lg">
                 Your ultimate destination for NFL and NCAA fan gear. Hats,
                 jerseys, accessories, and custom gear to show your team spirit!
               </p>
@@ -137,7 +137,7 @@ export default function Index() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 pt-8">
+              <div className="grid grid-cols-3 gap-4 pt-6 md:pt-8">
                 <div className="text-center">
                   <div className="text-2xl font-bold">50K+</div>
                   <div className="text-sm text-blue-200">Happy Fans</div>
@@ -180,9 +180,9 @@ export default function Index() {
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-background mb-6">
+      <section className="py-8 md:py-12 bg-background mb-4 md:mb-6">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-lg flex items-center justify-center">
                 <Truck className="h-6 w-6 text-electric-blue" />
@@ -221,10 +221,10 @@ export default function Index() {
       </section>
 
       {/* Featured Categories */}
-      <section className="py-20 bg-muted/30 -mb-1">
+      <section className="py-12 md:py-16 bg-muted/30 -mb-1">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">
               Shop by Category
             </h2>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
@@ -232,7 +232,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {featuredCategories.map((category, index) => (
               <Link key={index} to={category.href}>
                 <Card className="group cursor-pointer border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
@@ -255,11 +255,11 @@ export default function Index() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center justify-between mb-8 md:mb-12">
             <div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+              <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
                 Trending Now
               </h2>
               <p className="text-muted-foreground mt-2">
@@ -274,7 +274,7 @@ export default function Index() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {featuredProducts.map((product) => (
               <Card
                 key={product.id}
@@ -301,7 +301,7 @@ export default function Index() {
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4">
+                <CardContent className="p-3 md:p-4">
                   <CardTitle className="text-base font-semibold mb-2">
                     {product.name}
                   </CardTitle>
@@ -330,13 +330,13 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-electric-blue to-fan-blue-600 -mb-1">
+      <section className="py-12 md:py-16 bg-gradient-to-r from-electric-blue to-fan-blue-600 -mb-1">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto text-white">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6">
+            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl mb-4 md:mb-6">
               Ready to Show Your Team Spirit?
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8">
               Join thousands of fans who trust Fan Waves for their game day
               gear. From championship hats to custom fan chains, we've got
               everything you need to ride the wave!
