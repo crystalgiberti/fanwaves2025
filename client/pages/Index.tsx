@@ -121,10 +121,10 @@ export default function Index() {
                   className="bg-white text-fan-blue-800 hover:bg-blue-50"
                   asChild
                 >
-                  <Link to="/products">
+                  <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
                     <ShoppingBag className="mr-2 h-5 w-5" />
                     Shop Now
-                  </Link>
+                  </a>
                 </Button>
                 <Button
                   size="lg"
@@ -132,7 +132,7 @@ export default function Index() {
                   className="border-white text-white hover:bg-white/10 bg-transparent"
                   asChild
                 >
-                  <Link to="/products">Browse Collections</Link>
+                  <Link to="/collections">Browse Collections</Link>
                 </Button>
               </div>
 
@@ -267,10 +267,10 @@ export default function Index() {
               </p>
             </div>
             <Button variant="outline" asChild>
-              <Link to="/products">
+              <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
                 View All
                 <TrendingUp className="ml-2 h-4 w-4" />
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -347,7 +347,7 @@ export default function Index() {
                 className="bg-white text-fan-blue-800 hover:bg-blue-50"
                 asChild
               >
-                <Link to="/products">Start Shopping</Link>
+                <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">Start Shopping</a>
               </Button>
               <Button
                 size="lg"
