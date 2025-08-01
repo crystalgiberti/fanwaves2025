@@ -68,7 +68,7 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
               Trending Now
             </h2>
             <p className="text-muted-foreground mt-2">
-              {error ? 'Sample products (unable to load live inventory)' : 'Most popular items this week'}
+              {error ? 'Sample products (WooCommerce store connection pending)' : 'Featured products from your store'}
             </p>
           </div>
           <Button variant="outline" asChild>
