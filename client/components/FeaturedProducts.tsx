@@ -80,10 +80,17 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-sm text-yellow-800">
-              ⚠️ Displaying sample products. {error}
+          <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-sm text-blue-800 font-medium">
+              🏪 Store Integration Status: Displaying sample products
             </p>
+            <p className="text-xs text-blue-600 mt-1">
+              Add products in your WooCommerce admin to see them here automatically.
+            </p>
+            <details className="mt-2">
+              <summary className="text-xs text-blue-500 cursor-pointer">Technical details</summary>
+              <p className="text-xs text-blue-500 mt-1">{error}</p>
+            </details>
           </div>
         )}
 
