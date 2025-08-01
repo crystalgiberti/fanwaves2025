@@ -1,83 +1,96 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import Layout from '@/components/Layout';
-import { Link } from 'react-router-dom';
-import { ShoppingBag, Star, Truck, Shield, Heart, TrendingUp } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Layout from "@/components/Layout";
+import { Link } from "react-router-dom";
+import {
+  ShoppingBag,
+  Star,
+  Truck,
+  Shield,
+  Heart,
+  TrendingUp,
+} from "lucide-react";
 
 export default function Index() {
   const featuredCategories = [
     {
-      title: 'NFL Gear',
-      description: 'Official team merchandise',
-      image: '/placeholder.svg',
-      href: '/nfl',
-      gradient: 'from-team-red-500 to-team-red-700'
+      title: "NFL Gear",
+      description: "Official team merchandise",
+      image: "/placeholder.svg",
+      href: "/nfl",
+      gradient: "from-team-red-500 to-team-red-700",
     },
     {
-      title: 'NCAA Gear',
-      description: 'College team favorites',
-      image: '/placeholder.svg',
-      href: '/ncaa',
-      gradient: 'from-team-orange-500 to-team-orange-700'
+      title: "NCAA Gear",
+      description: "College team favorites",
+      image: "/placeholder.svg",
+      href: "/ncaa",
+      gradient: "from-team-orange-500 to-team-orange-700",
     },
     {
-      title: 'Hats & Caps',
-      description: 'Top off your look',
-      image: '/placeholder.svg',
-      href: '/hats',
-      gradient: 'from-fan-blue-500 to-fan-blue-700'
+      title: "Hats & Caps",
+      description: "Top off your look",
+      image: "/placeholder.svg",
+      href: "/hats",
+      gradient: "from-fan-blue-500 to-fan-blue-700",
     },
     {
-      title: 'Custom Gear',
-      description: 'Make it uniquely yours',
-      image: '/placeholder.svg',
-      href: '/custom',
-      gradient: 'from-team-green-500 to-team-green-700'
-    }
+      title: "Custom Gear",
+      description: "Make it uniquely yours",
+      image: "/placeholder.svg",
+      href: "/custom",
+      gradient: "from-team-green-500 to-team-green-700",
+    },
   ];
 
   const featuredProducts = [
     {
       id: 1,
-      name: 'Championship Hat',
+      name: "Championship Hat",
       price: 29.99,
       originalPrice: 39.99,
-      image: '/placeholder.svg',
+      image: "/placeholder.svg",
       rating: 4.8,
       reviews: 124,
-      badge: 'Bestseller'
+      badge: "Bestseller",
     },
     {
       id: 2,
-      name: 'Team Jersey Pro',
+      name: "Team Jersey Pro",
       price: 89.99,
       originalPrice: 109.99,
-      image: '/placeholder.svg',
+      image: "/placeholder.svg",
       rating: 4.9,
       reviews: 89,
-      badge: 'New'
+      badge: "New",
     },
     {
       id: 3,
-      name: 'Fan Chain Deluxe',
+      name: "Fan Chain Deluxe",
       price: 19.99,
       originalPrice: 24.99,
-      image: '/placeholder.svg',
+      image: "/placeholder.svg",
       rating: 4.7,
       reviews: 156,
-      badge: 'Hot'
+      badge: "Hot",
     },
     {
       id: 4,
-      name: 'Terrible Towel Set',
+      name: "Terrible Towel Set",
       price: 15.99,
       originalPrice: 19.99,
-      image: '/placeholder.svg',
+      image: "/placeholder.svg",
       rating: 4.6,
       reviews: 203,
-      badge: 'Sale'
-    }
+      badge: "Sale",
+    },
   ];
 
   return (
@@ -99,22 +112,30 @@ export default function Index() {
                 </span>
               </h1>
               <p className="text-xl text-blue-100 max-w-lg">
-                Your ultimate destination for NFL and NCAA fan gear. Hats, jerseys, accessories, and custom gear to show your team spirit!
+                Your ultimate destination for NFL and NCAA fan gear. Hats,
+                jerseys, accessories, and custom gear to show your team spirit!
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-white text-fan-blue-800 hover:bg-blue-50" asChild>
+                <Button
+                  size="lg"
+                  className="bg-white text-fan-blue-800 hover:bg-blue-50"
+                  asChild
+                >
                   <Link to="/products">
                     <ShoppingBag className="mr-2 h-5 w-5" />
                     Shop Now
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-transparent" asChild>
-                  <Link to="/products">
-                    Browse Collections
-                  </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 bg-transparent"
+                  asChild
+                >
+                  <Link to="/products">Browse Collections</Link>
                 </Button>
               </div>
-              
+
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 pt-8">
                 <div className="text-center">
@@ -135,7 +156,7 @@ export default function Index() {
             {/* Hero Image - Mascot */}
             <div className="relative">
               <div className="relative z-10">
-                <img 
+                <img
                   src="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=800"
                   alt="Fan Waves Mascot"
                   className="w-full h-auto max-w-md mx-auto drop-shadow-2xl"
@@ -146,10 +167,13 @@ export default function Index() {
             </div>
           </div>
         </div>
-        
+
         {/* Decorative wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1200 120" className="w-full h-auto text-background fill-current">
+          <svg
+            viewBox="0 0 1200 120"
+            className="w-full h-auto text-background fill-current"
+          >
             <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"></path>
           </svg>
         </div>
@@ -165,7 +189,9 @@ export default function Index() {
               </div>
               <div>
                 <h3 className="font-semibold">Free Shipping</h3>
-                <p className="text-sm text-muted-foreground">On orders over $350</p>
+                <p className="text-sm text-muted-foreground">
+                  On orders over $350
+                </p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -174,7 +200,9 @@ export default function Index() {
               </div>
               <div>
                 <h3 className="font-semibold">Authentic Gear</h3>
-                <p className="text-sm text-muted-foreground">Official licensed products</p>
+                <p className="text-sm text-muted-foreground">
+                  Official licensed products
+                </p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -183,7 +211,9 @@ export default function Index() {
               </div>
               <div>
                 <h3 className="font-semibold">Custom Options</h3>
-                <p className="text-sm text-muted-foreground">Loved by thousands of fans</p>
+                <p className="text-sm text-muted-foreground">
+                  Loved by thousands of fans
+                </p>
               </div>
             </div>
           </div>
@@ -201,16 +231,20 @@ export default function Index() {
               Find the perfect gear for your favorite teams across NFL and NCAA
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredCategories.map((category, index) => (
               <Link key={index} to={category.href}>
                 <Card className="group cursor-pointer border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                  <div className={`h-48 bg-gradient-to-br ${category.gradient} relative`}>
+                  <div
+                    className={`h-48 bg-gradient-to-br ${category.gradient} relative`}
+                  >
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                     <div className="absolute bottom-4 left-4 text-white">
                       <h3 className="text-xl font-bold">{category.title}</h3>
-                      <p className="text-white/80 text-sm">{category.description}</p>
+                      <p className="text-white/80 text-sm">
+                        {category.description}
+                      </p>
                     </div>
                   </div>
                 </Card>
@@ -242,7 +276,10 @@ export default function Index() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="group cursor-pointer hover:shadow-lg transition-shadow">
+              <Card
+                key={product.id}
+                className="group cursor-pointer hover:shadow-lg transition-shadow"
+              >
                 <CardHeader className="p-0">
                   <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
                     <img
@@ -255,9 +292,9 @@ export default function Index() {
                         {product.badge}
                       </Badge>
                     )}
-                    <Button 
-                      size="icon" 
-                      variant="secondary" 
+                    <Button
+                      size="icon"
+                      variant="secondary"
                       className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                       <Heart className="h-4 w-4" />
@@ -265,15 +302,25 @@ export default function Index() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle className="text-base font-semibold mb-2">{product.name}</CardTitle>
+                  <CardTitle className="text-base font-semibold mb-2">
+                    {product.name}
+                  </CardTitle>
                   <div className="flex items-center space-x-1 mb-2">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium">{product.rating}</span>
-                    <span className="text-sm text-muted-foreground">({product.reviews})</span>
+                    <span className="text-sm font-medium">
+                      {product.rating}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      ({product.reviews})
+                    </span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg font-bold text-electric-blue">${product.price}</span>
-                    <span className="text-sm text-muted-foreground line-through">${product.originalPrice}</span>
+                    <span className="text-lg font-bold text-electric-blue">
+                      ${product.price}
+                    </span>
+                    <span className="text-sm text-muted-foreground line-through">
+                      ${product.originalPrice}
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -290,18 +337,25 @@ export default function Index() {
               Ready to Show Your Team Spirit?
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Join thousands of fans who trust Fan Waves for their game day gear. From championship hats to custom fan chains, we've got everything you need to ride the wave!
+              Join thousands of fans who trust Fan Waves for their game day
+              gear. From championship hats to custom fan chains, we've got
+              everything you need to ride the wave!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-fan-blue-800 hover:bg-blue-50" asChild>
-                <Link to="/products">
-                  Start Shopping
-                </Link>
+              <Button
+                size="lg"
+                className="bg-white text-fan-blue-800 hover:bg-blue-50"
+                asChild
+              >
+                <Link to="/products">Start Shopping</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-transparent" asChild>
-                <Link to="/custom">
-                  Create Custom Gear
-                </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 bg-transparent"
+                asChild
+              >
+                <Link to="/custom">Create Custom Gear</Link>
               </Button>
             </div>
           </div>

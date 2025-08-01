@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart, Search, Menu, User, Heart } from 'lucide-react';
-import { useState } from 'react';
-import { useCart } from '@/lib/cart';
-import CartDrawer from '@/components/cart/CartDrawer';
-import SearchModal from '@/components/SearchModal';
-import RiffChatbot from '@/components/RiffChatbot';
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart, Search, Menu, User, Heart } from "lucide-react";
+import { useState } from "react";
+import { useCart } from "@/lib/cart";
+import CartDrawer from "@/components/cart/CartDrawer";
+import SearchModal from "@/components/SearchModal";
+import RiffChatbot from "@/components/RiffChatbot";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,10 +39,16 @@ export default function Layout({ children }: LayoutProps) {
             <Link to="/hats" className="transition-colors hover:text-primary">
               Hats
             </Link>
-            <Link to="/jerseys" className="transition-colors hover:text-primary">
+            <Link
+              to="/jerseys"
+              className="transition-colors hover:text-primary"
+            >
               Jerseys
             </Link>
-            <Link to="/accessories" className="transition-colors hover:text-primary">
+            <Link
+              to="/accessories"
+              className="transition-colors hover:text-primary"
+            >
               Accessories
             </Link>
             <Link to="/custom" className="transition-colors hover:text-primary">
@@ -76,7 +82,12 @@ export default function Layout({ children }: LayoutProps) {
             </Button>
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative" onClick={openCart}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={openCart}
+            >
               <ShoppingCart className="h-4 w-4" />
               {getTotalItems() > 0 && (
                 <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
@@ -157,7 +168,10 @@ export default function Layout({ children }: LayoutProps) {
       <CartDrawer />
 
       {/* Search Modal */}
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+      />
 
       {/* Riff Chatbot */}
       <RiffChatbot />
@@ -172,7 +186,8 @@ export default function Layout({ children }: LayoutProps) {
                 FAN WAVES
               </div>
               <p className="text-sm text-muted-foreground">
-                Your ultimate destination for NFL and NCAA fan gear. Ride the wave of team spirit!
+                Your ultimate destination for NFL and NCAA fan gear. Ride the
+                wave of team spirit!
               </p>
             </div>
 
@@ -180,19 +195,34 @@ export default function Layout({ children }: LayoutProps) {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold">Shop</h3>
               <nav className="space-y-2 text-sm">
-                <Link to="/nfl" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/nfl"
+                  className="block transition-colors hover:text-primary"
+                >
                   NFL Gear
                 </Link>
-                <Link to="/ncaa" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/ncaa"
+                  className="block transition-colors hover:text-primary"
+                >
                   NCAA Gear
                 </Link>
-                <Link to="/hats" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/hats"
+                  className="block transition-colors hover:text-primary"
+                >
                   Hats & Caps
                 </Link>
-                <Link to="/jerseys" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/jerseys"
+                  className="block transition-colors hover:text-primary"
+                >
                   Jerseys
                 </Link>
-                <Link to="/accessories" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/accessories"
+                  className="block transition-colors hover:text-primary"
+                >
                   Accessories
                 </Link>
               </nav>
@@ -202,16 +232,28 @@ export default function Layout({ children }: LayoutProps) {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold">Support</h3>
               <nav className="space-y-2 text-sm">
-                <Link to="/contact" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/contact"
+                  className="block transition-colors hover:text-primary"
+                >
                   Contact Us
                 </Link>
-                <Link to="/shipping" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/shipping"
+                  className="block transition-colors hover:text-primary"
+                >
                   Shipping Info
                 </Link>
-                <Link to="/returns" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/returns"
+                  className="block transition-colors hover:text-primary"
+                >
                   Returns
                 </Link>
-                <Link to="/faq" className="block transition-colors hover:text-primary">
+                <Link
+                  to="/faq"
+                  className="block transition-colors hover:text-primary"
+                >
                   FAQ
                 </Link>
               </nav>
@@ -221,16 +263,28 @@ export default function Layout({ children }: LayoutProps) {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold">Connect</h3>
               <nav className="space-y-2 text-sm">
-                <a href="#" className="block transition-colors hover:text-primary">
+                <a
+                  href="#"
+                  className="block transition-colors hover:text-primary"
+                >
                   Twitter
                 </a>
-                <a href="#" className="block transition-colors hover:text-primary">
+                <a
+                  href="#"
+                  className="block transition-colors hover:text-primary"
+                >
                   Instagram
                 </a>
-                <a href="#" className="block transition-colors hover:text-primary">
+                <a
+                  href="#"
+                  className="block transition-colors hover:text-primary"
+                >
                   Facebook
                 </a>
-                <a href="#" className="block transition-colors hover:text-primary">
+                <a
+                  href="#"
+                  className="block transition-colors hover:text-primary"
+                >
                   TikTok
                 </a>
               </nav>
@@ -242,10 +296,16 @@ export default function Layout({ children }: LayoutProps) {
               © 2024 Fan Waves. All rights reserved.
             </p>
             <div className="mt-4 sm:mt-0 flex space-x-4 text-xs text-muted-foreground">
-              <Link to="/privacy" className="transition-colors hover:text-primary">
+              <Link
+                to="/privacy"
+                className="transition-colors hover:text-primary"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="transition-colors hover:text-primary">
+              <Link
+                to="/terms"
+                className="transition-colors hover:text-primary"
+              >
                 Terms of Service
               </Link>
             </div>
