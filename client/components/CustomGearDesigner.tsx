@@ -516,11 +516,20 @@ export default function CustomGearDesigner() {
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
-                      {fontFamilies.map(font => (
-                        <SelectItem key={font} value={font}>
-                          <span style={{ fontFamily: font }}>{font.split(',')[0]}</span>
-                        </SelectItem>
+                    <SelectContent className="max-h-60 overflow-y-auto">
+                      {['Sports', 'Bold', 'Display', 'Classic', 'Stencil'].map(category => (
+                        <div key={category}>
+                          <div className="px-2 py-1 text-xs font-semibold text-muted-foreground bg-muted/50">
+                            {category} Fonts
+                          </div>
+                          {fontFamilies
+                            .filter(font => font.category === category)
+                            .map(font => (
+                              <SelectItem key={font.value} value={font.value}>
+                                <span style={{ fontFamily: font.value }}>{font.label}</span>
+                              </SelectItem>
+                            ))}
+                        </div>
                       ))}
                     </SelectContent>
                   </Select>
