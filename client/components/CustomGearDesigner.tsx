@@ -153,11 +153,40 @@ const productTypes = [
 ];
 
 const fontFamilies = [
-  'Arial, sans-serif',
-  'Times New Roman, serif',
-  'Impact, sans-serif',
-  'Georgia, serif',
-  'Verdana, sans-serif',
+  // Classic Sports Fonts
+  { value: 'Impact, Arial Black, sans-serif', label: 'Impact (Classic Sports)', category: 'Sports' },
+  { value: 'Anton, Impact, sans-serif', label: 'Anton (Bold Sports)', category: 'Sports' },
+  { value: 'Bebas Neue, Arial Black, sans-serif', label: 'Bebas Neue (Modern Sports)', category: 'Sports' },
+  { value: 'Oswald, Impact, sans-serif', label: 'Oswald (Athletic)', category: 'Sports' },
+  { value: 'Teko, Arial Black, sans-serif', label: 'Teko (Jersey Style)', category: 'Sports' },
+  { value: 'Fjalla One, Arial Black, sans-serif', label: 'Fjalla One (Strong)', category: 'Sports' },
+  { value: 'Russo One, Impact, sans-serif', label: 'Russo One (Retro Sports)', category: 'Sports' },
+  { value: 'Squada One, Arial Black, sans-serif', label: 'Squada One (Varsity)', category: 'Sports' },
+
+  // Bold & Condensed
+  { value: 'Arial Black, sans-serif', label: 'Arial Black (Bold)', category: 'Bold' },
+  { value: 'Franklin Gothic Medium, Arial, sans-serif', label: 'Franklin Gothic (Football)', category: 'Bold' },
+  { value: 'Trebuchet MS, Arial, sans-serif', label: 'Trebuchet MS (Clean Bold)', category: 'Bold' },
+  { value: 'Helvetica Neue Condensed, Arial, sans-serif', label: 'Helvetica Condensed', category: 'Bold' },
+  { value: 'Compacta, Arial Black, sans-serif', label: 'Compacta (Compressed)', category: 'Bold' },
+
+  // Display & Decorative
+  { value: 'Bangers, cursive', label: 'Bangers (Comic Style)', category: 'Display' },
+  { value: 'Righteous, cursive', label: 'Righteous (Retro)', category: 'Display' },
+  { value: 'Bungee, cursive', label: 'Bungee (3D Effect)', category: 'Display' },
+  { value: 'Fredoka One, cursive', label: 'Fredoka One (Friendly Bold)', category: 'Display' },
+
+  // Classic & Professional
+  { value: 'Arial, sans-serif', label: 'Arial (Classic)', category: 'Classic' },
+  { value: 'Helvetica, Arial, sans-serif', label: 'Helvetica (Professional)', category: 'Classic' },
+  { value: 'Times New Roman, serif', label: 'Times New Roman (Traditional)', category: 'Classic' },
+  { value: 'Georgia, serif', label: 'Georgia (Elegant)', category: 'Classic' },
+  { value: 'Verdana, sans-serif', label: 'Verdana (Clean)', category: 'Classic' },
+
+  // Stencil & Military Style
+  { value: 'Orbitron, monospace', label: 'Orbitron (Futuristic)', category: 'Stencil' },
+  { value: 'Play, sans-serif', label: 'Play (Tech Style)', category: 'Stencil' },
+  { value: 'Audiowide, cursive', label: 'Audiowide (Digital)', category: 'Stencil' },
 ];
 
 export default function CustomGearDesigner() {
@@ -374,17 +403,26 @@ export default function CustomGearDesigner() {
                   <SelectTrigger>
                     <SelectValue placeholder="Select a team..." />
                   </SelectTrigger>
-                  <SelectContent>
-                    {teams.map(team => (
-                      <SelectItem key={team.value} value={team.value}>
-                        <div className="flex items-center space-x-2">
-                          <div 
-                            className="w-4 h-4 rounded-full"
-                            style={{ backgroundColor: team.colors.primary }}
-                          />
-                          <span>{team.label}</span>
+                  <SelectContent className="max-h-60 overflow-y-auto">
+                    {['NFL', 'NCAA'].map(league => (
+                      <div key={league}>
+                        <div className="px-2 py-1 text-xs font-semibold text-muted-foreground bg-muted/50">
+                          {league} Teams
                         </div>
-                      </SelectItem>
+                        {teams
+                          .filter(team => team.league === league)
+                          .map(team => (
+                            <SelectItem key={team.value} value={team.value}>
+                              <div className="flex items-center space-x-2">
+                                <div
+                                  className="w-4 h-4 rounded-full"
+                                  style={{ backgroundColor: team.colors.primary }}
+                                />
+                                <span>{team.label}</span>
+                              </div>
+                            </SelectItem>
+                          ))}
+                      </div>
                     ))}
                   </SelectContent>
                 </Select>
@@ -397,16 +435,25 @@ export default function CustomGearDesigner() {
                   <SelectTrigger>
                     <SelectValue placeholder="Select product type..." />
                   </SelectTrigger>
-                  <SelectContent>
-                    {productTypes.map(product => (
-                      <SelectItem key={product.value} value={product.value}>
-                        <div className="flex items-center justify-between w-full">
-                          <span>{product.label}</span>
-                          <span className="text-sm text-muted-foreground ml-2">
-                            ${(product.basePrice + 10).toFixed(2)}
-                          </span>
+                  <SelectContent className="max-h-60 overflow-y-auto">
+                    {['Apparel', 'Jerseys', 'Hats', 'Accessories', 'Signs', 'Bags'].map(category => (
+                      <div key={category}>
+                        <div className="px-2 py-1 text-xs font-semibold text-muted-foreground bg-muted/50">
+                          {category}
                         </div>
-                      </SelectItem>
+                        {productTypes
+                          .filter(product => product.category === category)
+                          .map(product => (
+                            <SelectItem key={product.value} value={product.value}>
+                              <div className="flex items-center justify-between w-full">
+                                <span>{product.label}</span>
+                                <span className="text-sm text-muted-foreground ml-2">
+                                  ${(product.basePrice + 10).toFixed(2)}
+                                </span>
+                              </div>
+                            </SelectItem>
+                          ))}
+                      </div>
                     ))}
                   </SelectContent>
                 </Select>
