@@ -86,20 +86,20 @@ export default function NCAAPage() {
       </section>
 
       {/* Teams Grid by Conference */}
-      <section className="py-20">
+      <section className="py-8 md:py-16">
         <div className="container mx-auto px-4">
           {Object.entries(groupedTeams).map(([conference, teams]) => {
             if (teams.length === 0) return null;
-            
+
             return (
-              <div key={conference} className="mb-16">
-                <div className="flex items-center space-x-3 mb-8">
+              <div key={conference} className="mb-8 md:mb-12">
+                <div className="flex items-center space-x-3 mb-4 md:mb-6">
                   <Trophy className="h-6 w-6 text-primary" />
                   <h2 className="text-2xl font-bold">{conference}</h2>
                   <Badge variant="secondary">{teams.length} teams</Badge>
                 </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                   {teams.map((team) => (
                     <Link key={team.id} to={`/ncaa/${team.slug}`}>
                       <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden">
