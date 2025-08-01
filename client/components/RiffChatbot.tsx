@@ -220,7 +220,7 @@ export default function RiffChatbot() {
 
       {/* Chat Window - Mobile First */}
       {isOpen && (
-        <Card className="fixed bottom-4 right-4 z-50 w-[calc(100vw-32px)] max-w-md h-[70vh] max-h-[600px] shadow-2xl border-0 bg-white/95 backdrop-blur-sm md:w-96">
+        <Card className="fixed bottom-4 right-4 z-50 w-[calc(100vw-32px)] max-w-md h-[70vh] max-h-[600px] shadow-2xl border-0 bg-white/95 backdrop-blur-sm md:w-96 flex flex-col">
           {/* Header */}
           <CardHeader className="pb-3 bg-gradient-to-r from-electric-blue to-fan-blue-600 text-white rounded-t-lg">
             <div className="flex items-center justify-between">
