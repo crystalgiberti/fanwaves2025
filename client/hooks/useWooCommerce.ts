@@ -67,79 +67,100 @@ export function useWooCommerce(): UseWooCommerceReturn {
   const fetchProducts = async (params?: any) => {
     setLoading(true);
     setError(null);
-    
+
     try {
-      // TODO: Replace with actual API call to your WooCommerce API
-      // const response = await fetch('/api/woocommerce/products', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(params)
-      // });
-      // const data = await response.json();
-      
-      // For now, return mock data
+      const queryParams = new URLSearchParams();
+
+      if (params?.featured) queryParams.append('featured', 'true');
+      if (params?.on_sale) queryParams.append('on_sale', 'true');
+      if (params?.category) queryParams.append('category', params.category);
+      if (params?.team) queryParams.append('team', params.team);
+      if (params?.search) queryParams.append('search', params.search);
+      if (params?.limit) queryParams.append('limit', params.limit.toString());
+      if (params?.page) queryParams.append('page', params.page.toString());
+
+      const response = await fetch(`/api/woocommerce/products?${queryParams}`, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch products: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Transform API response to match our interface
+      const transformedProducts: WooCommerceProduct[] = data.products.map((product: any) => ({
+        id: product.id,
+        name: product.name,
+        slug: product.slug,
+        type: 'simple',
+        status: 'publish',
+        featured: product.featured || false,
+        price: product.price || '0',
+        regular_price: product.regular_price || product.price || '0',
+        sale_price: product.sale_price || '',
+        on_sale: product.on_sale || false,
+        images: product.images || [{ id: 1, src: '/placeholder.svg', alt: product.name }],
+        categories: product.categories || [],
+        short_description: product.description || '',
+        description: product.description || '',
+        average_rating: product.average_rating?.toString() || '0',
+        rating_count: product.rating_count || 0,
+        stock_status: product.stock_status || 'instock',
+        attributes: product.attributes || []
+      }));
+
+      setProducts(transformedProducts);
+
+    } catch (err) {
+      console.error('Error fetching products:', err);
+
+      // Fallback to mock data if API fails
       const mockProducts: WooCommerceProduct[] = [
         {
           id: 1,
-          name: 'Chiefs Super Bowl Champions Snapback Hat',
-          slug: 'chiefs-super-bowl-hat',
+          name: 'Championship Hat',
+          slug: 'championship-hat',
           type: 'simple',
           status: 'publish',
           featured: true,
           price: '29.99',
-          regular_price: '34.99',
+          regular_price: '39.99',
           sale_price: '29.99',
           on_sale: true,
-          images: [{ id: 1, src: '/placeholder.svg', alt: 'Chiefs Hat' }],
-          categories: [
-            { id: 11, name: 'Hats & Caps', slug: 'hats' },
-            { id: 100, name: 'Kansas City Chiefs', slug: 'chiefs' }
-          ],
-          short_description: 'Official Super Bowl Champions snapback hat with embroidered logos',
-          description: 'Show your Chiefs pride with this official Super Bowl Champions snapback hat featuring embroidered team logos and an adjustable fit.',
+          images: [{ id: 1, src: '/placeholder.svg', alt: 'Championship Hat' }],
+          categories: [{ id: 11, name: 'Hats & Caps', slug: 'hats' }],
+          short_description: 'Official championship hat with team embroidery',
+          description: 'Show your team pride with this official championship hat featuring premium embroidery.',
           average_rating: '4.8',
-          rating_count: 156,
+          rating_count: 124,
           stock_status: 'instock',
-          attributes: [
-            { id: 1, name: 'Size', options: ['One Size'] },
-            { id: 2, name: 'Color', options: ['Red', 'White'] }
-          ]
+          attributes: []
         },
         {
           id: 2,
-          name: 'Cowboys America\'s Team Dad Hat',
-          slug: 'cowboys-dad-hat',
+          name: 'Team Jersey Pro',
+          slug: 'team-jersey-pro',
           type: 'simple',
           status: 'publish',
           featured: false,
-          price: '26.99',
-          regular_price: '32.99',
-          sale_price: '26.99',
+          price: '89.99',
+          regular_price: '109.99',
+          sale_price: '89.99',
           on_sale: true,
-          images: [{ id: 2, src: '/placeholder.svg', alt: 'Cowboys Hat' }],
-          categories: [
-            { id: 11, name: 'Hats & Caps', slug: 'hats' },
-            { id: 101, name: 'Dallas Cowboys', slug: 'cowboys' }
-          ],
-          short_description: 'Relaxed fit dad hat with vintage Cowboys star logo',
-          description: 'Classic dad hat featuring the iconic Cowboys star logo with a relaxed fit and curved brim.',
-          average_rating: '4.7',
+          images: [{ id: 2, src: '/placeholder.svg', alt: 'Team Jersey Pro' }],
+          categories: [{ id: 10, name: 'Jerseys', slug: 'jerseys' }],
+          short_description: 'Professional quality team jersey',
+          description: 'Premium team jersey with official team colors and logos.',
+          average_rating: '4.9',
           rating_count: 89,
           stock_status: 'instock',
-          attributes: [
-            { id: 1, name: 'Size', options: ['One Size'] },
-            { id: 2, name: 'Color', options: ['Navy', 'Silver'] }
-          ]
+          attributes: []
         }
       ];
-      
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 800));
       setProducts(mockProducts);
-      
-    } catch (err) {
-      setError('Failed to fetch products');
-      console.error('Error fetching products:', err);
+      setError(`Unable to load live products. ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
