@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
+import FeaturedProducts from "@/components/FeaturedProducts";
 import { Link } from "react-router-dom";
 import {
   ShoppingBag,
