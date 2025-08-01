@@ -173,9 +173,35 @@ export function useWooCommerce(): UseWooCommerceReturn {
   const fetchCategories = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
-      // TODO: Replace with actual API call
+      const response = await fetch('/api/categories', {
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch categories: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      const transformedCategories: WooCommerceCategory[] = data.categories.map((category: any) => ({
+        id: category.id,
+        name: category.name,
+        slug: category.slug,
+        parent: category.parent || 0,
+        description: category.description || '',
+        display: 'default',
+        image: category.image ? { id: 0, src: category.image, alt: category.name } : undefined,
+        count: category.count || 0
+      }));
+
+      setCategories(transformedCategories);
+
+    } catch (err) {
+      console.error('Error fetching categories:', err);
+
+      // Fallback to mock data
       const mockCategories: WooCommerceCategory[] = [
         {
           id: 11,
@@ -194,24 +220,10 @@ export function useWooCommerce(): UseWooCommerceReturn {
           description: 'Official team jerseys',
           display: 'default',
           count: 45
-        },
-        {
-          id: 13,
-          name: 'Accessories',
-          slug: 'accessories',
-          parent: 0,
-          description: 'Team accessories and fan gear',
-          display: 'default',
-          count: 38
         }
       ];
-      
-      await new Promise(resolve => setTimeout(resolve, 500));
       setCategories(mockCategories);
-      
-    } catch (err) {
-      setError('Failed to fetch categories');
-      console.error('Error fetching categories:', err);
+      setError(`Unable to load live categories. ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
