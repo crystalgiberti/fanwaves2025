@@ -319,7 +319,7 @@ export default function RiffChatbot() {
           </CardContent>
 
           {/* Input */}
-          <div className="p-4 border-t bg-white">
+          <div className="p-4 border-t bg-white flex-shrink-0">
             <div className="flex space-x-2">
               <Input
                 value={inputValue}
