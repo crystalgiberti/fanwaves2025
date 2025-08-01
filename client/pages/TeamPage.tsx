@@ -98,12 +98,15 @@ export default function TeamPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="pt-0 text-center">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
+                    <Button
+                      variant="outline"
+                      size="sm"
                       className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      asChild
                     >
-                      Shop Now
+                      <Link to={`/${league}/${teamSlug}/${category.slug}`}>
+                        Shop Now
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -153,11 +156,15 @@ export default function TeamPage() {
             Join thousands of {team.name} fans who trust Fan Waves for their game day gear.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
-              Shop All {team.name} Gear
+            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
+              <Link to={`/${league}/${teamSlug}`}>
+                Shop All {team.name} Gear
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Custom Team Gear
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+              <Link to="/custom">
+                Custom Team Gear
+              </Link>
             </Button>
           </div>
         </div>
