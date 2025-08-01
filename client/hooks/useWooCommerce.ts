@@ -79,7 +79,7 @@ export function useWooCommerce(): UseWooCommerceReturn {
       if (params?.limit) queryParams.append('limit', params.limit.toString());
       if (params?.page) queryParams.append('page', params.page.toString());
 
-      const response = await fetch(`/api/woocommerce/products?${queryParams}`, {
+      const response = await fetch(`/api/products?${queryParams}`, {
         headers: { 'Content-Type': 'application/json' }
       });
 
