@@ -179,8 +179,15 @@ class WooCommerceAPI {
 
   constructor() {
     // Initialize with environment variables
+    let wooUrl = process.env.WOOCOMMERCE_URL || '';
+
+    // Ensure URL ends with / for proper API endpoint construction
+    if (wooUrl && !wooUrl.endsWith('/')) {
+      wooUrl += '/';
+    }
+
     this.configure({
-      url: process.env.WOOCOMMERCE_URL || '',
+      url: wooUrl,
       consumerKey: process.env.WOOCOMMERCE_CONSUMER_KEY || '',
       consumerSecret: process.env.WOOCOMMERCE_CONSUMER_SECRET || '',
       version: process.env.WOOCOMMERCE_VERSION || 'wc/v3',
