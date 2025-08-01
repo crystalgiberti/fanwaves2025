@@ -94,59 +94,54 @@ export default function TeamPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {PRODUCT_CATEGORIES.map((category) => (
-              <Link
-                key={category.id}
-                to={`/${league}/${teamSlug}/${category.slug}`}
-              >
-                <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardHeader className="text-center pb-4">
-                    <div
-                      className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-white"
-                      style={{ backgroundColor: team.colors.primary }}
-                    >
-                      {category.id === "hats" && (
-                        <Grid3X3 className="h-8 w-8" />
-                      )}
-                      {category.id === "shirts" && (
-                        <ShoppingBag className="h-8 w-8" />
-                      )}
-                      {category.id === "jerseys" && (
-                        <Star className="h-8 w-8" />
-                      )}
-                      {category.id === "accessories" && (
-                        <Grid3X3 className="h-8 w-8" />
-                      )}
-                      {category.id === "ladies" && (
-                        <ShoppingBag className="h-8 w-8" />
-                      )}
-                      {category.id === "pants" && (
-                        <Grid3X3 className="h-8 w-8" />
-                      )}
-                      {category.id === "outerwear" && (
-                        <ShoppingBag className="h-8 w-8" />
-                      )}
-                    </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                      {category.name}
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                      {category.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-0 text-center">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      asChild
-                    >
-                      <Link to={`/${league}/${teamSlug}/${category.slug}`}>
-                        Shop Now
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card key={category.id} className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+                <CardHeader className="text-center pb-4">
+                  <div
+                    className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-white"
+                    style={{ backgroundColor: team.colors.primary }}
+                  >
+                    {category.id === "hats" && (
+                      <Grid3X3 className="h-8 w-8" />
+                    )}
+                    {category.id === "shirts" && (
+                      <ShoppingBag className="h-8 w-8" />
+                    )}
+                    {category.id === "jerseys" && (
+                      <Star className="h-8 w-8" />
+                    )}
+                    {category.id === "accessories" && (
+                      <Grid3X3 className="h-8 w-8" />
+                    )}
+                    {category.id === "ladies" && (
+                      <ShoppingBag className="h-8 w-8" />
+                    )}
+                    {category.id === "pants" && (
+                      <Grid3X3 className="h-8 w-8" />
+                    )}
+                    {category.id === "outerwear" && (
+                      <ShoppingBag className="h-8 w-8" />
+                    )}
+                  </div>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                    {category.name}
+                  </CardTitle>
+                  <CardDescription className="text-sm">
+                    {category.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0 text-center">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    asChild
+                  >
+                    <Link to={`/${league}/${teamSlug}/${category.slug}`}>
+                      Shop Now
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
