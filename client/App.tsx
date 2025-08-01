@@ -19,6 +19,7 @@ import AccessoriesPage from "./pages/AccessoriesPage";
 import HatsPage from "./pages/HatsPage";
 import JerseysPage from "./pages/JerseysPage";
 import CustomGearPage from "./pages/CustomGearPage";
+import StatusPage from "./pages/StatusPage";
 import BuilderPage from "./pages/BuilderPage";
 
 const queryClient = new QueryClient();
