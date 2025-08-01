@@ -30,21 +30,21 @@ export default function NFLPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-team-red to-fan-blue-600 text-white">
+      <section className="py-8 md:py-16 bg-gradient-to-r from-team-red to-fan-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-white/20 text-white border-white/30">
+            <Badge className="mb-3 md:mb-4 bg-white/20 text-white border-white/30">
               🏈 Official NFL Merchandise
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
               NFL Team Gear
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8 max-w-2xl mx-auto">
               Shop official NFL merchandise for all 32 teams. From jerseys to hats, find everything you need to support your favorite team.
             </p>
             
             {/* Search */}
-            <div className="max-w-md mx-auto mb-8">
+            <div className="max-w-md mx-auto mb-6 md:mb-8">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
@@ -76,20 +76,20 @@ export default function NFLPage() {
       </section>
 
       {/* Teams Grid by Division */}
-      <section className="py-20">
+      <section className="py-8 md:py-16">
         <div className="container mx-auto px-4">
           {Object.entries(groupedTeams).map(([division, teams]) => {
             if (teams.length === 0) return null;
             
             return (
-              <div key={division} className="mb-16">
-                <div className="flex items-center space-x-3 mb-8">
+              <div key={division} className="mb-8 md:mb-12">
+                <div className="flex items-center space-x-3 mb-4 md:mb-6">
                   <Trophy className="h-6 w-6 text-primary" />
                   <h2 className="text-2xl font-bold">{division}</h2>
                   <Badge variant="secondary">{teams.length} teams</Badge>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                   {teams.map((team) => (
                     <Link key={team.id} to={`/nfl/${team.slug}`}>
                       <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden">
@@ -112,7 +112,7 @@ export default function NFLPage() {
                             </div>
                           </div>
                         </CardHeader>
-                        <CardContent className="p-4 text-center">
+                        <CardContent className="p-3 md:p-4 text-center">
                           <div className="flex items-center justify-center space-x-2 mb-3">
                             <Badge variant="outline" className="text-xs">
                               {team.conference}
@@ -140,12 +140,12 @@ export default function NFLPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-fan-blue-600 to-team-red text-white">
+      <section className="py-8 md:py-16 bg-gradient-to-r from-fan-blue-600 to-team-red text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
             Can't Find Your Team?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8 max-w-2xl mx-auto">
             We're constantly adding new products and teams. Check back soon or contact us for special requests.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
