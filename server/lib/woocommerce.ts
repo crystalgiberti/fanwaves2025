@@ -226,12 +226,45 @@ class WooCommerceAPI {
     order?: 'asc' | 'desc';
   } = {}): Promise<Product[]> {
     this.ensureConfigured();
-    
+
     try {
+      console.log('Fetching products with params:', params);
       const response = await this.api.get('products', params);
+
+      console.log('WooCommerce API response status:', response.status);
+      console.log('WooCommerce API response data type:', typeof response.data);
+      console.log('WooCommerce API response data:', JSON.stringify(response.data, null, 2));
+
+      // Check if response.data is an array
+      if (!Array.isArray(response.data)) {
+        console.error('WooCommerce API did not return an array. Response:', response.data);
+
+        // Check if it's an error response
+        if (response.data && response.data.code) {
+          throw new Error(`WooCommerce API Error: ${response.data.message || response.data.code}`);
+        }
+
+        // Return empty array if no products
+        return [];
+      }
+
       return response.data.map((product: any) => ProductSchema.parse(product));
     } catch (error) {
       console.error('Error fetching products:', error);
+
+      // Provide more specific error messages
+      if (error instanceof Error) {
+        if (error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
+          throw new Error('Cannot connect to WooCommerce store. Please check your store URL.');
+        }
+        if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+          throw new Error('WooCommerce API authentication failed. Please check your API keys.');
+        }
+        if (error.message.includes('404')) {
+          throw new Error('WooCommerce API endpoint not found. Please check your store configuration.');
+        }
+      }
+
       throw new Error('Failed to fetch products from WooCommerce');
     }
   }
