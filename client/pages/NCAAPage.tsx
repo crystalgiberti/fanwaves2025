@@ -28,21 +28,21 @@ export default function NCAAPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-team-orange to-team-green text-white">
+      <section className="py-8 md:py-16 bg-gradient-to-r from-team-orange to-team-green text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-white/20 text-white border-white/30">
+            <Badge className="mb-3 md:mb-4 bg-white/20 text-white border-white/30">
               🎓 Official NCAA Merchandise
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
               NCAA Team Gear
             </h1>
-            <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-orange-100 mb-6 md:mb-8 max-w-2xl mx-auto">
               Shop official NCAA merchandise for top college teams. Support your alma mater or favorite college with authentic apparel and accessories.
             </p>
             
             {/* Search */}
-            <div className="max-w-md mx-auto mb-8">
+            <div className="max-w-md mx-auto mb-6 md:mb-8">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
@@ -169,20 +169,24 @@ export default function NCAAPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-team-green to-team-orange text-white">
+      <section className="py-8 md:py-16 bg-gradient-to-r from-team-green to-team-orange text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
             Can't Find Your School?
           </h2>
-          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-green-100 mb-6 md:mb-8 max-w-2xl mx-auto">
             We're always adding new schools and conferences. Let us know which team you'd like to see next!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
-              Request a Team
+            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
+              <Link to="/contact">
+                Request a Team
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Browse All Products
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+              <Link to="/products">
+                Browse All Products
+              </Link>
             </Button>
           </div>
         </div>
