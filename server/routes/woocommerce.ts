@@ -64,10 +64,12 @@ const OrderCreateSchema = z.object({
 // Get products with Fan Waves specific filtering
 export const handleGetProducts: RequestHandler = async (req, res) => {
   try {
+    console.log('handleGetProducts called with query:', req.query);
+
     const query = ProductQuerySchema.parse(req.query);
-    
+
     let categoryId: number | undefined;
-    
+
     // Map team to category ID
     if (query.team && TEAM_CATEGORY_MAPPING[query.team as keyof typeof TEAM_CATEGORY_MAPPING]) {
       categoryId = TEAM_CATEGORY_MAPPING[query.team as keyof typeof TEAM_CATEGORY_MAPPING].categoryId;
@@ -76,6 +78,17 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
     else if (query.category && PRODUCT_TYPE_MAPPING[query.category as keyof typeof PRODUCT_TYPE_MAPPING]) {
       categoryId = PRODUCT_TYPE_MAPPING[query.category as keyof typeof PRODUCT_TYPE_MAPPING].categoryId;
     }
+
+    console.log('Calling wooCommerce.getProducts with params:', {
+      page: query.page,
+      per_page: query.limit,
+      search: query.search,
+      category: categoryId,
+      featured: query.featured,
+      on_sale: query.on_sale,
+      orderby: query.orderby,
+      order: query.order,
+    });
 
     const products = await wooCommerce.getProducts({
       page: query.page,
