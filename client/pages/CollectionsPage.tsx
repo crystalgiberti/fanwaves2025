@@ -62,16 +62,16 @@ export default function CollectionsPage() {
         <div className="container relative mx-auto px-4 py-8 md:py-16">
           <div className="text-center text-white">
             <Badge className="w-fit bg-white/20 text-white border-white/30 hover:bg-white/30 mb-4">
-              🏆 Browse All Collections
+              🛍️ Shop All Products
             </Badge>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl mb-4">
               Fan Gear
               <span className="block bg-gradient-to-r from-white to-electric-blue-200 bg-clip-text text-transparent">
-                Collections
+                Products
               </span>
             </h1>
             <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-              Explore our complete range of NFL and NCAA gear, organized by category to help you find exactly what you're looking for.
+              {error ? 'Browse our complete selection of fan gear and merchandise' : `Discover ${products.length} amazing products from your WooCommerce store`}
             </p>
           </div>
         </div>
@@ -87,71 +87,173 @@ export default function CollectionsPage() {
         </div>
       </section>
 
-      {/* Collections Grid */}
+      {/* Filters and Products */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {collections.map((collection, index) => {
-              const Icon = collection.icon;
-              return (
-                <Link key={index} to={collection.href}>
-                  <Card className="group cursor-pointer border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
-                    <div
-                      className={`h-48 bg-gradient-to-br ${collection.gradient} relative`}
-                    >
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                      
-                      {/* Badges */}
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        {collection.popular && (
-                          <Badge className="bg-white/20 text-white border-white/30">
-                            Popular
-                          </Badge>
-                        )}
-                        {collection.new && (
-                          <Badge className="bg-electric-blue text-white">
-                            New
-                          </Badge>
-                        )}
-                      </div>
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-2 mb-8 justify-center">
+            {filters.map((filter) => (
+              <Button
+                key={filter.id}
+                variant={selectedFilter === filter.id ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedFilter(filter.id)}
+                className={selectedFilter === filter.id ? "bg-electric-blue hover:bg-electric-blue/90" : ""}
+              >
+                <Filter className="mr-2 h-3 w-3" />
+                {filter.label}
+                {filter.count > 0 && (
+                  <Badge variant="secondary" className="ml-2 h-5 text-xs">
+                    {filter.count}
+                  </Badge>
+                )}
+              </Button>
+            ))}
+          </div>
 
-                      {/* Icon */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <Icon className="h-8 w-8 text-white" />
-                        </div>
-                      </div>
+          {/* Store Connection Status */}
+          {error && (
+            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800 font-medium">
+                🏪 Showing sample products - Connect your WooCommerce store to see your real inventory
+              </p>
+              <p className="text-xs text-blue-600 mt-1">
+                Add products in your WooCommerce admin to see them here automatically.
+              </p>
+            </div>
+          )}
 
-                      {/* Item Count */}
-                      <div className="absolute bottom-4 right-4 text-white/80 text-sm font-medium">
-                        {collection.itemCount}
-                      </div>
-                    </div>
-                    
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center justify-between">
-                        {collection.title}
-                        <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-electric-blue group-hover:translate-x-1 transition-all" />
-                      </CardTitle>
-                      <CardDescription>
-                        {collection.description}
-                      </CardDescription>
-                    </CardHeader>
-                    
-                    <CardContent className="pt-0">
-                      <Button 
-                        className="w-full bg-electric-blue hover:bg-electric-blue/90"
-                        size="sm"
+          {/* Loading State */}
+          {loading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {[...Array(8)].map((_, i) => (
+                <Card key={i} className="animate-pulse">
+                  <div className="aspect-square bg-muted rounded-t-lg"></div>
+                  <CardContent className="p-4">
+                    <div className="h-4 bg-muted rounded mb-2"></div>
+                    <div className="h-3 bg-muted rounded w-2/3 mb-2"></div>
+                    <div className="h-4 bg-muted rounded w-1/2"></div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Products Grid */}
+          {!loading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {displayProducts.map((product) => {
+                const originalPrice = parseFloat(product.regular_price || product.price);
+                const salePrice = parseFloat(product.sale_price || product.price);
+                const rating = parseFloat(product.average_rating || '0');
+
+                // Determine badge text
+                let badgeText = '';
+                let badgeColor = 'bg-electric-blue text-white';
+
+                if (product.featured) {
+                  badgeText = 'Featured';
+                } else if (product.on_sale) {
+                  badgeText = 'Sale';
+                  badgeColor = 'bg-red-500 text-white';
+                } else if (product.rating_count > 50) {
+                  badgeText = 'Popular';
+                  badgeColor = 'bg-orange-500 text-white';
+                }
+
+                return (
+                  <Card
+                    key={product.id}
+                    className="group cursor-pointer hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
+                      <img
+                        src={product.images[0]?.src || "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142"}
+                        alt={product.images[0]?.alt || product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142";
+                        }}
+                      />
+                      {badgeText && (
+                        <Badge className={`absolute top-2 left-2 ${badgeColor}`}>
+                          {badgeText}
+                        </Badge>
+                      )}
+                      <Button
+                        size="icon"
+                        variant="secondary"
+                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
                       >
-                        <ShoppingBag className="mr-2 h-4 w-4" />
-                        Browse Collection
+                        <Heart className="h-4 w-4" />
                       </Button>
+                    </div>
+
+                    <CardContent className="p-4">
+                      <CardTitle className="text-base font-semibold mb-2 line-clamp-2">
+                        {product.name}
+                      </CardTitle>
+
+                      {rating > 0 && (
+                        <div className="flex items-center space-x-1 mb-2">
+                          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                          <span className="text-sm font-medium">
+                            {rating.toFixed(1)}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            ({product.rating_count})
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-lg font-bold text-electric-blue">
+                            ${product.on_sale ? salePrice.toFixed(2) : originalPrice.toFixed(2)}
+                          </span>
+                          {product.on_sale && originalPrice > salePrice && (
+                            <span className="text-sm text-muted-foreground line-through">
+                              ${originalPrice.toFixed(2)}
+                            </span>
+                          )}
+                        </div>
+                        <Button
+                          size="sm"
+                          className="bg-electric-blue hover:bg-electric-blue/90"
+                          asChild
+                        >
+                          <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
+                            <ShoppingBag className="h-4 w-4" />
+                          </a>
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
-                </Link>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!loading && displayProducts.length === 0 && (
+            <div className="text-center py-12">
+              <Grid3X3 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-2">No products found</h3>
+              <p className="text-muted-foreground mb-4">
+                {selectedFilter === 'all'
+                  ? 'Add products to your WooCommerce store to see them here'
+                  : `No products found in the ${filters.find(f => f.id === selectedFilter)?.label} category`
+                }
+              </p>
+              <Button variant="outline" asChild>
+                <a href="https://fanwaves.fun/shop/wp-admin/" target="_blank" rel="noopener noreferrer">
+                  <TrendingUp className="mr-2 h-4 w-4" />
+                  Manage Products
+                </a>
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
