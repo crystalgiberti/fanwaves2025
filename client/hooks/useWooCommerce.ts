@@ -275,25 +275,58 @@ export function useWooCommerce(): UseWooCommerceReturn {
     setError(null);
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
       const response = await fetch('/api/categories', {
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal
       });
 
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
-        throw new Error(`Failed to fetch categories: ${response.statusText}`);
+        let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
 
-      const transformedCategories: WooCommerceCategory[] = data.categories.map((category: any) => ({
-        id: category.id,
-        name: category.name,
-        slug: category.slug,
-        parent: category.parent || 0,
+      // Validate response structure
+      if (!data || typeof data !== 'object') {
+        throw new Error('Invalid response format from categories API');
+      }
+
+      // Handle different response structures
+      let categoriesArray = [];
+      if (Array.isArray(data)) {
+        categoriesArray = data;
+      } else if (data.categories && Array.isArray(data.categories)) {
+        categoriesArray = data.categories;
+      } else if (data.data && Array.isArray(data.data)) {
+        categoriesArray = data.data;
+      } else {
+        console.warn('Unexpected categories API response structure:', data);
+        throw new Error('Categories data not found in API response');
+      }
+
+      const transformedCategories: WooCommerceCategory[] = categoriesArray.map((category: any) => ({
+        id: category.id || Math.random(),
+        name: category.name || 'Category',
+        slug: category.slug || 'category',
+        parent: Number(category.parent || 0),
         description: category.description || '',
         display: 'default',
         image: category.image ? { id: 0, src: category.image, alt: category.name } : undefined,
-        count: category.count || 0
+        count: Number(category.count || 0)
       }));
 
       setCategories(transformedCategories);
@@ -301,7 +334,7 @@ export function useWooCommerce(): UseWooCommerceReturn {
     } catch (err) {
       console.error('Error fetching categories:', err);
 
-      // Fallback to mock data
+      // Enhanced mock data
       const mockCategories: WooCommerceCategory[] = [
         {
           id: 11,
@@ -320,10 +353,23 @@ export function useWooCommerce(): UseWooCommerceReturn {
           description: 'Official team jerseys',
           display: 'default',
           count: 45
+        },
+        {
+          id: 13,
+          name: 'Accessories',
+          slug: 'accessories',
+          parent: 0,
+          description: 'Team accessories and fan gear',
+          display: 'default',
+          count: 38
         }
       ];
       setCategories(mockCategories);
-      setError(`Unable to load live categories. ${err instanceof Error ? err.message : 'Unknown error'}`);
+
+      // Don't overwrite product error if categories fail
+      if (!error) {
+        setError('Unable to load store categories - using defaults');
+      }
     } finally {
       setLoading(false);
     }
