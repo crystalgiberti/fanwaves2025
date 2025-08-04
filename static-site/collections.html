@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - Fan Waves</title>
+    <meta name="description" content="Browse our complete collection of NFL and NCAA fan gear, organized by category.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <span class="logo-text">FAN WAVES</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="nfl.html">NFL</a></li>
+                    <li><a href="ncaa.html">NCAA</a></li>
+                    <li><a href="hats.html">Hats</a></li>
+                    <li><a href="jerseys.html">Jerseys</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                    <li><a href="custom.html">Custom Gear</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="btn-icon" id="search-btn">
+                        <svg class="icon"><use href="#search-icon"></use></svg>
+                    </button>
+                    <button class="btn-icon">
+                        <svg class="icon"><use href="#user-icon"></use></svg>
+                    </button>
+                    <button class="btn-icon">
+                        <svg class="icon"><use href="#heart-icon"></use></svg>
+                    </button>
+                    <button class="btn-icon" id="cart-btn">
+                        <svg class="icon"><use href="#cart-icon"></use></svg>
+                        <span class="cart-count" style="display: none;">0</span>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <svg class="icon"><use href="#menu-icon"></use></svg>
+                    </button>
+                </div>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="nfl.html">NFL</a>
+                <a href="ncaa.html">NCAA</a>
+                <a href="hats.html">Hats</a>
+                <a href="jerseys.html">Jerseys</a>
+                <a href="accessories.html">Accessories</a>
+                <a href="custom.html">Custom Gear</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content" style="grid-template-columns: 1fr; text-align: center; padding: 3rem 0;">
+                <div>
+                    <div class="badge">🛍️ Shop All Products</div>
+                    <h1 class="hero-title" style="margin-bottom: 1rem;">
+                        Fan Gear
+                        <span class="gradient-text">Collections</span>
+                    </h1>
+                    <p class="hero-description" style="margin: 0 auto;">
+                        Discover our complete selection of fan gear and merchandise across all your favorite teams and categories.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="wave-decoration"></div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section style="padding: 2rem 0; border-bottom: 1px solid var(--border);">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;" id="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Products</button>
+                <button class="filter-tab" data-filter="featured">Featured</button>
+                <button class="filter-tab" data-filter="sale">On Sale</button>
+                <button class="filter-tab" data-filter="nfl">NFL</button>
+                <button class="filter-tab" data-filter="ncaa">NCAA</button>
+                <button class="filter-tab" data-filter="hats">Hats</button>
+                <button class="filter-tab" data-filter="jerseys">Jerseys</button>
+                <button class="filter-tab" data-filter="accessories">Accessories</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section style="padding: 3rem 0;">
+        <div class="container">
+            <!-- Store Connection Status -->
+            <div style="margin-bottom: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 0.5rem;">
+                <p style="color: var(--fan-blue-600); font-weight: 500; margin-bottom: 0.5rem;">
+                    🏪 Sample Products Display
+                </p>
+                <p style="color: var(--fan-blue-600); font-size: 0.875rem;">
+                    Connect your WooCommerce store to display real products. <a href="https://fanwaves.fun/shop/wp-admin/" target="_blank" style="text-decoration: underline;">Manage Products</a>
+                </p>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-outline" id="load-more-btn" style="display: none;">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand -->
+                <div class="footer-section">
+                    <div class="logo-text">FAN WAVES</div>
+                    <p>Your ultimate destination for NFL and NCAA fan gear. Ride the wave of team spirit!</p>
+                </div>
+                
+                <!-- Shop -->
+                <div class="footer-section">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="nfl.html">NFL Gear</a></li>
+                        <li><a href="ncaa.html">NCAA Gear</a></li>
+                        <li><a href="hats.html">Hats & Caps</a></li>
+                        <li><a href="jerseys.html">Jerseys</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Connect -->
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fan Waves. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Riff Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <button class="chatbot-toggle" id="chatbot-toggle">
+            <svg class="icon"><use href="#message-circle-icon"></use></svg>
+            <span class="notification-dot"></span>
+        </button>
+        
+        <div class="chatbot-window" id="chatbot-window" style="display: none;">
+            <div class="chatbot-header">
+                <div class="chatbot-profile">
+                    <img src="https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2F5145f5522f6045159571fb1826faa066?format=webp&width=800" alt="Riff" class="chatbot-avatar">
+                    <div>
+                        <h4>Riff</h4>
+                        <p>AI Sports Commentator</p>
+                    </div>
+                </div>
+                <button class="chatbot-close" id="chatbot-close">
+                    <svg class="icon"><use href="#x-icon"></use></svg>
+                </button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Hey! Looking for something specific? I can help you filter through all our gear to find exactly what you need! 🏈</p>
+                        <div class="message-suggestions">
+                            <button class="suggestion-btn">Show me NFL gear</button>
+                            <button class="suggestion-btn">Find NCAA products</button>
+                            <button class="suggestion-btn">What's on sale?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" placeholder="Ask Riff about products..." id="chat-input">
+                <button class="btn-icon" id="voice-btn">
+                    <svg class="icon"><use href="#mic-icon"></use></svg>
+                </button>
+                <button class="btn-icon" id="send-btn">
+                    <svg class="icon"><use href="#send-icon"></use></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Icons SVG Sprite -->
+    <svg style="display: none;">
+        <defs>
+            <symbol id="search-icon" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </symbol>
+            <symbol id="user-icon" viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </symbol>
+            <symbol id="heart-icon" viewBox="0 0 24 24">
+                <path d="m19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+            </symbol>
+            <symbol id="cart-icon" viewBox="0 0 24 24">
+                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+            </symbol>
+            <symbol id="menu-icon" viewBox="0 0 24 24">
+                <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
+            </symbol>
+            <symbol id="message-circle-icon" viewBox="0 0 24 24">
+                <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>
+            </symbol>
+            <symbol id="x-icon" viewBox="0 0 24 24">
+                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+            </symbol>
+            <symbol id="mic-icon" viewBox="0 0 24 24">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>
+            </symbol>
+            <symbol id="send-icon" viewBox="0 0 24 24">
+                <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <style>
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 1.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-tab:hover {
+            background: var(--muted);
+        }
+        
+        .filter-tab.active {
+            background: var(--electric-blue);
+            color: white;
+            border-color: var(--electric-blue);
+        }
+    </style>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/collections.js"></script>
+</body>
+</html>
