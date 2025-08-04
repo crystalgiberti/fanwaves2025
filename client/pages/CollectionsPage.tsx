@@ -22,64 +22,36 @@ import {
 } from "lucide-react";
 
 export default function CollectionsPage() {
-  const collections = [
-    {
-      title: "NFL Gear",
-      description: "Official NFL team merchandise and fan gear",
-      image: "/placeholder.svg",
-      href: "/nfl",
-      icon: Trophy,
-      gradient: "from-team-red-500 to-team-red-700",
-      itemCount: "500+ items",
-      popular: true,
-    },
-    {
-      title: "NCAA Gear",
-      description: "College team favorites and university merchandise",
-      image: "/placeholder.svg",
-      href: "/ncaa",
-      icon: Users,
-      gradient: "from-team-orange-500 to-team-orange-700",
-      itemCount: "300+ items",
-      popular: true,
-    },
-    {
-      title: "Hats & Caps",
-      description: "Complete your look with team hats and caps",
-      image: "/placeholder.svg",
-      href: "/hats",
-      icon: Crown,
-      gradient: "from-fan-blue-500 to-fan-blue-700",
-      itemCount: "200+ items",
-    },
-    {
-      title: "Jerseys",
-      description: "Authentic and replica jerseys for all teams",
-      image: "/placeholder.svg",
-      href: "/jerseys",
-      icon: Shirt,
-      gradient: "from-team-green-500 to-team-green-700",
-      itemCount: "150+ items",
-    },
-    {
-      title: "Accessories",
-      description: "Fan chains, towels, and game day accessories",
-      image: "/placeholder.svg",
-      href: "/accessories",
-      icon: Star,
-      gradient: "from-electric-blue-500 to-electric-blue-700",
-      itemCount: "100+ items",
-    },
-    {
-      title: "Custom Gear",
-      description: "Design your own custom fan gear and merchandise",
-      image: "/placeholder.svg",
-      href: "/custom",
-      icon: Gamepad2,
-      gradient: "from-team-purple-500 to-team-purple-700",
-      itemCount: "Unlimited",
-      new: true,
-    },
+  const { products, loading, error, fetchProducts } = useWooCommerce();
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [displayProducts, setDisplayProducts] = useState(products);
+
+  useEffect(() => {
+    fetchProducts({ limit: 50, orderby: 'popularity', order: 'desc' });
+  }, []);
+
+  useEffect(() => {
+    if (selectedFilter === 'all') {
+      setDisplayProducts(products);
+    } else if (selectedFilter === 'featured') {
+      setDisplayProducts(products.filter(p => p.featured));
+    } else if (selectedFilter === 'sale') {
+      setDisplayProducts(products.filter(p => p.on_sale));
+    } else {
+      // Filter by category
+      setDisplayProducts(products.filter(p =>
+        p.categories.some(cat => cat.slug.includes(selectedFilter))
+      ));
+    }
+  }, [products, selectedFilter]);
+
+  const filters = [
+    { id: 'all', label: 'All Products', count: products.length },
+    { id: 'featured', label: 'Featured', count: products.filter(p => p.featured).length },
+    { id: 'sale', label: 'On Sale', count: products.filter(p => p.on_sale).length },
+    { id: 'hats', label: 'Hats & Caps', count: products.filter(p => p.categories.some(cat => cat.slug.includes('hat'))).length },
+    { id: 'jerseys', label: 'Jerseys', count: products.filter(p => p.categories.some(cat => cat.slug.includes('jersey'))).length },
+    { id: 'accessories', label: 'Accessories', count: products.filter(p => p.categories.some(cat => cat.slug.includes('access'))).length },
   ];
 
   return (
