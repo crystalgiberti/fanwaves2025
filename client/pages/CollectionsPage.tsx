@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,15 +10,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
+import { useWooCommerce } from "@/hooks/useWooCommerce";
 import {
   ShoppingBag,
   ArrowRight,
   Star,
-  Users,
-  Trophy,
-  Shirt,
-  Crown,
-  Gamepad2,
+  Heart,
+  Filter,
+  Grid3X3,
+  TrendingUp,
 } from "lucide-react";
 
 export default function CollectionsPage() {
