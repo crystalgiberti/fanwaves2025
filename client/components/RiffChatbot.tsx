@@ -209,18 +209,22 @@ export default function RiffChatbot() {
         <Button
           onClick={() => setIsOpen(true)}
           size="lg"
-          className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full bg-gradient-to-r from-electric-blue to-fan-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 md:h-16 md:w-16"
+          className="fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full bg-gradient-to-r from-electric-blue to-fan-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 md:h-16 md:w-16 animate-bounce"
+          style={{ zIndex: 9999 }}
         >
           <div className="relative">
             <MessageCircle className="h-6 w-6 md:h-7 md:w-7" />
-            <div className="absolute -top-1 -right-1 h-3 w-3 bg-team-red rounded-full animate-pulse" />
+            <div className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full animate-pulse" />
           </div>
         </Button>
       )}
 
       {/* Chat Window - Mobile First */}
       {isOpen && (
-        <Card className="fixed bottom-4 right-4 z-50 w-[calc(100vw-32px)] max-w-md h-[70vh] max-h-[600px] shadow-2xl border-0 bg-white/95 backdrop-blur-sm md:w-96 flex flex-col">
+        <Card
+          className="fixed bottom-6 right-6 z-[9999] w-[calc(100vw-48px)] max-w-md h-[70vh] max-h-[600px] shadow-2xl border-0 bg-white backdrop-blur-sm md:w-96 flex flex-col"
+          style={{ zIndex: 9999 }}
+        >
           {/* Header */}
           <CardHeader className="pb-3 bg-gradient-to-r from-electric-blue to-fan-blue-600 text-white rounded-t-lg">
             <div className="flex items-center justify-between">
