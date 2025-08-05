@@ -227,10 +227,10 @@ const POSPage = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Custom Gear Request
+            Special Request Form
           </h1>
           <p className="text-xl text-gray-300 mb-6">
-            Can't find your size? Want something custom? We've got you covered!
+            Can't find your size or color? Want something custom? Need it shipped? We've got you covered!
           </p>
           <Badge variant="secondary" className="glass-badge text-lg px-4 py-2">
             <Star className="mr-2 h-4 w-4" />
