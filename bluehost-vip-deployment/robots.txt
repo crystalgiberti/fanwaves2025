@@ -1,0 +1,15 @@
+# Fan Waves VIP Subdomain - Robots.txt
+# Exclusive VIP portal - Limited indexing
+
+User-agent: *
+Allow: /
+
+# Sitemap reference
+Sitemap: https://vip.fanwaves.fun/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Block specific bots if needed
+# User-agent: BadBot
+# Disallow: /
