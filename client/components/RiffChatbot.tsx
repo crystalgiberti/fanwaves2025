@@ -254,7 +254,7 @@ export default function RiffChatbot() {
           </CardHeader>
 
           {/* Messages */}
-          <CardContent className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-blue-50/50 to-white max-h-0">
+          <CardContent className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-blue-50/50 to-white">
             {messages.map((message) => (
               <div
                 key={message.id}
