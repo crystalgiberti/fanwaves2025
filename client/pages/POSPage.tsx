@@ -614,7 +614,7 @@ const POSPage = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="tent-event">
-                      Saw us at an event
+                      Visiting your tent/booth
                     </SelectItem>
                     <SelectItem value="website">Found our website</SelectItem>
                     <SelectItem value="social-media">Social Media</SelectItem>
