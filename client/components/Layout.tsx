@@ -30,18 +30,18 @@ export default function Layout({ children }: LayoutProps) {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm font-medium">
-            <Link to="/nfl" className="transition-colors hover:text-primary">
+            <Link to="/nfl" className="glass-nav-item">
               NFL
             </Link>
-            <Link to="/ncaa" className="transition-colors hover:text-primary">
+            <Link to="/ncaa" className="glass-nav-item">
               NCAA
             </Link>
-            <Link to="/hats" className="transition-colors hover:text-primary">
+            <Link to="/hats" className="glass-nav-item">
               Hats
             </Link>
             <Link
               to="/jerseys"
-              className="transition-colors hover:text-primary"
+              className="glass-nav-item"
             >
               Jerseys
             </Link>
