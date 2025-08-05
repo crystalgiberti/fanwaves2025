@@ -21,6 +21,7 @@ import JerseysPage from "./pages/JerseysPage";
 import CustomGearPage from "./pages/CustomGearPage";
 import StatusPage from "./pages/StatusPage";
 import BuilderPage from "./pages/BuilderPage";
+import POSPage from "./pages/POSPage";
 
 const queryClient = new QueryClient();
 
