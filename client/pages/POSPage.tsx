@@ -68,6 +68,7 @@ const POSPage = () => {
     customerName: "",
     email: "",
     phone: "",
+    requestType: "",
     productDescription: "",
     itemDescription: "",
     sizes: [],
