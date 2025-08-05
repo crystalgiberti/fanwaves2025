@@ -385,7 +385,7 @@ const POSPage = () => {
                 <Textarea
                   id="itemDescription"
                   className="glass-input min-h-[100px]"
-                  placeholder="Any specific details, materials, style preferences, etc."
+                  placeholder="Any specific details: player name/number, materials, delivery preferences, rush order needs, etc."
                   value={formData.itemDescription}
                   onChange={(e) =>
                     setFormData((prev) => ({
