@@ -47,11 +47,11 @@ export default function Layout({ children }: LayoutProps) {
             </Link>
             <Link
               to="/accessories"
-              className="transition-colors hover:text-primary"
+              className="glass-nav-item"
             >
               Accessories
             </Link>
-            <Link to="/custom" className="transition-colors hover:text-primary">
+            <Link to="/custom" className="glass-nav-item">
               Custom Gear
             </Link>
           </nav>
