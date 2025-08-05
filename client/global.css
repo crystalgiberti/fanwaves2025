@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import glassmorphic design system */
+@import './styles/glassmorphic.css';
+
 @layer base {
   /**
    * Tailwind CSS theme
