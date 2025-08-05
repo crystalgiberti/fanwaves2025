@@ -127,12 +127,21 @@ export const handlePOSFormSubmission = [
       console.error("POS Form submission error:", error);
 
       // If it's an email error, still log the submission but return a different message
-      if (error.message && error.message.includes('EAUTH')) {
-        console.log("📧 Email failed but logging submission:", {
-          customer: formData.customerName,
-          email: formData.email,
-          product: formData.productDescription
-        });
+      if (error.code === 'EAUTH' || (error.message && (error.message.includes('EAUTH') || error.message.includes('Invalid login') || error.message.includes('authentication')))) {
+        console.log("📧 Email failed but logging submission details:");
+        console.log("Customer:", formData.customerName);
+        console.log("Email:", formData.email);
+        console.log("Phone:", formData.phone);
+        console.log("Product:", formData.productDescription);
+        console.log("Request Type:", formData.requestType);
+        console.log("Sizes:", formData.sizes);
+        console.log("Colors:", formData.colors);
+        console.log("Quantity:", formData.quantity);
+        console.log("Timeline:", formData.urgency);
+        console.log("Special Requests:", formData.specialRequests);
+        console.log("Has Photo:", !!req.file);
+        console.log("Submitted at:", new Date().toLocaleString());
+        console.log("---SUBMISSION LOGGED FOR MANUAL PROCESSING---");
 
         return res.status(200).json({
           success: true,
