@@ -673,17 +673,10 @@ Please respond within 24 hours.
                 <Button
                   type="submit"
                   size="lg"
-                  disabled={isSubmitting}
                   className="glass-button-primary w-full md:w-auto text-lg px-8 py-3"
                 >
-                  {isSubmitting ? (
-                    "Submitting Request..."
-                  ) : (
-                    <>
-                      <Mail className="mr-2 h-5 w-5" />
-                      Submit Custom Request
-                    </>
-                  )}
+                  <Mail className="mr-2 h-5 w-5" />
+                  Send Email Request
                 </Button>
                 <p className="text-sm text-gray-400">
                   We'll get back to you within 24 hours
