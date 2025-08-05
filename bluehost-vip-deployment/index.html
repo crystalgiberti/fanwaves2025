@@ -1,711 +1,975 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VIP Custom Gear Request - Fan Waves</title>
-    <meta name="description" content="Exclusive VIP custom gear request portal for Fan Waves. Premium fan gear specialists ready to create your perfect custom merchandise.">
-    <link rel="icon" href="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=32" type="image/x-icon">
-    
+    <meta
+      name="description"
+      content="Exclusive VIP custom gear request portal for Fan Waves. Premium fan gear specialists ready to create your perfect custom merchandise."
+    />
+    <link
+      rel="icon"
+      href="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=32"
+      type="image/x-icon"
+    />
+
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="VIP Custom Gear Request - Fan Waves">
-    <meta property="og:description" content="Exclusive access to premium custom fan gear. Professional service guaranteed.">
-    <meta property="og:image" content="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=800">
-    <meta property="og:url" content="https://vip.fanwaves.fun">
-    <meta property="og:type" content="website">
-    
+    <meta property="og:title" content="VIP Custom Gear Request - Fan Waves" />
+    <meta
+      property="og:description"
+      content="Exclusive access to premium custom fan gear. Professional service guaranteed."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=800"
+    />
+    <meta property="og:url" content="https://vip.fanwaves.fun" />
+    <meta property="og:type" content="website" />
+
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VIP Custom Gear Request - Fan Waves">
-    <meta name="twitter:description" content="Exclusive access to premium custom fan gear. Professional service guaranteed.">
-    <meta name="twitter:image" content="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=800">
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VIP Custom Gear Request - Fan Waves" />
+    <meta
+      name="twitter:description"
+      content="Exclusive access to premium custom fan gear. Professional service guaranteed."
+    />
+    <meta
+      name="twitter:image"
+      content="https://cdn.builder.io/api/v1/assets/87091a742c05463799bae52525d7477c/fanwavesriff-c84096?format=webp&width=800"
+    />
+
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.8));
-            --vip-gradient: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 165, 0, 0.8));
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.8);
-            --text-muted: rgba(255, 255, 255, 0.6);
-        }
+      :root {
+        --primary-gradient: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.8),
+          rgba(147, 51, 234, 0.8)
+        );
+        --vip-gradient: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.8),
+          rgba(255, 165, 0, 0.8)
+        );
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --text-primary: rgba(255, 255, 255, 0.95);
+        --text-secondary: rgba(255, 255, 255, 0.8);
+        --text-muted: rgba(255, 255, 255, 0.6);
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a, #581c87, #312e81);
-            min-height: 100vh;
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
+        background: linear-gradient(135deg, #1e3a8a, #581c87, #312e81);
+        min-height: 100vh;
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
 
+      .container {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      /* Glassmorphic Components */
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .glass-card:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow:
+          0 12px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .glass-input,
+      .glass-textarea,
+      .glass-select {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 12px;
+        color: white !important;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .glass-input::placeholder,
+      .glass-textarea::placeholder {
+        color: var(--text-muted) !important;
+      }
+
+      .glass-input:focus,
+      .glass-textarea:focus,
+      .glass-select:focus {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.1),
+          0 4px 20px rgba(0, 0, 0, 0.2);
+        outline: none;
+      }
+
+      .glass-textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .glass-button {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 12px;
+        color: white !important;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .glass-button:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+        color: white !important;
+      }
+
+      .glass-button-primary {
+        background: var(--primary-gradient) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 12px;
+        color: white !important;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow:
+          0 4px 16px rgba(59, 130, 246, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .glass-button-primary:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.9),
+          rgba(147, 51, 234, 0.9)
+        ) !important;
+        box-shadow:
+          0 6px 24px rgba(59, 130, 246, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        color: white !important;
+      }
+
+      .glass-button-vip {
+        background: var(--vip-gradient) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.3) !important;
+        border-radius: 12px;
+        color: black !important;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow:
+          0 4px 16px rgba(255, 215, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .glass-button-vip:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.9),
+          rgba(255, 165, 0, 0.9)
+        ) !important;
+        box-shadow:
+          0 6px 24px rgba(255, 215, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        transform: translateY(-1px);
+        color: black !important;
+      }
+
+      .glass-badge {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 8px;
+        color: white !important;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+        margin: 0.25rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-block;
+      }
+
+      .glass-badge.active {
+        background: var(--primary-gradient) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+      }
+
+      .glass-badge:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: rgba(255, 255, 255, 0.25) !important;
+      }
+
+      .vip-badge {
+        background: var(--vip-gradient) !important;
+        color: black !important;
+        border-color: rgba(255, 215, 0, 0.3) !important;
+        font-weight: 600;
+        animation: vip-glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes vip-glow {
+        0% {
+          box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+        100% {
+          box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6);
+        }
+      }
+
+      /* Layout */
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffd700, #ffa500, #60a5fa, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .header p {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .badge-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .success-message {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .success-icon {
+        width: 4rem;
+        height: 4rem;
+        margin: 0 auto 1.5rem;
+        background: #10b981;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+      }
+
+      /* File upload styling */
+      .file-upload {
+        position: relative;
+        display: inline-block;
+      }
+
+      .file-upload input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      /* VIP styling */
+      .vip-crown {
+        display: inline-block;
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+        animation: crown-bounce 2s ease-in-out infinite;
+      }
+
+      @keyframes crown-bounce {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
         .container {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /* Glassmorphic Components */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .glass-input, .glass-textarea, .glass-select {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border) !important;
-            border-radius: 12px;
-            color: white !important;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .glass-input::placeholder,
-        .glass-textarea::placeholder {
-            color: var(--text-muted) !important;
-        }
-
-        .glass-input:focus,
-        .glass-textarea:focus,
-        .glass-select:focus {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255, 255, 255, 0.4) !important;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1), 0 4px 20px rgba(0, 0, 0, 0.2);
-            outline: none;
-        }
-
-        .glass-textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .glass-button {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border) !important;
-            border-radius: 12px;
-            color: white !important;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .glass-button:hover {
-            background: rgba(255, 255, 255, 0.2) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
-            transform: translateY(-1px);
-            color: white !important;
-        }
-
-        .glass-button-primary {
-            background: var(--primary-gradient) !important;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            border-radius: 12px;
-            color: white !important;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .glass-button-primary:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(147, 51, 234, 0.9)) !important;
-            box-shadow: 0 6px 24px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-            color: white !important;
-        }
-
-        .glass-button-vip {
-            background: var(--vip-gradient) !important;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.3) !important;
-            border-radius: 12px;
-            color: black !important;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .glass-button-vip:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)) !important;
-            box-shadow: 0 6px 24px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: translateY(-1px);
-            color: black !important;
-        }
-
-        .glass-badge {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--glass-border) !important;
-            border-radius: 8px;
-            color: white !important;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.875rem;
-            margin: 0.25rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-block;
-        }
-
-        .glass-badge.active {
-            background: var(--primary-gradient) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-        }
-
-        .glass-badge:hover {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255, 255, 255, 0.25) !important;
-        }
-
-        .vip-badge {
-            background: var(--vip-gradient) !important;
-            color: black !important;
-            border-color: rgba(255, 215, 0, 0.3) !important;
-            font-weight: 600;
-            animation: vip-glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes vip-glow {
-            0% { box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3); }
-            100% { box-shadow: 0 4px 16px rgba(255, 215, 0, 0.6); }
-        }
-
-        /* Layout */
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
+          padding: 1rem;
         }
 
         .header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffd700, #ffa500, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+          font-size: 2rem;
         }
 
         .header p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+          font-size: 1rem;
         }
 
         .grid-2 {
-            grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
         }
 
-        .badge-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
+        .glass-card {
+          padding: 1rem;
         }
-
-        .success-message {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .success-icon {
-            width: 4rem;
-            height: 4rem;
-            margin: 0 auto 1.5rem;
-            background: #10b981;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        /* File upload styling */
-        .file-upload {
-            position: relative;
-            display: inline-block;
-        }
-
-        .file-upload input[type="file"] {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        /* VIP styling */
-        .vip-crown {
-            display: inline-block;
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-            animation: crown-bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes crown-bounce {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .header p {
-                font-size: 1rem;
-            }
-            
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            
-            .glass-card {
-                padding: 1rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1><span class="vip-crown">👑</span>VIP Custom Gear Request</h1>
-            <p>Exclusive access to premium custom fan gear. Professional service guaranteed.</p>
-            <div class="glass-badge vip-badge">⭐ VIP Premium Service ⭐</div>
+      <!-- Header -->
+      <div class="header">
+        <h1><span class="vip-crown">👑</span>VIP Custom Gear Request</h1>
+        <p>
+          Exclusive access to premium custom fan gear. Professional service
+          guaranteed.
+        </p>
+        <div class="glass-badge vip-badge">⭐ VIP Premium Service ⭐</div>
+      </div>
+
+      <!-- Success Message (hidden by default) -->
+      <div
+        id="successMessage"
+        class="glass-card success-message"
+        style="display: none"
+      >
+        <div class="success-icon">✓</div>
+        <h2 style="margin-bottom: 1rem">VIP Request Submitted!</h2>
+        <p style="margin-bottom: 2rem">
+          Thank you for your exclusive VIP custom gear request. As a VIP client,
+          you'll receive priority handling and our team will contact you within
+          12 hours with a custom quote and timeline.
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a href="https://fanwaves.fun" class="glass-button"
+            >Return to Main Site</a
+          >
+          <a
+            href="https://fanwaves.fun/shop/"
+            target="_blank"
+            class="glass-button-primary"
+            >Browse Shop →</a
+          >
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="vipForm" style="display: block">
+        <!-- VIP Customer Information -->
+        <div class="glass-card">
+          <h3
+            style="
+              margin-bottom: 1rem;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+            "
+          >
+            <span>👤</span> VIP Customer Information
+          </h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem">
+            Your dedicated account manager will use this information for
+            priority contact
+          </p>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label class="form-label" for="customerName">Full Name *</label>
+              <input
+                type="text"
+                id="customerName"
+                class="glass-input"
+                placeholder="Your full name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number *</label>
+              <input
+                type="tel"
+                id="phone"
+                class="glass-input"
+                placeholder="(555) 123-4567"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              class="glass-input"
+              placeholder="your.email@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label class="form-label" for="preferredContact"
+                >Preferred Contact Method</label
+              >
+              <select id="preferredContact" class="glass-select">
+                <option value="">How should we contact you?</option>
+                <option value="phone">Phone Call (Priority)</option>
+                <option value="email">Email</option>
+                <option value="text">Text Message</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="company"
+                >Company/Organization</label
+              >
+              <input
+                type="text"
+                id="company"
+                class="glass-input"
+                placeholder="Optional - for bulk orders"
+              />
+            </div>
+          </div>
         </div>
 
-        <!-- Success Message (hidden by default) -->
-        <div id="successMessage" class="glass-card success-message" style="display: none;">
-            <div class="success-icon">✓</div>
-            <h2 style="margin-bottom: 1rem;">VIP Request Submitted!</h2>
-            <p style="margin-bottom: 2rem;">Thank you for your exclusive VIP custom gear request. As a VIP client, you'll receive priority handling and our team will contact you within 12 hours with a custom quote and timeline.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://fanwaves.fun" class="glass-button">Return to Main Site</a>
-                <a href="https://fanwaves.fun/shop/" target="_blank" class="glass-button-primary">Browse Shop →</a>
+        <!-- Premium Product Request -->
+        <div class="glass-card">
+          <h3
+            style="
+              margin-bottom: 1rem;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+            "
+          >
+            <span>🏆</span> Premium Product Request
+          </h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem">
+            Describe your vision - our specialists will make it reality
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="productDescription"
+              >What are you looking for? *</label
+            >
+            <textarea
+              id="productDescription"
+              class="glass-textarea"
+              placeholder="Describe your custom gear vision (e.g., championship jerseys with custom numbers, premium hats with embroidered logos, etc.)"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="itemDescription"
+              >Detailed Specifications</label
+            >
+            <textarea
+              id="itemDescription"
+              class="glass-textarea"
+              placeholder="Materials, colors, specific design elements, quality requirements, etc."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Reference Images</label>
+            <div class="file-upload">
+              <div class="glass-button">
+                <span>📸</span>
+                <span id="fileLabel">Upload Reference Images</span>
+                <input type="file" id="photo" accept="image/*" multiple />
+              </div>
             </div>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+              "
+            >
+              Multiple images welcome - logos, inspiration, mockups, etc.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Size Requirements</label>
+            <div class="badge-group" id="sizeGroup">
+              <div class="glass-badge" data-value="XS">XS</div>
+              <div class="glass-badge" data-value="S">S</div>
+              <div class="glass-badge" data-value="M">M</div>
+              <div class="glass-badge" data-value="L">L</div>
+              <div class="glass-badge" data-value="XL">XL</div>
+              <div class="glass-badge" data-value="XXL">XXL</div>
+              <div class="glass-badge" data-value="XXXL">XXXL</div>
+              <div class="glass-badge" data-value="Youth S">Youth S</div>
+              <div class="glass-badge" data-value="Youth M">Youth M</div>
+              <div class="glass-badge" data-value="Youth L">Youth L</div>
+              <div class="glass-badge" data-value="One Size">One Size</div>
+              <div class="glass-badge" data-value="Custom Sizing">
+                Custom Sizing
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Color Preferences</label>
+            <div class="badge-group" id="colorGroup">
+              <div class="glass-badge" data-value="Black">Black</div>
+              <div class="glass-badge" data-value="White">White</div>
+              <div class="glass-badge" data-value="Navy">Navy</div>
+              <div class="glass-badge" data-value="Red">Red</div>
+              <div class="glass-badge" data-value="Royal Blue">Royal Blue</div>
+              <div class="glass-badge" data-value="Forest Green">
+                Forest Green
+              </div>
+              <div class="glass-badge" data-value="Maroon">Maroon</div>
+              <div class="glass-badge" data-value="Orange">Orange</div>
+              <div class="glass-badge" data-value="Purple">Purple</div>
+              <div class="glass-badge" data-value="Gold">Gold</div>
+              <div class="glass-badge" data-value="Silver">Silver</div>
+              <div class="glass-badge" data-value="Gray">Gray</div>
+              <div class="glass-badge" data-value="Pink">Pink</div>
+              <div class="glass-badge" data-value="Teal">Teal</div>
+              <div class="glass-badge" data-value="Custom Pantone">
+                Custom Pantone
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label class="form-label" for="quantity">Quantity</label>
+              <input
+                type="number"
+                id="quantity"
+                class="glass-input"
+                value="1"
+                min="1"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="budget">Investment Level</label>
+              <select id="budget" class="glass-select">
+                <option value="">Investment range</option>
+                <option value="premium-500-1000">Premium: $500 - $1,000</option>
+                <option value="luxury-1000-2500">
+                  Luxury: $1,000 - $2,500
+                </option>
+                <option value="elite-2500-5000">Elite: $2,500 - $5,000</option>
+                <option value="championship-5000-plus">
+                  Championship: $5,000+
+                </option>
+                <option value="custom-quote">Custom Quote Required</option>
+              </select>
+            </div>
+          </div>
         </div>
 
-        <!-- Form -->
-        <form id="vipForm" style="display: block;">
-            <!-- VIP Customer Information -->
-            <div class="glass-card">
-                <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>👤</span> VIP Customer Information
-                </h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Your dedicated account manager will use this information for priority contact</p>
-                
-                <div class="form-row grid-2">
-                    <div class="form-group">
-                        <label class="form-label" for="customerName">Full Name *</label>
-                        <input type="text" id="customerName" class="glass-input" placeholder="Your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" class="glass-input" placeholder="(555) 123-4567" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="email">Email Address *</label>
-                    <input type="email" id="email" class="glass-input" placeholder="your.email@example.com" required>
-                </div>
-                
-                <div class="form-row grid-2">
-                    <div class="form-group">
-                        <label class="form-label" for="preferredContact">Preferred Contact Method</label>
-                        <select id="preferredContact" class="glass-select">
-                            <option value="">How should we contact you?</option>
-                            <option value="phone">Phone Call (Priority)</option>
-                            <option value="email">Email</option>
-                            <option value="text">Text Message</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="company">Company/Organization</label>
-                        <input type="text" id="company" class="glass-input" placeholder="Optional - for bulk orders">
-                    </div>
-                </div>
+        <!-- VIP Service Details -->
+        <div class="glass-card">
+          <h3
+            style="
+              margin-bottom: 1rem;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+            "
+          >
+            <span>⚡</span> VIP Service Requirements
+          </h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem">
+            Let us know your timeline and special requirements
+          </p>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label class="form-label" for="urgency">Priority Level</label>
+              <select id="urgency" class="glass-select">
+                <option value="">Select priority level</option>
+                <option value="rush-48h">🔥 Rush: 48 hours</option>
+                <option value="express-1-week">⚡ Express: 1 week</option>
+                <option value="priority-2-weeks">🚀 Priority: 2 weeks</option>
+                <option value="standard-month">📅 Standard: 1 month</option>
+                <option value="flexible">🌊 Flexible timeline</option>
+              </select>
             </div>
-
-            <!-- Premium Product Request -->
-            <div class="glass-card">
-                <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>🏆</span> Premium Product Request
-                </h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Describe your vision - our specialists will make it reality</p>
-                
-                <div class="form-group">
-                    <label class="form-label" for="productDescription">What are you looking for? *</label>
-                    <textarea id="productDescription" class="glass-textarea" placeholder="Describe your custom gear vision (e.g., championship jerseys with custom numbers, premium hats with embroidered logos, etc.)" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="itemDescription">Detailed Specifications</label>
-                    <textarea id="itemDescription" class="glass-textarea" placeholder="Materials, colors, specific design elements, quality requirements, etc."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Reference Images</label>
-                    <div class="file-upload">
-                        <div class="glass-button">
-                            <span>📸</span> <span id="fileLabel">Upload Reference Images</span>
-                            <input type="file" id="photo" accept="image/*" multiple>
-                        </div>
-                    </div>
-                    <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem;">
-                        Multiple images welcome - logos, inspiration, mockups, etc.
-                    </p>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Size Requirements</label>
-                    <div class="badge-group" id="sizeGroup">
-                        <div class="glass-badge" data-value="XS">XS</div>
-                        <div class="glass-badge" data-value="S">S</div>
-                        <div class="glass-badge" data-value="M">M</div>
-                        <div class="glass-badge" data-value="L">L</div>
-                        <div class="glass-badge" data-value="XL">XL</div>
-                        <div class="glass-badge" data-value="XXL">XXL</div>
-                        <div class="glass-badge" data-value="XXXL">XXXL</div>
-                        <div class="glass-badge" data-value="Youth S">Youth S</div>
-                        <div class="glass-badge" data-value="Youth M">Youth M</div>
-                        <div class="glass-badge" data-value="Youth L">Youth L</div>
-                        <div class="glass-badge" data-value="One Size">One Size</div>
-                        <div class="glass-badge" data-value="Custom Sizing">Custom Sizing</div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Color Preferences</label>
-                    <div class="badge-group" id="colorGroup">
-                        <div class="glass-badge" data-value="Black">Black</div>
-                        <div class="glass-badge" data-value="White">White</div>
-                        <div class="glass-badge" data-value="Navy">Navy</div>
-                        <div class="glass-badge" data-value="Red">Red</div>
-                        <div class="glass-badge" data-value="Royal Blue">Royal Blue</div>
-                        <div class="glass-badge" data-value="Forest Green">Forest Green</div>
-                        <div class="glass-badge" data-value="Maroon">Maroon</div>
-                        <div class="glass-badge" data-value="Orange">Orange</div>
-                        <div class="glass-badge" data-value="Purple">Purple</div>
-                        <div class="glass-badge" data-value="Gold">Gold</div>
-                        <div class="glass-badge" data-value="Silver">Silver</div>
-                        <div class="glass-badge" data-value="Gray">Gray</div>
-                        <div class="glass-badge" data-value="Pink">Pink</div>
-                        <div class="glass-badge" data-value="Teal">Teal</div>
-                        <div class="glass-badge" data-value="Custom Pantone">Custom Pantone</div>
-                    </div>
-                </div>
-
-                <div class="form-row grid-2">
-                    <div class="form-group">
-                        <label class="form-label" for="quantity">Quantity</label>
-                        <input type="number" id="quantity" class="glass-input" value="1" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="budget">Investment Level</label>
-                        <select id="budget" class="glass-select">
-                            <option value="">Investment range</option>
-                            <option value="premium-500-1000">Premium: $500 - $1,000</option>
-                            <option value="luxury-1000-2500">Luxury: $1,000 - $2,500</option>
-                            <option value="elite-2500-5000">Elite: $2,500 - $5,000</option>
-                            <option value="championship-5000-plus">Championship: $5,000+</option>
-                            <option value="custom-quote">Custom Quote Required</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label class="form-label" for="eventDate"
+                >Target Event Date</label
+              >
+              <input type="date" id="eventDate" class="glass-input" />
             </div>
+          </div>
 
-            <!-- VIP Service Details -->
-            <div class="glass-card">
-                <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>⚡</span> VIP Service Requirements
-                </h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Let us know your timeline and special requirements</p>
-                
-                <div class="form-row grid-2">
-                    <div class="form-group">
-                        <label class="form-label" for="urgency">Priority Level</label>
-                        <select id="urgency" class="glass-select">
-                            <option value="">Select priority level</option>
-                            <option value="rush-48h">🔥 Rush: 48 hours</option>
-                            <option value="express-1-week">⚡ Express: 1 week</option>
-                            <option value="priority-2-weeks">🚀 Priority: 2 weeks</option>
-                            <option value="standard-month">📅 Standard: 1 month</option>
-                            <option value="flexible">🌊 Flexible timeline</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="eventDate">Target Event Date</label>
-                        <input type="date" id="eventDate" class="glass-input">
-                    </div>
-                </div>
+          <div class="form-group">
+            <label class="form-label" for="customizationType"
+              >Premium Services Required</label
+            >
+            <select id="customizationType" class="glass-select">
+              <option value="">Select customization type</option>
+              <option value="premium-embroidery">Premium Embroidery</option>
+              <option value="laser-engraving">Laser Engraving</option>
+              <option value="sublimation-printing">Sublimation Printing</option>
+              <option value="heat-press-vinyl">Heat Press Vinyl</option>
+              <option value="screen-printing">Screen Printing</option>
+              <option value="3d-printing">3D Printing</option>
+              <option value="multiple-techniques">Multiple Techniques</option>
+              <option value="consultation-needed">Need Consultation</option>
+            </select>
+          </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="customizationType">Premium Services Required</label>
-                    <select id="customizationType" class="glass-select">
-                        <option value="">Select customization type</option>
-                        <option value="premium-embroidery">Premium Embroidery</option>
-                        <option value="laser-engraving">Laser Engraving</option>
-                        <option value="sublimation-printing">Sublimation Printing</option>
-                        <option value="heat-press-vinyl">Heat Press Vinyl</option>
-                        <option value="screen-printing">Screen Printing</option>
-                        <option value="3d-printing">3D Printing</option>
-                        <option value="multiple-techniques">Multiple Techniques</option>
-                        <option value="consultation-needed">Need Consultation</option>
-                    </select>
-                </div>
+          <div class="form-group">
+            <label class="form-label" for="serviceLevel"
+              >VIP Service Level</label
+            >
+            <select id="serviceLevel" class="glass-select">
+              <option value="">Choose your service level</option>
+              <option value="vip-standard">
+                VIP Standard - Priority handling
+              </option>
+              <option value="vip-premium">
+                VIP Premium - Dedicated manager
+              </option>
+              <option value="vip-platinum">
+                VIP Platinum - White glove service
+              </option>
+              <option value="championship">
+                Championship - Full concierge
+              </option>
+            </select>
+          </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="serviceLevel">VIP Service Level</label>
-                    <select id="serviceLevel" class="glass-select">
-                        <option value="">Choose your service level</option>
-                        <option value="vip-standard">VIP Standard - Priority handling</option>
-                        <option value="vip-premium">VIP Premium - Dedicated manager</option>
-                        <option value="vip-platinum">VIP Platinum - White glove service</option>
-                        <option value="championship">Championship - Full concierge</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="specialRequests">Special Instructions & Requirements</label>
-                    <textarea id="specialRequests" class="glass-textarea" placeholder="Special delivery instructions, packaging requirements, bulk discounts, ongoing partnership interest, etc."></textarea>
-                </div>
-            </div>
-
-            <!-- Submit -->
-            <div class="glass-card">
-                <div style="text-align: center;">
-                    <button type="submit" class="glass-button-vip" id="submitBtn">
-                        <span>👑</span> Submit VIP Request
-                    </button>
-                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">
-                        🚀 VIP Priority Response: Within 12 hours guaranteed
-                    </p>
-                </div>
-            </div>
-        </form>
-
-        <!-- VIP Benefits -->
-        <div style="text-align: center; margin-top: 2rem;">
-            <h3 style="color: #ffd700; margin-bottom: 1rem;">🌟 VIP Benefits Include:</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-                <div class="glass-card" style="padding: 1rem; margin-bottom: 0;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
-                    <div style="font-weight: 600;">Priority Processing</div>
-                    <div style="font-size: 0.875rem; color: var(--text-muted);">12-hour response guarantee</div>
-                </div>
-                <div class="glass-card" style="padding: 1rem; margin-bottom: 0;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎨</div>
-                    <div style="font-weight: 600;">Custom Design</div>
-                    <div style="font-size: 0.875rem; color: var(--text-muted);">Professional mockups included</div>
-                </div>
-                <div class="glass-card" style="padding: 1rem; margin-bottom: 0;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚚</div>
-                    <div style="font-weight: 600;">White Glove Delivery</div>
-                    <div style="font-size: 0.875rem; color: var(--text-muted);">Premium packaging & handling</div>
-                </div>
-            </div>
-            
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://fanwaves.fun" class="glass-button">
-                    <span>🏠</span> Main Website
-                </a>
-                <a href="https://fanwaves.fun/shop/" target="_blank" class="glass-button-primary">
-                    <span>🛍️</span> Browse Catalog
-                </a>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="specialRequests"
+              >Special Instructions & Requirements</label
+            >
+            <textarea
+              id="specialRequests"
+              class="glass-textarea"
+              placeholder="Special delivery instructions, packaging requirements, bulk discounts, ongoing partnership interest, etc."
+            ></textarea>
+          </div>
         </div>
+
+        <!-- Submit -->
+        <div class="glass-card">
+          <div style="text-align: center">
+            <button type="submit" class="glass-button-vip" id="submitBtn">
+              <span>👑</span> Submit VIP Request
+            </button>
+            <p
+              style="
+                margin-top: 1rem;
+                font-size: 0.875rem;
+                color: var(--text-muted);
+              "
+            >
+              🚀 VIP Priority Response: Within 12 hours guaranteed
+            </p>
+          </div>
+        </div>
+      </form>
+
+      <!-- VIP Benefits -->
+      <div style="text-align: center; margin-top: 2rem">
+        <h3 style="color: #ffd700; margin-bottom: 1rem">
+          🌟 VIP Benefits Include:
+        </h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+          "
+        >
+          <div class="glass-card" style="padding: 1rem; margin-bottom: 0">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">⚡</div>
+            <div style="font-weight: 600">Priority Processing</div>
+            <div style="font-size: 0.875rem; color: var(--text-muted)">
+              12-hour response guarantee
+            </div>
+          </div>
+          <div class="glass-card" style="padding: 1rem; margin-bottom: 0">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">🎨</div>
+            <div style="font-weight: 600">Custom Design</div>
+            <div style="font-size: 0.875rem; color: var(--text-muted)">
+              Professional mockups included
+            </div>
+          </div>
+          <div class="glass-card" style="padding: 1rem; margin-bottom: 0">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">🚚</div>
+            <div style="font-weight: 600">White Glove Delivery</div>
+            <div style="font-size: 0.875rem; color: var(--text-muted)">
+              Premium packaging & handling
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a href="https://fanwaves.fun" class="glass-button">
+            <span>🏠</span> Main Website
+          </a>
+          <a
+            href="https://fanwaves.fun/shop/"
+            target="_blank"
+            class="glass-button-primary"
+          >
+            <span>🛍️</span> Browse Catalog
+          </a>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Multi-select badge functionality
-        function initializeBadgeGroups() {
-            const sizeGroup = document.getElementById('sizeGroup');
-            const colorGroup = document.getElementById('colorGroup');
-            
-            let selectedSizes = [];
-            let selectedColors = [];
+      // Multi-select badge functionality
+      function initializeBadgeGroups() {
+        const sizeGroup = document.getElementById("sizeGroup");
+        const colorGroup = document.getElementById("colorGroup");
 
-            // Size selection
-            sizeGroup.addEventListener('click', (e) => {
-                if (e.target.classList.contains('glass-badge')) {
-                    const value = e.target.dataset.value;
-                    if (selectedSizes.includes(value)) {
-                        selectedSizes = selectedSizes.filter(s => s !== value);
-                        e.target.classList.remove('active');
-                    } else {
-                        selectedSizes.push(value);
-                        e.target.classList.add('active');
-                    }
-                }
-            });
+        let selectedSizes = [];
+        let selectedColors = [];
 
-            // Color selection
-            colorGroup.addEventListener('click', (e) => {
-                if (e.target.classList.contains('glass-badge')) {
-                    const value = e.target.dataset.value;
-                    if (selectedColors.includes(value)) {
-                        selectedColors = selectedColors.filter(c => c !== value);
-                        e.target.classList.remove('active');
-                    } else {
-                        selectedColors.push(value);
-                        e.target.classList.add('active');
-                    }
-                }
-            });
-
-            return { selectedSizes, selectedColors };
-        }
-
-        // File upload handling
-        document.getElementById('photo').addEventListener('change', function(e) {
-            const fileLabel = document.getElementById('fileLabel');
-            if (e.target.files.length > 0) {
-                const fileNames = Array.from(e.target.files).map(f => f.name).join(', ');
-                fileLabel.textContent = fileNames.length > 50 ? `${e.target.files.length} files selected` : fileNames;
+        // Size selection
+        sizeGroup.addEventListener("click", (e) => {
+          if (e.target.classList.contains("glass-badge")) {
+            const value = e.target.dataset.value;
+            if (selectedSizes.includes(value)) {
+              selectedSizes = selectedSizes.filter((s) => s !== value);
+              e.target.classList.remove("active");
             } else {
-                fileLabel.textContent = 'Upload Reference Images';
+              selectedSizes.push(value);
+              e.target.classList.add("active");
             }
+          }
         });
 
-        // Form submission
-        document.getElementById('vipForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span>⏳</span> Processing VIP Request...';
-            submitBtn.disabled = true;
-
-            // Get form data
-            const { selectedSizes, selectedColors } = initializeBadgeGroups();
-            
-            const formData = new FormData();
-            formData.append('vipCustomer', 'true');
-            formData.append('customerName', document.getElementById('customerName').value);
-            formData.append('email', document.getElementById('email').value);
-            formData.append('phone', document.getElementById('phone').value);
-            formData.append('preferredContact', document.getElementById('preferredContact').value);
-            formData.append('company', document.getElementById('company').value);
-            formData.append('productDescription', document.getElementById('productDescription').value);
-            formData.append('itemDescription', document.getElementById('itemDescription').value);
-            formData.append('sizes', selectedSizes.join(', '));
-            formData.append('colors', selectedColors.join(', '));
-            formData.append('quantity', document.getElementById('quantity').value);
-            formData.append('budget', document.getElementById('budget').value);
-            formData.append('urgency', document.getElementById('urgency').value);
-            formData.append('eventDate', document.getElementById('eventDate').value);
-            formData.append('customizationType', document.getElementById('customizationType').value);
-            formData.append('serviceLevel', document.getElementById('serviceLevel').value);
-            formData.append('specialRequests', document.getElementById('specialRequests').value);
-            
-            // Handle multiple files
-            const photoFiles = document.getElementById('photo').files;
-            for (let i = 0; i < photoFiles.length; i++) {
-                formData.append('photos', photoFiles[i]);
+        // Color selection
+        colorGroup.addEventListener("click", (e) => {
+          if (e.target.classList.contains("glass-badge")) {
+            const value = e.target.dataset.value;
+            if (selectedColors.includes(value)) {
+              selectedColors = selectedColors.filter((c) => c !== value);
+              e.target.classList.remove("active");
+            } else {
+              selectedColors.push(value);
+              e.target.classList.add("active");
             }
+          }
+        });
 
-            try {
-                // Submit form data via email
-                const emailContent = `
+        return { selectedSizes, selectedColors };
+      }
+
+      // File upload handling
+      document.getElementById("photo").addEventListener("change", function (e) {
+        const fileLabel = document.getElementById("fileLabel");
+        if (e.target.files.length > 0) {
+          const fileNames = Array.from(e.target.files)
+            .map((f) => f.name)
+            .join(", ");
+          fileLabel.textContent =
+            fileNames.length > 50
+              ? `${e.target.files.length} files selected`
+              : fileNames;
+        } else {
+          fileLabel.textContent = "Upload Reference Images";
+        }
+      });
+
+      // Form submission
+      document
+        .getElementById("vipForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const submitBtn = document.getElementById("submitBtn");
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = "<span>⏳</span> Processing VIP Request...";
+          submitBtn.disabled = true;
+
+          // Get form data
+          const { selectedSizes, selectedColors } = initializeBadgeGroups();
+
+          const formData = new FormData();
+          formData.append("vipCustomer", "true");
+          formData.append(
+            "customerName",
+            document.getElementById("customerName").value,
+          );
+          formData.append("email", document.getElementById("email").value);
+          formData.append("phone", document.getElementById("phone").value);
+          formData.append(
+            "preferredContact",
+            document.getElementById("preferredContact").value,
+          );
+          formData.append("company", document.getElementById("company").value);
+          formData.append(
+            "productDescription",
+            document.getElementById("productDescription").value,
+          );
+          formData.append(
+            "itemDescription",
+            document.getElementById("itemDescription").value,
+          );
+          formData.append("sizes", selectedSizes.join(", "));
+          formData.append("colors", selectedColors.join(", "));
+          formData.append(
+            "quantity",
+            document.getElementById("quantity").value,
+          );
+          formData.append("budget", document.getElementById("budget").value);
+          formData.append("urgency", document.getElementById("urgency").value);
+          formData.append(
+            "eventDate",
+            document.getElementById("eventDate").value,
+          );
+          formData.append(
+            "customizationType",
+            document.getElementById("customizationType").value,
+          );
+          formData.append(
+            "serviceLevel",
+            document.getElementById("serviceLevel").value,
+          );
+          formData.append(
+            "specialRequests",
+            document.getElementById("specialRequests").value,
+          );
+
+          // Handle multiple files
+          const photoFiles = document.getElementById("photo").files;
+          for (let i = 0; i < photoFiles.length; i++) {
+            formData.append("photos", photoFiles[i]);
+          }
+
+          try {
+            // Submit form data via email
+            const emailContent = `
 VIP CUSTOM GEAR REQUEST - PRIORITY HANDLING
 
 Customer Information:
-- Name: ${document.getElementById('customerName').value}
-- Email: ${document.getElementById('email').value}
-- Phone: ${document.getElementById('phone').value}
-- Preferred Contact: ${document.getElementById('preferredContact').value}
-- Company: ${document.getElementById('company').value || 'N/A'}
+- Name: ${document.getElementById("customerName").value}
+- Email: ${document.getElementById("email").value}
+- Phone: ${document.getElementById("phone").value}
+- Preferred Contact: ${document.getElementById("preferredContact").value}
+- Company: ${document.getElementById("company").value || "N/A"}
 
 Product Request:
-- Description: ${document.getElementById('productDescription').value}
-- Details: ${document.getElementById('itemDescription').value}
-- Sizes: ${selectedSizes.join(', ') || 'Not specified'}
-- Colors: ${selectedColors.join(', ') || 'Not specified'}
-- Quantity: ${document.getElementById('quantity').value}
-- Budget: ${document.getElementById('budget').value}
+- Description: ${document.getElementById("productDescription").value}
+- Details: ${document.getElementById("itemDescription").value}
+- Sizes: ${selectedSizes.join(", ") || "Not specified"}
+- Colors: ${selectedColors.join(", ") || "Not specified"}
+- Quantity: ${document.getElementById("quantity").value}
+- Budget: ${document.getElementById("budget").value}
 
 VIP Service Details:
-- Priority Level: ${document.getElementById('urgency').value}
-- Event Date: ${document.getElementById('eventDate').value || 'Not specified'}
-- Customization Type: ${document.getElementById('customizationType').value}
-- Service Level: ${document.getElementById('serviceLevel').value}
-- Special Requests: ${document.getElementById('specialRequests').value}
+- Priority Level: ${document.getElementById("urgency").value}
+- Event Date: ${document.getElementById("eventDate").value || "Not specified"}
+- Customization Type: ${document.getElementById("customizationType").value}
+- Service Level: ${document.getElementById("serviceLevel").value}
+- Special Requests: ${document.getElementById("specialRequests").value}
 
 Files Attached: ${photoFiles.length} image(s)
 
@@ -714,43 +978,53 @@ Submitted: ${new Date().toLocaleString()}
 Source: vip.fanwaves.fun
                 `.trim();
 
-                // Create mailto link for BlueHost compatibility
-                const subject = encodeURIComponent('🚨 VIP CUSTOM GEAR REQUEST - PRIORITY');
-                const body = encodeURIComponent(emailContent);
-                const mailtoLink = `mailto:team@fanwaves.fun,team@fanwave.fun?subject=${subject}&body=${body}`;
-                
-                // For production, you'd want to use a proper form handler
-                // For now, we'll simulate success and provide instructions
-                
-                setTimeout(() => {
-                    // Show success message
-                    document.getElementById('vipForm').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                    
-                    // Optionally open mailto
-                    if (confirm('Would you like to open your email client to send this request directly?')) {
-                        window.location.href = mailtoLink;
-                    }
-                }, 2000);
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                alert('There was an error submitting your VIP request. Please contact us directly at team@fanwaves.fun or call our VIP line.');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
+            // Create mailto link for BlueHost compatibility
+            const subject = encodeURIComponent(
+              "🚨 VIP CUSTOM GEAR REQUEST - PRIORITY",
+            );
+            const body = encodeURIComponent(emailContent);
+            const mailtoLink = `mailto:team@fanwaves.fun,team@fanwave.fun?subject=${subject}&body=${body}`;
+
+            // For production, you'd want to use a proper form handler
+            // For now, we'll simulate success and provide instructions
+
+            setTimeout(() => {
+              // Show success message
+              document.getElementById("vipForm").style.display = "none";
+              document.getElementById("successMessage").style.display = "block";
+
+              // Optionally open mailto
+              if (
+                confirm(
+                  "Would you like to open your email client to send this request directly?",
+                )
+              ) {
+                window.location.href = mailtoLink;
+              }
+            }, 2000);
+          } catch (error) {
+            console.error("Submission error:", error);
+            alert(
+              "There was an error submitting your VIP request. Please contact us directly at team@fanwaves.fun or call our VIP line.",
+            );
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }
         });
 
-        // Initialize badge groups
-        initializeBadgeGroups();
+      // Initialize badge groups
+      initializeBadgeGroups();
 
-        // Add some VIP flair
-        setInterval(() => {
-            const crown = document.querySelector('.vip-crown');
-            if (crown) {
-                crown.style.transform = crown.style.transform === 'rotate(10deg)' ? 'rotate(-10deg)' : 'rotate(10deg)';
-            }
-        }, 3000);
+      // Add some VIP flair
+      setInterval(() => {
+        const crown = document.querySelector(".vip-crown");
+        if (crown) {
+          crown.style.transform =
+            crown.style.transform === "rotate(10deg)"
+              ? "rotate(-10deg)"
+              : "rotate(10deg)";
+        }
+      }, 3000);
     </script>
-</body>
+  </body>
 </html>

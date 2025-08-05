@@ -51,8 +51,6 @@ export default function Index() {
     },
   ];
 
-
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -76,12 +74,12 @@ export default function Index() {
                 jerseys, accessories, and custom gear to show your team spirit!
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="glass-button-primary"
-                  asChild
-                >
-                  <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="glass-button-primary" asChild>
+                  <a
+                    href="https://fanwaves.fun/shop/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ShoppingBag className="mr-2 h-5 w-5" />
                     Shop Now
                   </a>
@@ -235,7 +233,13 @@ export default function Index() {
                 className="bg-white text-fan-blue-800 hover:bg-blue-50"
                 asChild
               >
-                <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">Start Shopping</a>
+                <a
+                  href="https://fanwaves.fun/shop/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Start Shopping
+                </a>
               </Button>
               <Button
                 size="lg"

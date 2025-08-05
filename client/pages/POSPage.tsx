@@ -1,33 +1,39 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { 
-  ShoppingCart, 
-  Upload, 
-  Mail, 
-  Phone, 
-  User, 
-  Package, 
-  Palette, 
-  Ruler, 
+import {
+  ShoppingCart,
+  Upload,
+  Mail,
+  Phone,
+  User,
+  Package,
+  Palette,
+  Ruler,
   Hash,
   Camera,
   Star,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -56,42 +62,70 @@ const POSPage = () => {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  
+
   const [formData, setFormData] = useState<FormData>({
-    customerName: '',
-    email: '',
-    phone: '',
-    productDescription: '',
-    itemDescription: '',
+    customerName: "",
+    email: "",
+    phone: "",
+    productDescription: "",
+    itemDescription: "",
     sizes: [],
     colors: [],
     quantity: 1,
-    urgency: '',
-    budget: '',
-    preferredContact: '',
-    eventDate: '',
-    customizationType: '',
-    referralSource: '',
-    specialRequests: ''
+    urgency: "",
+    budget: "",
+    preferredContact: "",
+    eventDate: "",
+    customizationType: "",
+    referralSource: "",
+    specialRequests: "",
   });
 
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'Youth S', 'Youth M', 'Youth L', 'One Size'];
-  const colors = ['Black', 'White', 'Navy', 'Red', 'Royal Blue', 'Forest Green', 'Maroon', 'Orange', 'Purple', 'Gold', 'Silver', 'Gray', 'Pink', 'Teal', 'Custom Color'];
+  const sizes = [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "Youth S",
+    "Youth M",
+    "Youth L",
+    "One Size",
+  ];
+  const colors = [
+    "Black",
+    "White",
+    "Navy",
+    "Red",
+    "Royal Blue",
+    "Forest Green",
+    "Maroon",
+    "Orange",
+    "Purple",
+    "Gold",
+    "Silver",
+    "Gray",
+    "Pink",
+    "Teal",
+    "Custom Color",
+  ];
 
   const handleSizeToggle = (size: string) => {
-    const newSizes = selectedSizes.includes(size) 
-      ? selectedSizes.filter(s => s !== size)
+    const newSizes = selectedSizes.includes(size)
+      ? selectedSizes.filter((s) => s !== size)
       : [...selectedSizes, size];
     setSelectedSizes(newSizes);
-    setFormData(prev => ({ ...prev, sizes: newSizes }));
+    setFormData((prev) => ({ ...prev, sizes: newSizes }));
   };
 
   const handleColorToggle = (color: string) => {
-    const newColors = selectedColors.includes(color) 
-      ? selectedColors.filter(c => c !== color)
+    const newColors = selectedColors.includes(color)
+      ? selectedColors.filter((c) => c !== color)
       : [...selectedColors, color];
     setSelectedColors(newColors);
-    setFormData(prev => ({ ...prev, colors: newColors }));
+    setFormData((prev) => ({ ...prev, colors: newColors }));
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,27 +142,27 @@ const POSPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Create FormData for file upload
       const submitData = new FormData();
-      
+
       // Add all form fields
       Object.entries(formData).forEach(([key, value]) => {
         if (Array.isArray(value)) {
-          submitData.append(key, value.join(', '));
+          submitData.append(key, value.join(", "));
         } else {
           submitData.append(key, value.toString());
         }
       });
-      
+
       if (uploadedFile) {
-        submitData.append('photo', uploadedFile);
+        submitData.append("photo", uploadedFile);
       }
 
       // Submit to server endpoint
-      const response = await fetch('/api/pos-form', {
-        method: 'POST',
+      const response = await fetch("/api/pos-form", {
+        method: "POST",
         body: submitData,
       });
 
@@ -139,7 +173,7 @@ const POSPage = () => {
           description: "We'll get back to you within 24 hours.",
         });
       } else {
-        throw new Error('Failed to submit');
+        throw new Error("Failed to submit");
       }
     } catch (error) {
       toast({
@@ -159,18 +193,23 @@ const POSPage = () => {
           <Card className="glass-card text-center">
             <CardContent className="pt-8 pb-8">
               <CheckCircle className="h-16 w-16 text-green-400 mx-auto mb-6" />
-              <h1 className="text-3xl font-bold text-white mb-4">Request Submitted!</h1>
+              <h1 className="text-3xl font-bold text-white mb-4">
+                Request Submitted!
+              </h1>
               <p className="text-gray-300 mb-6">
-                Thank you for your custom gear request. Our team will review your submission and get back to you within 24 hours.
+                Thank you for your custom gear request. Our team will review
+                your submission and get back to you within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild variant="outline" className="glass-button">
-                  <Link to="/">
-                    Return to Home
-                  </Link>
+                  <Link to="/">Return to Home</Link>
                 </Button>
                 <Button asChild className="glass-button-primary">
-                  <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://fanwaves.fun/shop/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Browse Shop <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -214,44 +253,71 @@ const POSPage = () => {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="customerName" className="text-white">Full Name *</Label>
+                  <Label htmlFor="customerName" className="text-white">
+                    Full Name *
+                  </Label>
                   <Input
                     id="customerName"
                     className="glass-input"
                     placeholder="Your full name"
                     value={formData.customerName}
-                    onChange={(e) => setFormData(prev => ({ ...prev, customerName: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        customerName: e.target.value,
+                      }))
+                    }
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="phone" className="text-white">Phone Number *</Label>
+                  <Label htmlFor="phone" className="text-white">
+                    Phone Number *
+                  </Label>
                   <Input
                     id="phone"
                     type="tel"
                     className="glass-input"
                     placeholder="(555) 123-4567"
                     value={formData.phone}
-                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        phone: e.target.value,
+                      }))
+                    }
                     required
                   />
                 </div>
               </div>
               <div>
-                <Label htmlFor="email" className="text-white">Email Address *</Label>
+                <Label htmlFor="email" className="text-white">
+                  Email Address *
+                </Label>
                 <Input
                   id="email"
                   type="email"
                   className="glass-input"
                   placeholder="your.email@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, email: e.target.value }))
+                  }
                   required
                 />
               </div>
               <div>
-                <Label htmlFor="preferredContact" className="text-white">Preferred Contact Method</Label>
-                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, preferredContact: value }))}>
+                <Label htmlFor="preferredContact" className="text-white">
+                  Preferred Contact Method
+                </Label>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      preferredContact: value,
+                    }))
+                  }
+                >
                   <SelectTrigger className="glass-input">
                     <SelectValue placeholder="How should we contact you?" />
                   </SelectTrigger>
@@ -278,25 +344,39 @@ const POSPage = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label htmlFor="productDescription" className="text-white">What are you looking for? *</Label>
+                <Label htmlFor="productDescription" className="text-white">
+                  What are you looking for? *
+                </Label>
                 <Textarea
                   id="productDescription"
                   className="glass-input min-h-[100px]"
                   placeholder="Describe the item you want (e.g., Dallas Cowboys jersey, custom hat with logo, etc.)"
                   value={formData.productDescription}
-                  onChange={(e) => setFormData(prev => ({ ...prev, productDescription: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      productDescription: e.target.value,
+                    }))
+                  }
                   required
                 />
               </div>
 
               <div>
-                <Label htmlFor="itemDescription" className="text-white">Detailed Description</Label>
+                <Label htmlFor="itemDescription" className="text-white">
+                  Detailed Description
+                </Label>
                 <Textarea
                   id="itemDescription"
                   className="glass-input min-h-[100px]"
                   placeholder="Any specific details, materials, style preferences, etc."
                   value={formData.itemDescription}
-                  onChange={(e) => setFormData(prev => ({ ...prev, itemDescription: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      itemDescription: e.target.value,
+                    }))
+                  }
                 />
               </div>
 
@@ -306,7 +386,9 @@ const POSPage = () => {
                 <div className="mt-2">
                   <label className="glass-button cursor-pointer inline-flex items-center">
                     <Camera className="mr-2 h-4 w-4" />
-                    {uploadedFile ? uploadedFile.name : "Upload Photo (Optional)"}
+                    {uploadedFile
+                      ? uploadedFile.name
+                      : "Upload Photo (Optional)"}
                     <input
                       type="file"
                       className="hidden"
@@ -327,10 +409,12 @@ const POSPage = () => {
                   {sizes.map((size) => (
                     <Badge
                       key={size}
-                      variant={selectedSizes.includes(size) ? "default" : "outline"}
+                      variant={
+                        selectedSizes.includes(size) ? "default" : "outline"
+                      }
                       className={`cursor-pointer transition-all ${
-                        selectedSizes.includes(size) 
-                          ? "glass-badge-active" 
+                        selectedSizes.includes(size)
+                          ? "glass-badge-active"
                           : "glass-badge-inactive"
                       }`}
                       onClick={() => handleSizeToggle(size)}
@@ -351,10 +435,12 @@ const POSPage = () => {
                   {colors.map((color) => (
                     <Badge
                       key={color}
-                      variant={selectedColors.includes(color) ? "default" : "outline"}
+                      variant={
+                        selectedColors.includes(color) ? "default" : "outline"
+                      }
                       className={`cursor-pointer transition-all ${
-                        selectedColors.includes(color) 
-                          ? "glass-badge-active" 
+                        selectedColors.includes(color)
+                          ? "glass-badge-active"
                           : "glass-badge-inactive"
                       }`}
                       onClick={() => handleColorToggle(color)}
@@ -368,7 +454,10 @@ const POSPage = () => {
               {/* Quantity */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="quantity" className="text-white flex items-center">
+                  <Label
+                    htmlFor="quantity"
+                    className="text-white flex items-center"
+                  >
                     <Hash className="mr-2 h-4 w-4" />
                     Quantity
                   </Label>
@@ -378,12 +467,23 @@ const POSPage = () => {
                     min="1"
                     className="glass-input"
                     value={formData.quantity}
-                    onChange={(e) => setFormData(prev => ({ ...prev, quantity: parseInt(e.target.value) || 1 }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        quantity: parseInt(e.target.value) || 1,
+                      }))
+                    }
                   />
                 </div>
                 <div>
-                  <Label htmlFor="budget" className="text-white">Budget Range</Label>
-                  <Select onValueChange={(value) => setFormData(prev => ({ ...prev, budget: value }))}>
+                  <Label htmlFor="budget" className="text-white">
+                    Budget Range
+                  </Label>
+                  <Select
+                    onValueChange={(value) =>
+                      setFormData((prev) => ({ ...prev, budget: value }))
+                    }
+                  >
                     <SelectTrigger className="glass-input">
                       <SelectValue placeholder="Budget range" />
                     </SelectTrigger>
@@ -412,8 +512,14 @@ const POSPage = () => {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="urgency" className="text-white">Timeline Needed</Label>
-                  <Select onValueChange={(value) => setFormData(prev => ({ ...prev, urgency: value }))}>
+                  <Label htmlFor="urgency" className="text-white">
+                    Timeline Needed
+                  </Label>
+                  <Select
+                    onValueChange={(value) =>
+                      setFormData((prev) => ({ ...prev, urgency: value }))
+                    }
+                  >
                     <SelectTrigger className="glass-input">
                       <SelectValue placeholder="When do you need this?" />
                     </SelectTrigger>
@@ -427,29 +533,49 @@ const POSPage = () => {
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="eventDate" className="text-white">Event Date (if applicable)</Label>
+                  <Label htmlFor="eventDate" className="text-white">
+                    Event Date (if applicable)
+                  </Label>
                   <Input
                     id="eventDate"
                     type="date"
                     className="glass-input"
                     value={formData.eventDate}
-                    onChange={(e) => setFormData(prev => ({ ...prev, eventDate: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        eventDate: e.target.value,
+                      }))
+                    }
                   />
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="customizationType" className="text-white">Type of Customization</Label>
-                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, customizationType: value }))}>
+                <Label htmlFor="customizationType" className="text-white">
+                  Type of Customization
+                </Label>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      customizationType: value,
+                    }))
+                  }
+                >
                   <SelectTrigger className="glass-input">
                     <SelectValue placeholder="What kind of customization?" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">No customization needed</SelectItem>
+                    <SelectItem value="none">
+                      No customization needed
+                    </SelectItem>
                     <SelectItem value="name-number">Name & Number</SelectItem>
                     <SelectItem value="logo">Custom Logo</SelectItem>
                     <SelectItem value="embroidery">Embroidery</SelectItem>
-                    <SelectItem value="screen-print">Screen Printing</SelectItem>
+                    <SelectItem value="screen-print">
+                      Screen Printing
+                    </SelectItem>
                     <SelectItem value="heat-press">Heat Press</SelectItem>
                     <SelectItem value="patches">Patches</SelectItem>
                     <SelectItem value="other">Other (specify below)</SelectItem>
@@ -458,31 +584,48 @@ const POSPage = () => {
               </div>
 
               <div>
-                <Label htmlFor="referralSource" className="text-white">How did you hear about us?</Label>
-                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, referralSource: value }))}>
+                <Label htmlFor="referralSource" className="text-white">
+                  How did you hear about us?
+                </Label>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({ ...prev, referralSource: value }))
+                  }
+                >
                   <SelectTrigger className="glass-input">
                     <SelectValue placeholder="Select source" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="tent-event">Saw us at an event</SelectItem>
+                    <SelectItem value="tent-event">
+                      Saw us at an event
+                    </SelectItem>
                     <SelectItem value="website">Found our website</SelectItem>
                     <SelectItem value="social-media">Social Media</SelectItem>
                     <SelectItem value="word-of-mouth">Word of mouth</SelectItem>
                     <SelectItem value="google">Google Search</SelectItem>
-                    <SelectItem value="repeat-customer">Returning customer</SelectItem>
+                    <SelectItem value="repeat-customer">
+                      Returning customer
+                    </SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label htmlFor="specialRequests" className="text-white">Special Requests or Notes</Label>
+                <Label htmlFor="specialRequests" className="text-white">
+                  Special Requests or Notes
+                </Label>
                 <Textarea
                   id="specialRequests"
                   className="glass-input"
                   placeholder="Any special instructions, delivery preferences, or additional information..."
                   value={formData.specialRequests}
-                  onChange={(e) => setFormData(prev => ({ ...prev, specialRequests: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      specialRequests: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </CardContent>
@@ -492,9 +635,9 @@ const POSPage = () => {
           <Card className="glass-card">
             <CardContent className="pt-6">
               <div className="text-center space-y-4">
-                <Button 
-                  type="submit" 
-                  size="lg" 
+                <Button
+                  type="submit"
+                  size="lg"
                   disabled={isSubmitting}
                   className="glass-button-primary w-full md:w-auto text-lg px-8 py-3"
                 >
@@ -526,7 +669,11 @@ const POSPage = () => {
               </Link>
             </Button>
             <Button asChild className="glass-button-primary">
-              <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://fanwaves.fun/shop/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Shop Online <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>

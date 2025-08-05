@@ -3,21 +3,24 @@
 ## Step 1: Create Subdomain in BlueHost cPanel
 
 1. **Log into your BlueHost cPanel**
+
    - Go to https://my.bluehost.com
-   - Click "cPanel" 
+   - Click "cPanel"
 
 2. **Navigate to Subdomains**
+
    - In the "Domains" section, click "Subdomains"
 
 3. **Create New Subdomain**
    - **Subdomain**: `vip`
-   - **Domain**: `fanwaves.fun` 
+   - **Domain**: `fanwaves.fun`
    - **Document Root**: `/public_html/vip` (auto-filled)
    - Click "Create"
 
 ## Step 2: Upload Files via File Manager
 
 1. **Open File Manager**
+
    - In cPanel, click "File Manager"
    - Navigate to `/public_html/vip/`
 
@@ -31,8 +34,9 @@
 ## Step 3: Set Permissions
 
 1. **File Permissions**
+
    - `index.html`: 644
-   - `.htaccess`: 644  
+   - `.htaccess`: 644
    - `robots.txt`: 644
 
 2. **Folder Permissions**
@@ -56,12 +60,14 @@ To enable automatic email handling, you can:
 ## Features Included:
 
 ### 🎨 **VIP Design Elements**
+
 - Premium glassmorphic design
 - Gold/crown VIP branding
 - Enhanced visual hierarchy
 - Mobile-responsive layout
 
 ### 📋 **Enhanced Form Fields**
+
 - VIP customer information
 - Premium service levels
 - Investment tiers ($500-$5000+)
@@ -69,6 +75,7 @@ To enable automatic email handling, you can:
 - Priority processing options
 
 ### 🔒 **Security & Performance**
+
 - HTTPS enforcement
 - Security headers
 - File compression
@@ -76,6 +83,7 @@ To enable automatic email handling, you can:
 - Input validation
 
 ### 📧 **Email Integration Ready**
+
 - Sends to team@fanwaves.fun AND team@fanwave.fun
 - VIP priority labeling
 - 12-hour response guarantee messaging
@@ -84,16 +92,19 @@ To enable automatic email handling, you can:
 ## Troubleshooting:
 
 ### If subdomain doesn't work:
+
 1. Check DNS propagation: https://dnschecker.org
 2. Verify subdomain was created correctly in cPanel
 3. Ensure files are in `/public_html/vip/` not `/public_html/vip/vip/`
 
 ### If form doesn't submit:
+
 1. The form currently uses a mailto fallback
 2. For production, integrate with Formspree or similar service
 3. Update the JavaScript submission URL in index.html
 
 ### For SSL issues:
+
 1. BlueHost provides free SSL - should auto-activate
 2. Force HTTPS in .htaccess (already included)
 3. Contact BlueHost support if SSL doesn't activate

@@ -1,27 +1,27 @@
-import { Request, Response } from 'express';
-import nodemailer from 'nodemailer';
-import multer from 'multer';
-import path from 'path';
+import { Request, Response } from "express";
+import nodemailer from "nodemailer";
+import multer from "multer";
+import path from "path";
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
-const upload = multer({ 
+const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    if (file.mimetype.startsWith("image/")) {
       cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'));
+      cb(new Error("Only image files are allowed"));
     }
-  }
+  },
 });
 
 // Email configuration
 const createTransporter = () => {
   return nodemailer.createTransporter({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.SMTP_PORT || '587'),
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port: parseInt(process.env.SMTP_PORT || "587"),
     secure: false,
     auth: {
       user: process.env.SMTP_USER,
@@ -39,33 +39,33 @@ const formatFormData = (data: any) => {
       <li><strong>Name:</strong> ${data.customerName}</li>
       <li><strong>Email:</strong> ${data.email}</li>
       <li><strong>Phone:</strong> ${data.phone}</li>
-      <li><strong>Preferred Contact:</strong> ${data.preferredContact || 'Not specified'}</li>
+      <li><strong>Preferred Contact:</strong> ${data.preferredContact || "Not specified"}</li>
     </ul>
     
     <h3>Product Request:</h3>
     <ul>
       <li><strong>Product Description:</strong> ${data.productDescription}</li>
-      <li><strong>Detailed Description:</strong> ${data.itemDescription || 'Not provided'}</li>
-      <li><strong>Sizes:</strong> ${data.sizes || 'Not specified'}</li>
-      <li><strong>Colors:</strong> ${data.colors || 'Not specified'}</li>
-      <li><strong>Quantity:</strong> ${data.quantity || '1'}</li>
-      <li><strong>Budget Range:</strong> ${data.budget || 'Not specified'}</li>
+      <li><strong>Detailed Description:</strong> ${data.itemDescription || "Not provided"}</li>
+      <li><strong>Sizes:</strong> ${data.sizes || "Not specified"}</li>
+      <li><strong>Colors:</strong> ${data.colors || "Not specified"}</li>
+      <li><strong>Quantity:</strong> ${data.quantity || "1"}</li>
+      <li><strong>Budget Range:</strong> ${data.budget || "Not specified"}</li>
     </ul>
     
     <h3>Additional Details:</h3>
     <ul>
-      <li><strong>Timeline:</strong> ${data.urgency || 'Not specified'}</li>
-      <li><strong>Event Date:</strong> ${data.eventDate || 'Not specified'}</li>
-      <li><strong>Customization Type:</strong> ${data.customizationType || 'Not specified'}</li>
-      <li><strong>How they heard about us:</strong> ${data.referralSource || 'Not specified'}</li>
-      <li><strong>Special Requests:</strong> ${data.specialRequests || 'None'}</li>
+      <li><strong>Timeline:</strong> ${data.urgency || "Not specified"}</li>
+      <li><strong>Event Date:</strong> ${data.eventDate || "Not specified"}</li>
+      <li><strong>Customization Type:</strong> ${data.customizationType || "Not specified"}</li>
+      <li><strong>How they heard about us:</strong> ${data.referralSource || "Not specified"}</li>
+      <li><strong>Special Requests:</strong> ${data.specialRequests || "None"}</li>
     </ul>
     
     <h3>Submission Details:</h3>
     <ul>
       <li><strong>Submitted:</strong> ${new Date().toLocaleString()}</li>
       <li><strong>Source:</strong> Fan Waves POS Form</li>
-      <li><strong>Photo Attached:</strong> ${data.hasPhoto ? 'Yes' : 'No'}</li>
+      <li><strong>Photo Attached:</strong> ${data.hasPhoto ? "Yes" : "No"}</li>
     </ul>
     
     <hr>
@@ -74,16 +74,22 @@ const formatFormData = (data: any) => {
 };
 
 export const handlePOSFormSubmission = [
-  upload.single('photo'),
+  upload.single("photo"),
   async (req: Request, res: Response) => {
     try {
       const formData = req.body;
       const photo = req.file;
-      
+
       // Validate required fields
-      if (!formData.customerName || !formData.email || !formData.phone || !formData.productDescription) {
-        return res.status(400).json({ 
-          error: 'Missing required fields: customerName, email, phone, and productDescription are required' 
+      if (
+        !formData.customerName ||
+        !formData.email ||
+        !formData.phone ||
+        !formData.productDescription
+      ) {
+        return res.status(400).json({
+          error:
+            "Missing required fields: customerName, email, phone, and productDescription are required",
         });
       }
 
@@ -93,22 +99,26 @@ export const handlePOSFormSubmission = [
       // Prepare email data
       const emailData = {
         ...formData,
-        hasPhoto: !!photo
+        hasPhoto: !!photo,
       };
 
       const emailHTML = formatFormData(emailData);
 
       // Email options
       const mailOptions = {
-        from: process.env.SMTP_USER || 'noreply@fanwaves.fun',
-        to: ['team@fanwaves.fun', 'team@fanwave.fun'],
+        from: process.env.SMTP_USER || "noreply@fanwaves.fun",
+        to: ["team@fanwaves.fun", "team@fanwave.fun"],
         subject: `🏟️ New Custom Gear Request from ${formData.customerName}`,
         html: emailHTML,
-        attachments: photo ? [{
-          filename: `customer-photo-${Date.now()}${path.extname(photo.originalname)}`,
-          content: photo.buffer,
-          contentType: photo.mimetype
-        }] : []
+        attachments: photo
+          ? [
+              {
+                filename: `customer-photo-${Date.now()}${path.extname(photo.originalname)}`,
+                content: photo.buffer,
+                contentType: photo.mimetype,
+              },
+            ]
+          : [],
       };
 
       // Send email
@@ -116,9 +126,9 @@ export const handlePOSFormSubmission = [
 
       // Send confirmation email to customer
       const customerConfirmation = {
-        from: process.env.SMTP_USER || 'noreply@fanwaves.fun',
+        from: process.env.SMTP_USER || "noreply@fanwaves.fun",
         to: formData.email,
-        subject: '🏟️ Your Fan Waves Custom Gear Request Received',
+        subject: "🏟️ Your Fan Waves Custom Gear Request Received",
         html: `
           <h2>Thank you for your custom gear request!</h2>
           <p>Hi ${formData.customerName},</p>
@@ -126,14 +136,14 @@ export const handlePOSFormSubmission = [
           <ul>
             <li>✅ <strong>Request received</strong> - ${new Date().toLocaleString()}</li>
             <li>🔍 <strong>Review in progress</strong> - Our team will review your specifications</li>
-            <li>📞 <strong>Contact within 24 hours</strong> - We'll reach out via ${formData.preferredContact || 'email'}</li>
+            <li>📞 <strong>Contact within 24 hours</strong> - We'll reach out via ${formData.preferredContact || "email"}</li>
             <li>💎 <strong>Custom quote provided</strong> - Tailored to your specific needs</li>
           </ul>
           
           <h3>Your Request Summary:</h3>
           <p><strong>Product:</strong> ${formData.productDescription}</p>
-          <p><strong>Quantity:</strong> ${formData.quantity || '1'}</p>
-          <p><strong>Timeline:</strong> ${formData.urgency || 'Not specified'}</p>
+          <p><strong>Quantity:</strong> ${formData.quantity || "1"}</p>
+          <p><strong>Timeline:</strong> ${formData.urgency || "Not specified"}</p>
           
           <p>Questions? Reply to this email or call us directly.</p>
           <p>Thanks for choosing Fan Waves!</p>
@@ -141,22 +151,22 @@ export const handlePOSFormSubmission = [
           <hr>
           <p><small>Fan Waves - Premium Custom Fan Gear<br>
           <a href="https://fanwaves.fun">fanwaves.fun</a> | <a href="https://fanwaves.fun/shop/">Shop Online</a></small></p>
-        `
+        `,
       };
 
       await transporter.sendMail(customerConfirmation);
 
-      res.status(200).json({ 
-        success: true, 
-        message: 'Request submitted successfully' 
+      res.status(200).json({
+        success: true,
+        message: "Request submitted successfully",
       });
-
     } catch (error) {
-      console.error('POS Form submission error:', error);
-      res.status(500).json({ 
-        error: 'Failed to submit request',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      console.error("POS Form submission error:", error);
+      res.status(500).json({
+        error: "Failed to submit request",
+        details:
+          process.env.NODE_ENV === "development" ? error.message : undefined,
       });
     }
-  }
+  },
 ];

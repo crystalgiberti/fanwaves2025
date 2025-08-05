@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,35 +23,63 @@ import {
 
 export default function CollectionsPage() {
   const { products, loading, error, fetchProducts } = useWooCommerce();
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [displayProducts, setDisplayProducts] = useState(products);
 
   useEffect(() => {
-    fetchProducts({ limit: 50, orderby: 'popularity', order: 'desc' });
+    fetchProducts({ limit: 50, orderby: "popularity", order: "desc" });
   }, []);
 
   useEffect(() => {
-    if (selectedFilter === 'all') {
+    if (selectedFilter === "all") {
       setDisplayProducts(products);
-    } else if (selectedFilter === 'featured') {
-      setDisplayProducts(products.filter(p => p.featured));
-    } else if (selectedFilter === 'sale') {
-      setDisplayProducts(products.filter(p => p.on_sale));
+    } else if (selectedFilter === "featured") {
+      setDisplayProducts(products.filter((p) => p.featured));
+    } else if (selectedFilter === "sale") {
+      setDisplayProducts(products.filter((p) => p.on_sale));
     } else {
       // Filter by category
-      setDisplayProducts(products.filter(p =>
-        p.categories.some(cat => cat.slug.includes(selectedFilter))
-      ));
+      setDisplayProducts(
+        products.filter((p) =>
+          p.categories.some((cat) => cat.slug.includes(selectedFilter)),
+        ),
+      );
     }
   }, [products, selectedFilter]);
 
   const filters = [
-    { id: 'all', label: 'All Products', count: products.length },
-    { id: 'featured', label: 'Featured', count: products.filter(p => p.featured).length },
-    { id: 'sale', label: 'On Sale', count: products.filter(p => p.on_sale).length },
-    { id: 'hats', label: 'Hats & Caps', count: products.filter(p => p.categories.some(cat => cat.slug.includes('hat'))).length },
-    { id: 'jerseys', label: 'Jerseys', count: products.filter(p => p.categories.some(cat => cat.slug.includes('jersey'))).length },
-    { id: 'accessories', label: 'Accessories', count: products.filter(p => p.categories.some(cat => cat.slug.includes('access'))).length },
+    { id: "all", label: "All Products", count: products.length },
+    {
+      id: "featured",
+      label: "Featured",
+      count: products.filter((p) => p.featured).length,
+    },
+    {
+      id: "sale",
+      label: "On Sale",
+      count: products.filter((p) => p.on_sale).length,
+    },
+    {
+      id: "hats",
+      label: "Hats & Caps",
+      count: products.filter((p) =>
+        p.categories.some((cat) => cat.slug.includes("hat")),
+      ).length,
+    },
+    {
+      id: "jerseys",
+      label: "Jerseys",
+      count: products.filter((p) =>
+        p.categories.some((cat) => cat.slug.includes("jersey")),
+      ).length,
+    },
+    {
+      id: "accessories",
+      label: "Accessories",
+      count: products.filter((p) =>
+        p.categories.some((cat) => cat.slug.includes("access")),
+      ).length,
+    },
   ];
 
   return (
@@ -71,7 +99,9 @@ export default function CollectionsPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-              {error ? 'Browse our complete selection of fan gear and merchandise' : `Discover ${products.length} amazing products from your WooCommerce store`}
+              {error
+                ? "Browse our complete selection of fan gear and merchandise"
+                : `Discover ${products.length} amazing products from your WooCommerce store`}
             </p>
           </div>
         </div>
@@ -98,7 +128,11 @@ export default function CollectionsPage() {
                 variant={selectedFilter === filter.id ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedFilter(filter.id)}
-                className={selectedFilter === filter.id ? "bg-electric-blue hover:bg-electric-blue/90" : ""}
+                className={
+                  selectedFilter === filter.id
+                    ? "bg-electric-blue hover:bg-electric-blue/90"
+                    : ""
+                }
               >
                 <Filter className="mr-2 h-3 w-3" />
                 {filter.label}
@@ -115,10 +149,12 @@ export default function CollectionsPage() {
           {error && (
             <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-800 font-medium">
-                🏪 Showing sample products - Connect your WooCommerce store to see your real inventory
+                🏪 Showing sample products - Connect your WooCommerce store to
+                see your real inventory
               </p>
               <p className="text-xs text-blue-600 mt-1">
-                Add products in your WooCommerce admin to see them here automatically.
+                Add products in your WooCommerce admin to see them here
+                automatically.
               </p>
             </div>
           )}
@@ -143,22 +179,26 @@ export default function CollectionsPage() {
           {!loading && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {displayProducts.map((product) => {
-                const originalPrice = parseFloat(product.regular_price || product.price);
-                const salePrice = parseFloat(product.sale_price || product.price);
-                const rating = parseFloat(product.average_rating || '0');
+                const originalPrice = parseFloat(
+                  product.regular_price || product.price,
+                );
+                const salePrice = parseFloat(
+                  product.sale_price || product.price,
+                );
+                const rating = parseFloat(product.average_rating || "0");
 
                 // Determine badge text
-                let badgeText = '';
-                let badgeColor = 'bg-electric-blue text-white';
+                let badgeText = "";
+                let badgeColor = "bg-electric-blue text-white";
 
                 if (product.featured) {
-                  badgeText = 'Featured';
+                  badgeText = "Featured";
                 } else if (product.on_sale) {
-                  badgeText = 'Sale';
-                  badgeColor = 'bg-red-500 text-white';
+                  badgeText = "Sale";
+                  badgeColor = "bg-red-500 text-white";
                 } else if (product.rating_count > 50) {
-                  badgeText = 'Popular';
-                  badgeColor = 'bg-orange-500 text-white';
+                  badgeText = "Popular";
+                  badgeColor = "bg-orange-500 text-white";
                 }
 
                 return (
@@ -168,16 +208,22 @@ export default function CollectionsPage() {
                   >
                     <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
                       <img
-                        src={product.images[0]?.src || "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142"}
+                        src={
+                          product.images[0]?.src ||
+                          "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142"
+                        }
                         alt={product.images[0]?.alt || product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142";
+                          target.src =
+                            "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142";
                         }}
                       />
                       {badgeText && (
-                        <Badge className={`absolute top-2 left-2 ${badgeColor}`}>
+                        <Badge
+                          className={`absolute top-2 left-2 ${badgeColor}`}
+                        >
                           {badgeText}
                         </Badge>
                       )}
@@ -210,7 +256,10 @@ export default function CollectionsPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
                           <span className="text-lg font-bold text-electric-blue">
-                            ${product.on_sale ? salePrice.toFixed(2) : originalPrice.toFixed(2)}
+                            $
+                            {product.on_sale
+                              ? salePrice.toFixed(2)
+                              : originalPrice.toFixed(2)}
                           </span>
                           {product.on_sale && originalPrice > salePrice && (
                             <span className="text-sm text-muted-foreground line-through">
@@ -223,7 +272,11 @@ export default function CollectionsPage() {
                           className="bg-electric-blue hover:bg-electric-blue/90"
                           asChild
                         >
-                          <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
+                          <a
+                            href="https://fanwaves.fun/shop/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             <ShoppingBag className="h-4 w-4" />
                           </a>
                         </Button>
@@ -241,13 +294,16 @@ export default function CollectionsPage() {
               <Grid3X3 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No products found</h3>
               <p className="text-muted-foreground mb-4">
-                {selectedFilter === 'all'
-                  ? 'Add products to your WooCommerce store to see them here'
-                  : `No products found in the ${filters.find(f => f.id === selectedFilter)?.label} category`
-                }
+                {selectedFilter === "all"
+                  ? "Add products to your WooCommerce store to see them here"
+                  : `No products found in the ${filters.find((f) => f.id === selectedFilter)?.label} category`}
               </p>
               <Button variant="outline" asChild>
-                <a href="https://fanwaves.fun/wp-admin/admin.php?page=wc-admin&task=products" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://fanwaves.fun/wp-admin/admin.php?page=wc-admin&task=products"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <TrendingUp className="mr-2 h-4 w-4" />
                   Manage Products
                 </a>
@@ -268,22 +324,30 @@ export default function CollectionsPage() {
               We're the trusted choice for thousands of fans across the country
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-electric-blue mb-2">1000+</div>
+              <div className="text-3xl font-bold text-electric-blue mb-2">
+                1000+
+              </div>
               <div className="text-muted-foreground">Products Available</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-electric-blue mb-2">50K+</div>
+              <div className="text-3xl font-bold text-electric-blue mb-2">
+                50K+
+              </div>
               <div className="text-muted-foreground">Happy Customers</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-electric-blue mb-2">32</div>
+              <div className="text-3xl font-bold text-electric-blue mb-2">
+                32
+              </div>
               <div className="text-muted-foreground">NFL Teams</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-electric-blue mb-2">100+</div>
+              <div className="text-3xl font-bold text-electric-blue mb-2">
+                100+
+              </div>
               <div className="text-muted-foreground">NCAA Schools</div>
             </div>
           </div>

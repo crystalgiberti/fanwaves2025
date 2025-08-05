@@ -1,11 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, Heart, TrendingUp } from "lucide-react";
 import { useWooCommerce } from "@/hooks/useWooCommerce";
@@ -18,11 +13,11 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
   const { products, loading, error, fetchProducts } = useWooCommerce();
 
   useEffect(() => {
-    fetchProducts({ 
-      featured: true, 
+    fetchProducts({
+      featured: true,
       limit: limit,
-      orderby: 'popularity',
-      order: 'desc'
+      orderby: "popularity",
+      order: "desc",
     });
   }, [limit]);
 
@@ -68,11 +63,17 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
               Trending Now
             </h2>
             <p className="text-muted-foreground mt-2">
-              {error ? 'Sample products (WooCommerce store connection pending)' : 'Featured products from your store'}
+              {error
+                ? "Sample products (WooCommerce store connection pending)"
+                : "Featured products from your store"}
             </p>
           </div>
           <Button variant="outline" asChild>
-            <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://fanwaves.fun/shop/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View All
               <TrendingUp className="ml-2 h-4 w-4" />
             </a>
@@ -85,10 +86,13 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
               🏪 Store Integration Status: Displaying sample products
             </p>
             <p className="text-xs text-blue-600 mt-1">
-              Add products in your WooCommerce admin to see them here automatically.
+              Add products in your WooCommerce admin to see them here
+              automatically.
             </p>
             <details className="mt-2">
-              <summary className="text-xs text-blue-500 cursor-pointer">Technical details</summary>
+              <summary className="text-xs text-blue-500 cursor-pointer">
+                Technical details
+              </summary>
               <p className="text-xs text-blue-500 mt-1">{error}</p>
             </details>
           </div>
@@ -96,22 +100,24 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {products.slice(0, limit).map((product) => {
-            const originalPrice = parseFloat(product.regular_price || product.price);
+            const originalPrice = parseFloat(
+              product.regular_price || product.price,
+            );
             const salePrice = parseFloat(product.sale_price || product.price);
-            const rating = parseFloat(product.average_rating || '0');
-            
+            const rating = parseFloat(product.average_rating || "0");
+
             // Determine badge text
-            let badgeText = '';
-            let badgeColor = 'bg-electric-blue text-white';
-            
+            let badgeText = "";
+            let badgeColor = "bg-electric-blue text-white";
+
             if (product.featured) {
-              badgeText = 'Bestseller';
+              badgeText = "Bestseller";
             } else if (product.on_sale) {
-              badgeText = 'Sale';
-              badgeColor = 'bg-red-500 text-white';
+              badgeText = "Sale";
+              badgeColor = "bg-red-500 text-white";
             } else if (product.rating_count > 100) {
-              badgeText = 'Hot';
-              badgeColor = 'bg-orange-500 text-white';
+              badgeText = "Hot";
+              badgeColor = "bg-orange-500 text-white";
             }
 
             return (
@@ -122,12 +128,16 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
                 <CardHeader className="p-0">
                   <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
                     <img
-                      src={product.images[0]?.src || "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142"}
+                      src={
+                        product.images[0]?.src ||
+                        "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142"
+                      }
                       alt={product.images[0]?.alt || product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142";
+                        target.src =
+                          "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142";
                       }}
                     />
                     {badgeText && (
@@ -161,7 +171,10 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
                   )}
                   <div className="flex items-center space-x-2">
                     <span className="text-lg font-bold text-electric-blue">
-                      ${product.on_sale ? salePrice.toFixed(2) : originalPrice.toFixed(2)}
+                      $
+                      {product.on_sale
+                        ? salePrice.toFixed(2)
+                        : originalPrice.toFixed(2)}
                     </span>
                     {product.on_sale && originalPrice > salePrice && (
                       <span className="text-sm text-muted-foreground line-through">

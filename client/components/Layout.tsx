@@ -39,16 +39,10 @@ export default function Layout({ children }: LayoutProps) {
             <Link to="/hats" className="glass-nav-item">
               Hats
             </Link>
-            <Link
-              to="/jerseys"
-              className="glass-nav-item"
-            >
+            <Link to="/jerseys" className="glass-nav-item">
               Jerseys
             </Link>
-            <Link
-              to="/accessories"
-              className="glass-nav-item"
-            >
+            <Link to="/accessories" className="glass-nav-item">
               Accessories
             </Link>
             <Link to="/custom" className="glass-nav-item">

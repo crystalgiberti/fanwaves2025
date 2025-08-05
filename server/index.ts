@@ -14,7 +14,7 @@ import {
   handleSearchProducts,
   handleGetCategories,
   handleCreateOrder,
-  handleWebhook
+  handleWebhook,
 } from "./routes/woocommerce";
 
 export function createServer() {
