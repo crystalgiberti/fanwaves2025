@@ -4,6 +4,7 @@ import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleImageSearch } from "./routes/search-images";
 import { handleTestWooCommerce } from "./routes/test-woocommerce";
+import { handlePOSFormSubmission } from "./routes/pos-form";
 import {
   handleGetProducts,
   handleGetProduct,
