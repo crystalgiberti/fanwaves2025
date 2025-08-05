@@ -41,6 +41,7 @@ interface FormData {
   customerName: string;
   email: string;
   phone: string;
+  requestType: string;
   productDescription: string;
   itemDescription: string;
   sizes: string[];
