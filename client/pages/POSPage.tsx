@@ -141,51 +141,67 @@ const POSPage = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    try {
-      // Create FormData for file upload
-      const submitData = new FormData();
-
-      // Add all form fields
-      Object.entries(formData).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          submitData.append(key, value.join(", "));
-        } else {
-          submitData.append(key, value.toString());
-        }
-      });
-
-      if (uploadedFile) {
-        submitData.append("photo", uploadedFile);
-      }
-
-      // Submit to server endpoint
-      const response = await fetch("/api/pos-form", {
-        method: "POST",
-        body: submitData,
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        toast({
-          title: "Request submitted successfully!",
-          description: "We'll get back to you within 24 hours.",
-        });
-      } else {
-        throw new Error("Failed to submit");
-      }
-    } catch (error) {
+    // Validate required fields
+    if (!formData.customerName || !formData.email || !formData.phone || !formData.productDescription) {
       toast({
-        title: "Submission failed",
-        description: "Please try again or contact us directly.",
+        title: "Missing required fields",
+        description: "Please fill out all required fields (marked with *).",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+
+    // Format email content
+    const emailSubject = `🏟️ NEW POS Request from ${formData.customerName}`;
+    const emailBody = `
+Fan Waves POS Special Request
+
+Customer Information:
+• Name: ${formData.customerName}
+• Email: ${formData.email}
+• Phone: ${formData.phone}
+• Preferred Contact: ${formData.preferredContact || "Not specified"}
+
+Request Details:
+• Type: ${formData.requestType || "Not specified"}
+• Product Description: ${formData.productDescription}
+• Detailed Description: ${formData.itemDescription || "Not provided"}
+• Sizes: ${selectedSizes.length > 0 ? selectedSizes.join(", ") : "Not specified"}
+• Colors: ${selectedColors.length > 0 ? selectedColors.join(", ") : "Not specified"}
+• Quantity: ${formData.quantity || "1"}
+• Budget Range: ${formData.budget || "Not specified"}
+
+Additional Details:
+• Timeline: ${formData.urgency || "Not specified"}
+• Event Date: ${formData.eventDate || "Not specified"}
+• Service Needed: ${formData.customizationType || "Not specified"}
+• How they heard about us: ${formData.referralSource || "Not specified"}
+• Special Requests: ${formData.specialRequests || "None"}
+
+${uploadedFile ? `Photo Attached: ${uploadedFile.name}` : "No photo attached"}
+
+Submission Details:
+• Submitted: ${new Date().toLocaleString()}
+• Source: Fan Waves POS Form
+
+Please respond within 24 hours.
+    `.trim();
+
+    // Create mailto link
+    const mailtoLink = `mailto:team@fanwaves.fun?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Show success state
+    setIsSubmitted(true);
+    toast({
+      title: "Email client opened!",
+      description: "Please send the email from your email client to complete your request.",
+    });
   };
 
   if (isSubmitted) {
