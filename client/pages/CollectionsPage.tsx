@@ -247,7 +247,7 @@ export default function CollectionsPage() {
                 }
               </p>
               <Button variant="outline" asChild>
-                <a href="https://fanwaves.fun/shop/wp-admin/" target="_blank" rel="noopener noreferrer">
+                <a href="https://fanwaves.fun/wp-admin/admin.php?page=wc-admin&task=products" target="_blank" rel="noopener noreferrer">
                   <TrendingUp className="mr-2 h-4 w-4" />
                   Manage Products
                 </a>
