@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import multer from 'multer';
+import nodemailer from 'nodemailer';
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
