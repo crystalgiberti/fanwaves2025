@@ -70,9 +70,10 @@ const formatFormData = (data: any) => {
 export const handlePOSFormSubmission = [
   upload.single("photo"),
   async (req: Request, res: Response) => {
+    const formData = req.body;
+    const photo = req.file;
+
     try {
-      const formData = req.body;
-      const photo = req.file;
 
       // Validate required fields
       if (
