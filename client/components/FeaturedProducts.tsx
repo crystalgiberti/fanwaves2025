@@ -117,7 +117,7 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
             return (
               <Card
                 key={product.id}
-                className="group cursor-pointer hover:shadow-lg transition-shadow"
+                className="glass-product-card group cursor-pointer"
               >
                 <CardHeader className="p-0">
                   <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
