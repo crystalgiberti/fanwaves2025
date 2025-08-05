@@ -569,7 +569,7 @@ const POSPage = () => {
 
               <div>
                 <Label htmlFor="customizationType" className="text-white">
-                  Type of Customization
+                  Service Needed
                 </Label>
                 <Select
                   onValueChange={(value) =>
@@ -580,11 +580,11 @@ const POSPage = () => {
                   }
                 >
                   <SelectTrigger className="glass-input">
-                    <SelectValue placeholder="What kind of customization?" />
+                    <SelectValue placeholder="What service do you need?" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">
-                      No customization needed
+                    <SelectItem value="ship-to-me">
+                      Ship item to me (no customization)
                     </SelectItem>
                     <SelectItem value="name-number">Name & Number</SelectItem>
                     <SelectItem value="logo">Custom Logo</SelectItem>
