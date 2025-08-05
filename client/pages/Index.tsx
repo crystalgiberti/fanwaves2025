@@ -78,7 +78,7 @@ export default function Index() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-white text-fan-blue-800 hover:bg-blue-50"
+                  className="glass-button-primary"
                   asChild
                 >
                   <a href="https://fanwaves.fun/shop/" target="_blank" rel="noopener noreferrer">
@@ -89,7 +89,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white/10 bg-transparent"
+                  className="glass-button"
                   asChild
                 >
                   <Link to="/collections">Browse Collections</Link>
