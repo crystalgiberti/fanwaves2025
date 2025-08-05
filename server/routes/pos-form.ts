@@ -34,7 +34,7 @@ const createTransporter = () => {
 
 const formatFormData = (data: any) => {
   return `
-    ��️ NEW SPECIAL REQUEST FROM FAN WAVES POS
+    🏟️ NEW SPECIAL REQUEST FROM FAN WAVES POS
     
     Customer Information:
     - Name: ${data.customerName}
@@ -87,21 +87,10 @@ export const handlePOSFormSubmission = [
         });
       }
 
-      // Log the form submission (since email isn't configured)
-      console.log("🏟️ POS Form Submission Received:");
-      console.log("Customer:", formData.customerName);
-      console.log("Email:", formData.email);
-      console.log("Phone:", formData.phone);
-      console.log("Request Type:", formData.requestType);
-      console.log("Product Description:", formData.productDescription);
-      console.log("Sizes:", formData.sizes);
-      console.log("Colors:", formData.colors);
-      console.log("Quantity:", formData.quantity);
-      console.log("Has Photo:", !!photo);
-      console.log("Submitted at:", new Date().toLocaleString());
-      console.log("---");
+      // Log the form submission
+      console.log("🏟️ POS Form Submission Received:", formData.customerName);
 
-      // Prepare email data for logging
+      // Prepare email data
       const emailData = {
         ...formData,
         hasPhoto: !!photo,
@@ -110,21 +99,28 @@ export const handlePOSFormSubmission = [
 
       const emailContent = formatFormData(emailData);
 
-      // Log what would be emailed
-      console.log("📧 Email content that would be sent to team@fanwaves.fun and team@fanwave.fun:");
-      console.log(emailContent);
-      console.log("=".repeat(80));
+      // Create email message
+      const mailOptions = {
+        from: 'team@fanwaves.fun',
+        to: 'team@fanwaves.fun',
+        subject: `🏟️ NEW POS Request from ${formData.customerName}`,
+        text: emailContent,
+        attachments: photo ? [{
+          filename: photo.originalname,
+          content: photo.buffer,
+          contentType: photo.mimetype
+        }] : []
+      };
 
-      // For now, just return success since the form data is logged
+      // Send email
+      const transporter = createTransporter();
+      await transporter.sendMail(mailOptions);
+
+      console.log("📧 Email sent successfully to team@fanwaves.fun");
+
       res.status(200).json({
         success: true,
-        message: "Request submitted successfully! Your information has been received and logged.",
-        debug: process.env.NODE_ENV === "development" ? {
-          submissionLogged: true,
-          customerEmail: formData.email,
-          timestamp: new Date().toISOString(),
-          emailWouldBeSentTo: ["team@fanwaves.fun", "team@fanwave.fun"]
-        } : undefined
+        message: "Request submitted successfully! Our team will contact you within 24 hours."
       });
 
     } catch (error) {
