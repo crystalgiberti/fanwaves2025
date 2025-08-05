@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
-const upload = multer({ 
+const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
@@ -16,9 +16,25 @@ const upload = multer({
   }
 });
 
+// Configure email transport
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: 'mail.fanwaves.fun',
+    port: 587,
+    secure: false,
+    auth: {
+      user: 'team@fanwaves.fun',
+      pass: process.env.EMAIL_PASSWORD || 'defaultpassword123'
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+};
+
 const formatFormData = (data: any) => {
   return `
-    🏟️ NEW SPECIAL REQUEST FROM FAN WAVES POS
+    ��️ NEW SPECIAL REQUEST FROM FAN WAVES POS
     
     Customer Information:
     - Name: ${data.customerName}
