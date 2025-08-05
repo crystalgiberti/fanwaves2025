@@ -93,8 +93,6 @@ export default function Index() {
                   <Link to="/collections">Browse Collections</Link>
                 </Button>
               </div>
-
-
             </div>
 
             {/* Hero Image - Mascot */}
@@ -111,8 +109,6 @@ export default function Index() {
             </div>
           </div>
         </div>
-
-
       </section>
 
       {/* Features */}
