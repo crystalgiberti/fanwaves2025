@@ -86,7 +86,7 @@ export default function Index() {
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
+                  variant="ghost"
                   className="glass-button"
                   asChild
                 >
