@@ -164,7 +164,7 @@ export default function CollectionsPage() {
                 return (
                   <Card
                     key={product.id}
-                    className="group cursor-pointer hover:shadow-lg transition-all duration-300"
+                    className="glass-product-card group cursor-pointer"
                   >
                     <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
                       <img
