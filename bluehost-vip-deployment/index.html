@@ -542,13 +542,26 @@
           </p>
 
           <div class="form-group">
+            <label class="form-label" for="requestType">VIP Request Type *</label>
+            <select id="requestType" class="glass-select">
+              <option value="">What type of VIP service do you need?</option>
+              <option value="premium-stock">Premium Item - Special Size/Color</option>
+              <option value="rush-shipping">Rush/Express Shipping Required</option>
+              <option value="custom-design">Custom Design/Personalization</option>
+              <option value="bulk-vip">VIP Bulk/Team Order</option>
+              <option value="championship">Championship/Event Special</option>
+              <option value="consultation">Design Consultation Required</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label class="form-label" for="productDescription"
               >What are you looking for? *</label
             >
             <textarea
               id="productDescription"
               class="glass-textarea"
-              placeholder="Describe your custom gear vision (e.g., championship jerseys with custom numbers, premium hats with embroidered logos, etc.)"
+              placeholder="Describe your vision (e.g., championship jerseys with custom numbers, premium hats with embroidered logos, specific player gear in large sizes, etc.)"
               required
             ></textarea>
           </div>
