@@ -1,9 +1,9 @@
+/* Import glassmorphic design system */
+@import "./styles/glassmorphic.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import glassmorphic design system */
-@import "./styles/glassmorphic.css";
 
 @layer base {
   /**
