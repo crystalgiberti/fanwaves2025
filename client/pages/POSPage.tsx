@@ -594,6 +594,7 @@ const POSPage = () => {
                     </SelectItem>
                     <SelectItem value="heat-press">Heat Press</SelectItem>
                     <SelectItem value="patches">Patches</SelectItem>
+                    <SelectItem value="rush-shipping">Rush Shipping</SelectItem>
                     <SelectItem value="other">Other (specify below)</SelectItem>
                   </SelectContent>
                 </Select>
