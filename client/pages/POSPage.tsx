@@ -344,13 +344,29 @@ const POSPage = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
+                <Label className="text-white">Type of Request *</Label>
+                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, requestType: value }))}>
+                  <SelectTrigger className="glass-input">
+                    <SelectValue placeholder="What type of request is this?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="out-of-stock">Out of Stock Item - Need Different Size/Color</SelectItem>
+                    <SelectItem value="not-in-store">Item Not Available In Store - Need Shipped</SelectItem>
+                    <SelectItem value="custom-design">Custom Design/Personalization</SelectItem>
+                    <SelectItem value="bulk-order">Bulk/Team Order</SelectItem>
+                    <SelectItem value="special-request">Special Request/Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
                 <Label htmlFor="productDescription" className="text-white">
                   What are you looking for? *
                 </Label>
                 <Textarea
                   id="productDescription"
                   className="glass-input min-h-[100px]"
-                  placeholder="Describe the item you want (e.g., Dallas Cowboys jersey, custom hat with logo, etc.)"
+                  placeholder="Describe the item you want (e.g., Dallas Cowboys #4 jersey in size Large, team hat in navy blue, etc.)"
                   value={formData.productDescription}
                   onChange={(e) =>
                     setFormData((prev) => ({
