@@ -451,13 +451,25 @@
           </p>
 
           <div class="form-group">
+            <label class="form-label" for="requestType">Type of Request *</label>
+            <select id="requestType" class="glass-select">
+              <option value="">What type of request is this?</option>
+              <option value="out-of-stock">Out of Stock Item - Need Different Size/Color</option>
+              <option value="not-in-store">Item Not Available In Store - Need Shipped</option>
+              <option value="custom-design">Custom Design/Personalization</option>
+              <option value="bulk-order">Bulk/Team Order</option>
+              <option value="special-request">Special Request/Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label class="form-label" for="productDescription"
               >What are you looking for? *</label
             >
             <textarea
               id="productDescription"
               class="glass-textarea"
-              placeholder="Describe the item you want (e.g., Dallas Cowboys jersey, custom hat with logo, etc.)"
+              placeholder="Describe the item you want (e.g., Dallas Cowboys #4 jersey in size Large, team hat in navy blue, etc.)"
               required
             ></textarea>
           </div>
