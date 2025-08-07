@@ -240,19 +240,34 @@ class WooCommerceAPI {
 
       console.log('WooCommerce API response status:', response.status);
       console.log('WooCommerce API response data type:', typeof response.data);
-      console.log('WooCommerce API response data:', JSON.stringify(response.data, null, 2));
+
+      // Check if we got HTML instead of JSON (common issue with WordPress sites)
+      if (typeof response.data === 'string' && response.data.includes('<!DOCTYPE html>')) {
+        console.error('WooCommerce API returned HTML instead of JSON. This usually means:');
+        console.error('1. WooCommerce is not installed or activated');
+        console.error('2. API credentials are incorrect');
+        console.error('3. Permalinks need to be refreshed in WordPress admin');
+        console.error('4. The API endpoint URL is wrong');
+        throw new Error('WooCommerce API returned HTML page instead of JSON data');
+      }
+
+      // Truncate large responses for logging
+      const dataPreview = typeof response.data === 'string'
+        ? response.data.substring(0, 200) + '...'
+        : JSON.stringify(response.data, null, 2).substring(0, 500) + '...';
+      console.log('WooCommerce API response data preview:', dataPreview);
 
       // Check if response.data is an array
       if (!Array.isArray(response.data)) {
-        console.error('WooCommerce API did not return an array. Response:', response.data);
+        console.error('WooCommerce API did not return an array. Response type:', typeof response.data);
 
         // Check if it's an error response
         if (response.data && response.data.code) {
           throw new Error(`WooCommerce API Error: ${response.data.message || response.data.code}`);
         }
 
-        // Return empty array if no products
-        return [];
+        // If it's not an array and not an error, throw a descriptive error
+        throw new Error('WooCommerce API returned invalid data format (expected array of products)');
       }
 
       return response.data.map((product: any) => ProductSchema.parse(product));
