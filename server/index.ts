@@ -31,6 +31,18 @@ export function createServer() {
     res.json({ message: ping });
   });
 
+  // Debug endpoint to test communication
+  app.get("/api/debug/products", (_req, res) => {
+    console.log("🧪 Debug endpoint called - sending simple mock data");
+    res.status(200).json({
+      products: [
+        { id: 1, name: "Test Product", price: "10.00", featured: true }
+      ],
+      mock_data: true,
+      message: "Debug endpoint working"
+    });
+  });
+
   app.get("/api/demo", handleDemo);
   app.get("/api/search-images", handleImageSearch);
   app.get("/api/test-woocommerce", handleTestWooCommerce);
