@@ -150,9 +150,31 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
 
   } catch (error) {
     console.error('Error in handleGetProducts:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch products',
+
+    // Provide specific error messages to help with debugging
+    let errorMessage = 'Failed to fetch products';
+    let statusCode = 500;
+
+    if (error instanceof Error) {
+      if (error.message.includes('HTML page instead of JSON')) {
+        errorMessage = 'WooCommerce store configuration issue - API returning HTML instead of JSON';
+        statusCode = 502; // Bad Gateway
+      } else if (error.message.includes('Cannot connect')) {
+        errorMessage = 'Cannot connect to WooCommerce store';
+        statusCode = 503; // Service Unavailable
+      } else if (error.message.includes('authentication failed')) {
+        errorMessage = 'WooCommerce API authentication failed';
+        statusCode = 401; // Unauthorized
+      } else if (error.message.includes('endpoint not found')) {
+        errorMessage = 'WooCommerce API endpoint not found';
+        statusCode = 404; // Not Found
+      }
+    }
+
+    res.status(statusCode).json({
+      error: errorMessage,
       message: error instanceof Error ? error.message : 'Unknown error',
+      details: 'This is expected during development. The frontend will use mock data.',
     });
   }
 };
