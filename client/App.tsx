@@ -22,6 +22,7 @@ import CustomGearPage from "./pages/CustomGearPage";
 import StatusPage from "./pages/StatusPage";
 import BuilderPage from "./pages/BuilderPage";
 import POSPage from "./pages/POSPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
