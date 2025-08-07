@@ -104,6 +104,13 @@ export function useWooCommerce(): UseWooCommerceReturn {
       }
 
       const data = await response.json();
+      console.log('🔍 Frontend received API response:', {
+        status: response.status,
+        dataType: typeof data,
+        hasProducts: Boolean(data?.products),
+        isMockData: Boolean(data?.mock_data),
+        productsCount: data?.products?.length || 0
+      });
 
       // Validate response structure
       if (!data || typeof data !== 'object') {
