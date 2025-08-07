@@ -63,10 +63,12 @@ const OrderCreateSchema = z.object({
 
 // Get products with Fan Waves specific filtering
 export const handleGetProducts: RequestHandler = async (req, res) => {
-  try {
-    console.log('handleGetProducts called with query:', req.query);
+  console.log('handleGetProducts called with query:', req.query);
 
-    const query = ProductQuerySchema.parse(req.query);
+  // Parse query parameters first so they're available in error handling
+  const query = ProductQuerySchema.parse(req.query);
+
+  try {
 
     let categoryId: number | undefined;
 
