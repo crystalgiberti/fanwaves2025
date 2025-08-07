@@ -112,15 +112,23 @@ export function useWooCommerce(): UseWooCommerceReturn {
 
       // Handle different response structures
       let productsArray = [];
+      let isMockData = false;
+
       if (Array.isArray(data)) {
         productsArray = data;
       } else if (data.products && Array.isArray(data.products)) {
         productsArray = data.products;
+        isMockData = Boolean(data.mock_data);
       } else if (data.data && Array.isArray(data.data)) {
         productsArray = data.data;
       } else {
         console.warn('Unexpected API response structure:', data);
         throw new Error('Products data not found in API response');
+      }
+
+      // Set appropriate error message for mock data
+      if (isMockData && data.message) {
+        setError(data.message);
       }
 
       // Transform API response to match our interface
