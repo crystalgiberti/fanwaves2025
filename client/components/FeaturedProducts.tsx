@@ -19,7 +19,7 @@ export default function FeaturedProducts({ limit = 4 }: FeaturedProductsProps) {
       orderby: "popularity",
       order: "desc",
     });
-  }, [limit]);
+  }, [limit, fetchProducts]);
 
   if (loading) {
     return (
