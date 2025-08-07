@@ -150,31 +150,149 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
 
   } catch (error) {
     console.error('Error in handleGetProducts:', error);
+    console.log('🔄 Falling back to mock data for development...');
 
-    // Provide specific error messages to help with debugging
-    let errorMessage = 'Failed to fetch products';
-    let statusCode = 500;
-
-    if (error instanceof Error) {
-      if (error.message.includes('HTML page instead of JSON')) {
-        errorMessage = 'WooCommerce store configuration issue - API returning HTML instead of JSON';
-        statusCode = 502; // Bad Gateway
-      } else if (error.message.includes('Cannot connect')) {
-        errorMessage = 'Cannot connect to WooCommerce store';
-        statusCode = 503; // Service Unavailable
-      } else if (error.message.includes('authentication failed')) {
-        errorMessage = 'WooCommerce API authentication failed';
-        statusCode = 401; // Unauthorized
-      } else if (error.message.includes('endpoint not found')) {
-        errorMessage = 'WooCommerce API endpoint not found';
-        statusCode = 404; // Not Found
+    // Return mock data instead of error during development
+    const mockProducts = [
+      {
+        id: 1,
+        name: 'Championship Hat',
+        slug: 'championship-hat',
+        description: 'Official championship hat with team embroidery',
+        price: '29.99',
+        regular_price: '39.99',
+        sale_price: '29.99',
+        on_sale: true,
+        featured: true,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+        images: [{
+          id: 1,
+          src: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+          alt: 'Championship Hat'
+        }],
+        categories: [{ id: 11, name: 'Hats & Caps', slug: 'hats' }],
+        tags: [],
+        stock_status: 'instock',
+        stock_quantity: 10,
+        average_rating: 4.8,
+        rating_count: 124,
+        sku: 'HAT-001',
+        weight: '0.2',
+        dimensions: { length: '', width: '', height: '' },
+        attributes: [],
+        variations: [],
+        meta_data: [],
+      },
+      {
+        id: 2,
+        name: 'Team Jersey Pro',
+        slug: 'team-jersey-pro',
+        description: 'Professional quality team jersey',
+        price: '89.99',
+        regular_price: '109.99',
+        sale_price: '89.99',
+        on_sale: true,
+        featured: true,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+        images: [{
+          id: 2,
+          src: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+          alt: 'Team Jersey Pro'
+        }],
+        categories: [{ id: 10, name: 'Jerseys', slug: 'jerseys' }],
+        tags: [],
+        stock_status: 'instock',
+        stock_quantity: 5,
+        average_rating: 4.9,
+        rating_count: 89,
+        sku: 'JER-001',
+        weight: '0.3',
+        dimensions: { length: '', width: '', height: '' },
+        attributes: [],
+        variations: [],
+        meta_data: [],
+      },
+      {
+        id: 3,
+        name: 'Fan Chain Deluxe',
+        slug: 'fan-chain-deluxe',
+        description: 'Premium fan chain with team logo',
+        price: '19.99',
+        regular_price: '24.99',
+        sale_price: '19.99',
+        on_sale: true,
+        featured: false,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+        images: [{
+          id: 3,
+          src: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+          alt: 'Fan Chain Deluxe'
+        }],
+        categories: [{ id: 13, name: 'Accessories', slug: 'accessories' }],
+        tags: [],
+        stock_status: 'instock',
+        stock_quantity: 15,
+        average_rating: 4.7,
+        rating_count: 156,
+        sku: 'ACC-001',
+        weight: '0.1',
+        dimensions: { length: '', width: '', height: '' },
+        attributes: [],
+        variations: [],
+        meta_data: [],
+      },
+      {
+        id: 4,
+        name: 'Terrible Towel Set',
+        slug: 'terrible-towel-set',
+        description: 'Classic team terrible towel set',
+        price: '15.99',
+        regular_price: '19.99',
+        sale_price: '15.99',
+        on_sale: true,
+        featured: false,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+        images: [{
+          id: 4,
+          src: 'https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fad6f2c397bda47a88accb39f279bf142',
+          alt: 'Terrible Towel Set'
+        }],
+        categories: [{ id: 13, name: 'Accessories', slug: 'accessories' }],
+        tags: [],
+        stock_status: 'instock',
+        stock_quantity: 20,
+        average_rating: 4.6,
+        rating_count: 203,
+        sku: 'TOW-001',
+        weight: '0.15',
+        dimensions: { length: '', width: '', height: '' },
+        attributes: [],
+        variations: [],
+        meta_data: [],
       }
-    }
+    ];
 
-    res.status(statusCode).json({
-      error: errorMessage,
-      message: error instanceof Error ? error.message : 'Unknown error',
-      details: 'This is expected during development. The frontend will use mock data.',
+    // Filter featured products if requested
+    const filteredProducts = query.featured
+      ? mockProducts.filter(p => p.featured)
+      : mockProducts;
+
+    res.json({
+      products: filteredProducts.slice(0, query.limit),
+      pagination: {
+        page: query.page,
+        limit: query.limit,
+        total: filteredProducts.length,
+        has_more: false,
+      },
+      filters: {
+        team: query.team,
+        category: query.category,
+        featured: query.featured,
+        on_sale: query.on_sale,
+      },
+      mock_data: true,
+      message: 'Using mock data - WooCommerce store integration pending'
     });
   }
 };
