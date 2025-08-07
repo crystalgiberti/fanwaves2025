@@ -299,7 +299,7 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
       message: 'Using mock data - WooCommerce store integration pending'
     };
 
-    res.json(response);
+    res.status(200).json(response);
     return; // Ensure we don't continue execution
   }
 };
