@@ -279,7 +279,9 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
       ? mockProducts.filter(p => p.featured)
       : mockProducts;
 
-    res.json({
+    console.log(`✅ Sending ${filteredProducts.length} mock products to frontend`);
+
+    const response = {
       products: filteredProducts.slice(0, query.limit),
       pagination: {
         page: query.page,
@@ -295,7 +297,10 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
       },
       mock_data: true,
       message: 'Using mock data - WooCommerce store integration pending'
-    });
+    };
+
+    res.json(response);
+    return; // Ensure we don't continue execution
   }
 };
 
