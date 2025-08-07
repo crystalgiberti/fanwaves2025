@@ -172,7 +172,11 @@ export function useWooCommerce(): UseWooCommerceReturn {
       }
 
     } catch (err) {
-      console.error('Error fetching products:', err);
+      console.error('🚨 Error fetching products:', {
+        error: err,
+        message: err instanceof Error ? err.message : 'Unknown error',
+        stack: err instanceof Error ? err.stack : undefined
+      });
 
       // Determine error type for better user messaging
       let errorMessage = 'Connection to store unavailable';
