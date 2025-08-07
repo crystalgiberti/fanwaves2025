@@ -79,12 +79,20 @@ export function useWooCommerce(): UseWooCommerceReturn {
       if (params?.limit) queryParams.append('limit', params.limit.toString());
       if (params?.page) queryParams.append('page', params.page.toString());
 
+      console.log('🚀 Frontend making API request to:', `/api/products?${queryParams}`);
+
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
       const response = await fetch(`/api/products?${queryParams}`, {
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal
+      });
+
+      console.log('📡 Frontend received response:', {
+        status: response.status,
+        ok: response.ok,
+        statusText: response.statusText
       });
 
       clearTimeout(timeoutId);
