@@ -58,6 +58,9 @@ export default function Index() {
       {/* Live Event Banner */}
       <LiveEventBanner />
 
+      {/* Game Day Blog */}
+      <GameDayBlog />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-electric-blue via-fan-blue-600 to-fan-blue-800">
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
