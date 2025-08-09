@@ -23,6 +23,7 @@ import StatusPage from "./pages/StatusPage";
 import BuilderPage from "./pages/BuilderPage";
 import POSPage from "./pages/POSPage";
 import ScrollToTop from "./components/ScrollToTop";
+import KeepAlive from "./components/KeepAlive";
 
 const queryClient = new QueryClient();
 
