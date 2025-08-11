@@ -151,7 +151,7 @@ export const handleGetProducts: RequestHandler = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error in handleGetProducts:', error);
+    console.log('🔄 Falling back to mock data for development...');
     console.log('🔄 Falling back to mock data for development...');
 
     // Return mock data instead of error during development
