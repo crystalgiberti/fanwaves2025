@@ -190,6 +190,9 @@ export default function Index() {
       {/* Featured Products */}
       <FeaturedProducts limit={4} />
 
+      {/* Past Posts */}
+      <PastPosts />
+
       {/* CTA Section */}
       <section className="py-12 md:py-16 bg-gradient-to-r from-electric-blue to-fan-blue-600 -mb-1">
         <div className="container mx-auto px-4 text-center">
