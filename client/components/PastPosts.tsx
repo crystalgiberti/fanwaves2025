@@ -8,21 +8,22 @@ export default function PastPosts() {
     date: "August 17, 2024",
     title: "Jags vs Steelers Preseason Game",
     location: "1601 E Duval St - Across from Gate 3",
-    summary: "Live from our popup shop during the Jaguars vs Steelers preseason game with fresh fan gear for both teams!",
+    summary:
+      "Live from our popup shop during the Jaguars vs Steelers preseason game with fresh fan gear for both teams!",
     images: [
       {
         src: "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2F96e45babd3124d2eb3e0979134e407b1?format=webp&width=400",
-        alt: "Fan Waves Payment Setup"
+        alt: "Fan Waves Payment Setup",
       },
       {
         src: "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2F7f22002da44a49cdaa4763ab34b4ea1e?format=webp&width=400",
-        alt: "Terrible Towels Display"
+        alt: "Terrible Towels Display",
       },
       {
         src: "https://cdn.builder.io/api/v1/image/assets%2F87091a742c05463799bae52525d7477c%2Fca2de94cc2a14639adf3c6ef9b17aeaf?format=webp&width=400",
-        alt: "Steelers Merchandise"
-      }
-    ]
+        alt: "Steelers Merchandise",
+      },
+    ],
   };
 
   return (
@@ -41,21 +42,28 @@ export default function PastPosts() {
           <CardHeader>
             <div className="flex items-center gap-2 mb-2">
               <Calendar className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">{pastPost.date}</span>
+              <span className="text-sm text-muted-foreground">
+                {pastPost.date}
+              </span>
             </div>
-            <CardTitle className="text-xl md:text-2xl">{pastPost.title}</CardTitle>
+            <CardTitle className="text-xl md:text-2xl">
+              {pastPost.title}
+            </CardTitle>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4" />
               <span>{pastPost.location}</span>
             </div>
           </CardHeader>
-          
+
           <CardContent>
             <p className="text-muted-foreground mb-6">{pastPost.summary}</p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               {pastPost.images.map((image, index) => (
-                <div key={index} className="relative overflow-hidden rounded-lg aspect-square bg-muted">
+                <div
+                  key={index}
+                  className="relative overflow-hidden rounded-lg aspect-square bg-muted"
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
