@@ -9,8 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
 import FeaturedProducts from "@/components/FeaturedProducts";
-import LiveEventBanner from "@/components/LiveEventBanner";
-import GameDayBlog from "@/components/GameDayBlog";
+import PastPosts from "@/components/PastPosts";
 import { Link } from "react-router-dom";
 import {
   ShoppingBag,
