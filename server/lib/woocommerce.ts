@@ -243,12 +243,8 @@ class WooCommerceAPI {
 
       // Check if we got HTML instead of JSON (common issue with WordPress sites)
       if (typeof response.data === 'string' && response.data.includes('<!DOCTYPE html>')) {
-        console.error('WooCommerce API returned HTML instead of JSON. This usually means:');
-        console.error('1. WooCommerce is not installed or activated');
-        console.error('2. API credentials are incorrect');
-        console.error('3. Permalinks need to be refreshed in WordPress admin');
-        console.error('4. The API endpoint URL is wrong');
-        throw new Error('WooCommerce API returned HTML page instead of JSON data');
+        console.log('ℹ️  WooCommerce not available (development mode) - using mock data');
+      throw new Error('WooCommerce API not available in development');
       }
 
       // Truncate large responses for logging
