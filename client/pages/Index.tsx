@@ -66,7 +66,7 @@ export default function Index() {
               </Badge>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                 Ride the
-                <span className="block bg-gradient-to-r from-white to-electric-blue-200 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-white to-electric-blue-200 bg-clip-text text-transparent" style={{ fontFamily: 'Allura, sans-serif' }}>
                   FAN WAVES
                 </span>
               </h1>
