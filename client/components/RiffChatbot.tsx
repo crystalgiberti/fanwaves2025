@@ -209,7 +209,7 @@ export default function RiffChatbot() {
         <Button
           onClick={() => setIsOpen(true)}
           size="lg"
-          className="fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full bg-gradient-to-r from-electric-blue to-fan-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 md:h-16 md:w-16 animate-bounce"
+          className="fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full bg-gradient-to-r from-electric-blue to-fan-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 md:h-16 md:w-16"
           style={{ zIndex: 9999 }}
         >
           <div className="relative">
