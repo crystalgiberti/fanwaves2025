@@ -311,9 +311,9 @@ export default function RiffChatbot() {
                       className="w-6 h-6 rounded-full"
                     />
                     <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-electric-blue rounded-full animate-bounce" />
-                      <div className="w-2 h-2 bg-electric-blue rounded-full animate-bounce delay-100" />
-                      <div className="w-2 h-2 bg-electric-blue rounded-full animate-bounce delay-200" />
+                      <div className="w-2 h-2 bg-electric-blue rounded-full" />
+                      <div className="w-2 h-2 bg-electric-blue rounded-full" />
+                      <div className="w-2 h-2 bg-electric-blue rounded-full" />
                     </div>
                   </div>
                 </div>

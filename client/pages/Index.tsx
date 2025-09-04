@@ -65,10 +65,14 @@ export default function Index() {
                 🎉 New Season, New Gear!
               </Badge>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Ride the
-                <span className="block bg-gradient-to-r from-white to-electric-blue-200 bg-clip-text text-transparent" style={{ fontFamily: 'Allura, sans-serif' }}>
-                  FAN WAVES
-                </span>
+                <div style={{ fontFamily: 'Advent Pro, sans-serif' }}>
+                  <span>
+                    <font face="Archivo Black, sans-serif">FAN WAVES</font>
+                  </span>
+                </div>
+                <div className="block bg-gradient-to-r from-white to-electric-blue-200 bg-clip-text text-transparent" style={{ fontFamily: 'Allura, sans-serif', fontWeight: 700 }}>
+                  the wave starts here
+                </div>
               </h1>
               <p className="text-lg md:text-xl text-blue-100 max-w-lg">
                 Your ultimate destination for NFL and NCAA fan gear. Hats,
