@@ -144,7 +144,12 @@ const POSPage = () => {
     e.preventDefault();
 
     // Validate required fields
-    if (!formData.customerName || !formData.email || !formData.phone || !formData.productDescription) {
+    if (
+      !formData.customerName ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.productDescription
+    ) {
       toast({
         title: "Missing required fields",
         description: "Please fill out all required fields (marked with *).",
@@ -199,7 +204,8 @@ Please respond within 24 hours.
     setIsSubmitted(true);
     toast({
       title: "Email client opened!",
-      description: "Please send the email from your email client to complete your request.",
+      description:
+        "Please send the email from your email client to complete your request.",
     });
   };
 

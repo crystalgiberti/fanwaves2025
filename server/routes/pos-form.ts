@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import multer from 'multer';
-import nodemailer from 'nodemailer';
+import { Request, Response } from "express";
+import multer from "multer";
+import nodemailer from "nodemailer";
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage();
@@ -8,21 +8,23 @@ const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    if (file.mimetype.startsWith("image/")) {
       cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'));
+      cb(new Error("Only image files are allowed"));
     }
-  }
+  },
 });
 
 // Configure email transport
 const createTransporter = () => {
-  const host = process.env.EMAIL_HOST || 'mail.fanwaves.fun';
-  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
-  const secure = process.env.EMAIL_SECURE === 'true' || port === 465;
-  const user = process.env.EMAIL_USER || 'team@fanwaves.fun';
-  const pass = process.env.EMAIL_PASSWORD || 'defaultpassword123';
+  const host = process.env.EMAIL_HOST || "mail.fanwaves.fun";
+  const port = process.env.EMAIL_PORT
+    ? parseInt(process.env.EMAIL_PORT, 10)
+    : 587;
+  const secure = process.env.EMAIL_SECURE === "true" || port === 465;
+  const user = process.env.EMAIL_USER || "team@fanwaves.fun";
+  const pass = process.env.EMAIL_PASSWORD || "defaultpassword123";
 
   return nodemailer.createTransport({
     host,
@@ -34,7 +36,8 @@ const createTransporter = () => {
     },
     tls: {
       // allow self-signed certificates if explicitly disabled in env
-      rejectUnauthorized: process.env.EMAIL_TLS_REJECT === 'false' ? false : false,
+      rejectUnauthorized:
+        process.env.EMAIL_TLS_REJECT === "false" ? false : false,
     },
   });
 };
@@ -81,7 +84,6 @@ export const handlePOSFormSubmission = [
     const photo = req.file;
 
     try {
-
       // Validate required fields
       if (
         !formData.customerName ||
@@ -109,15 +111,19 @@ export const handlePOSFormSubmission = [
 
       // Create email message
       const mailOptions = {
-        from: 'team@fanwaves.fun',
-        to: 'team@fanwaves.fun',
+        from: "team@fanwaves.fun",
+        to: "team@fanwaves.fun",
         subject: `🏟️ NEW POS Request from ${formData.customerName}`,
         text: emailContent,
-        attachments: photo ? [{
-          filename: photo.originalname,
-          content: photo.buffer,
-          contentType: photo.mimetype
-        }] : []
+        attachments: photo
+          ? [
+              {
+                filename: photo.originalname,
+                content: photo.buffer,
+                contentType: photo.mimetype,
+              },
+            ]
+          : [],
       };
 
       // Send email
@@ -128,14 +134,20 @@ export const handlePOSFormSubmission = [
 
       res.status(200).json({
         success: true,
-        message: "Request submitted successfully! Our team will contact you within 24 hours."
+        message:
+          "Request submitted successfully! Our team will contact you within 24 hours.",
       });
-
     } catch (error) {
       console.error("POS Form submission error:", error);
 
       // If it's an email error, still log the submission but return a different message
-      if (error.code === 'EAUTH' || (error.message && (error.message.includes('EAUTH') || error.message.includes('Invalid login') || error.message.includes('authentication')))) {
+      if (
+        error.code === "EAUTH" ||
+        (error.message &&
+          (error.message.includes("EAUTH") ||
+            error.message.includes("Invalid login") ||
+            error.message.includes("authentication")))
+      ) {
         console.log("📧 Email failed but logging submission details:");
         console.log("Customer:", formData.customerName);
         console.log("Email:", formData.email);
@@ -153,13 +165,15 @@ export const handlePOSFormSubmission = [
 
         return res.status(200).json({
           success: true,
-          message: "Request submitted successfully! Our team has been notified."
+          message:
+            "Request submitted successfully! Our team has been notified.",
         });
       }
 
       res.status(500).json({
         error: "Failed to submit request",
-        details: process.env.NODE_ENV === "development" ? error.message : undefined,
+        details:
+          process.env.NODE_ENV === "development" ? error.message : undefined,
       });
     }
   },
