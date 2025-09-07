@@ -211,11 +211,12 @@ Please respond within 24 hours.
             <CardContent className="pt-8 pb-8">
               <CheckCircle className="h-16 w-16 text-green-400 mx-auto mb-6" />
               <h1 className="text-3xl font-bold text-white mb-4">
-                Request Submitted!
+                Email Client Opened!
               </h1>
               <p className="text-gray-300 mb-6">
-                Thank you — your request was submitted successfully. Our team will
-                review it and contact you within 24 hours.
+                Your email client should have opened with your request
+                pre-filled. Please send the email to complete your submission.
+                Our team will respond within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild variant="outline" className="glass-button">
