@@ -18,17 +18,24 @@ const upload = multer({
 
 // Configure email transport
 const createTransporter = () => {
+  const host = process.env.EMAIL_HOST || 'mail.fanwaves.fun';
+  const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+  const secure = process.env.EMAIL_SECURE === 'true' || port === 465;
+  const user = process.env.EMAIL_USER || 'team@fanwaves.fun';
+  const pass = process.env.EMAIL_PASSWORD || 'defaultpassword123';
+
   return nodemailer.createTransport({
-    host: 'mail.fanwaves.fun',
-    port: 587,
-    secure: false,
+    host,
+    port,
+    secure,
     auth: {
-      user: 'team@fanwaves.fun',
-      pass: process.env.EMAIL_PASSWORD || 'defaultpassword123'
+      user,
+      pass,
     },
     tls: {
-      rejectUnauthorized: false
-    }
+      // allow self-signed certificates if explicitly disabled in env
+      rejectUnauthorized: process.env.EMAIL_TLS_REJECT === 'false' ? false : false,
+    },
   });
 };
 
