@@ -144,7 +144,12 @@ const POSPage = () => {
     e.preventDefault();
 
     // Validate required fields
-    if (!formData.customerName || !formData.email || !formData.phone || !formData.productDescription) {
+    if (
+      !formData.customerName ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.productDescription
+    ) {
       toast({
         title: "Missing required fields",
         description: "Please fill out all required fields (marked with *).",
@@ -166,8 +171,10 @@ const POSPage = () => {
       });
 
       // Append arrays
-      if (selectedSizes.length > 0) payload.append("sizes", JSON.stringify(selectedSizes));
-      if (selectedColors.length > 0) payload.append("colors", JSON.stringify(selectedColors));
+      if (selectedSizes.length > 0)
+        payload.append("sizes", JSON.stringify(selectedSizes));
+      if (selectedColors.length > 0)
+        payload.append("colors", JSON.stringify(selectedColors));
 
       // Append photo if present
       if (uploadedFile) {
@@ -188,13 +195,17 @@ const POSPage = () => {
       setIsSubmitted(true);
       toast({
         title: "Request submitted",
-        description: data?.message || "Your request has been submitted. We'll contact you within 24 hours.",
+        description:
+          data?.message ||
+          "Your request has been submitted. We'll contact you within 24 hours.",
       });
     } catch (err: any) {
       console.error("POS form submission failed:", err);
       toast({
         title: "Submission failed",
-        description: err?.message || "There was an error submitting your request. Please try again or contact support.",
+        description:
+          err?.message ||
+          "There was an error submitting your request. Please try again or contact support.",
         variant: "destructive",
       });
     }
@@ -211,9 +222,9 @@ const POSPage = () => {
                 Email Client Opened!
               </h1>
               <p className="text-gray-300 mb-6">
-                Your email client should have opened with your request pre-filled.
-                Please send the email to complete your submission. Our team will
-                respond within 24 hours.
+                Your email client should have opened with your request
+                pre-filled. Please send the email to complete your submission.
+                Our team will respond within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild variant="outline" className="glass-button">
@@ -245,7 +256,8 @@ const POSPage = () => {
             Special Request Form
           </h1>
           <p className="text-xl text-gray-300 mb-6">
-            Can't find your size or color? Want something custom? Need it shipped? We've got you covered!
+            Can't find your size or color? Want something custom? Need it
+            shipped? We've got you covered!
           </p>
           <Badge variant="secondary" className="glass-badge text-lg px-4 py-2">
             <Star className="mr-2 h-4 w-4" />
@@ -360,16 +372,28 @@ const POSPage = () => {
             <CardContent className="space-y-6">
               <div>
                 <Label className="text-white">Type of Request *</Label>
-                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, requestType: value }))}>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({ ...prev, requestType: value }))
+                  }
+                >
                   <SelectTrigger className="glass-input">
                     <SelectValue placeholder="What type of request is this?" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="out-of-stock">Out of Stock Item - Need Different Size/Color</SelectItem>
-                    <SelectItem value="not-in-store">Item Not Available In Store - Need Shipped</SelectItem>
-                    <SelectItem value="custom-design">Custom Design/Personalization</SelectItem>
+                    <SelectItem value="out-of-stock">
+                      Out of Stock Item - Need Different Size/Color
+                    </SelectItem>
+                    <SelectItem value="not-in-store">
+                      Item Not Available In Store - Need Shipped
+                    </SelectItem>
+                    <SelectItem value="custom-design">
+                      Custom Design/Personalization
+                    </SelectItem>
                     <SelectItem value="bulk-order">Bulk/Team Order</SelectItem>
-                    <SelectItem value="special-request">Special Request/Other</SelectItem>
+                    <SelectItem value="special-request">
+                      Special Request/Other
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
